@@ -1,0 +1,590 @@
+Building Strategic Risk Plans
+Objectives
+By the end of this lab, students will be able to:
+
+Design a strategic risk management framework that aligns cybersecurity risks with human behavior and organizational culture
+Implement role-based risk assessments using Python
+Create prioritization matrices for risk management decisions
+Develop automated tools for risk analysis and visualization
+Build data-driven risk management plans for organizational contexts
+Prerequisites
+Basic Python programming (functions, dictionaries, loops, file I/O)
+Understanding of cybersecurity risk concepts
+Familiarity with Linux command line
+Basic knowledge of organizational roles and security responsibilities
+Lab Environment
+Al Nafi provides pre-configured Linux-based cloud machines. Click Start Lab to access your environment with Python 3, pip, and necessary libraries pre-installed.
+
+Task 1: Build a Risk-Behavior-Culture Alignment Framework
+Step 1: Set Up the Working Environment
+Create your lab directory and verify Python installation:
+
+mkdir ~/risk_management_lab
+cd ~/risk_management_lab
+
+# Verify Python and install required libraries
+python3 --version
+pip3 install pandas matplotlib seaborn numpy
+Step 2: Create the Risk Framework Module
+Create a file named risk_framework.py:
+
+#!/usr/bin/env python3
+"""
+Strategic Risk Management Framework
+Students will complete this module to align risks, behaviors, and culture
+"""
+
+import json
+import pandas as pd
+from datetime import datetime
+
+class RiskBehaviorCultureFramework:
+    def __init__(self):
+        # Risk categories with severity levels
+        self.risk_categories = {
+            'phishing': {'severity': 'high', 'frequency': 'daily'},
+            'weak_passwords': {'severity': 'medium', 'frequency': 'continuous'},
+            'social_engineering': {'severity': 'high', 'frequency': 'weekly'},
+            'insider_threats': {'severity': 'critical', 'frequency': 'monthly'},
+            'unsecured_devices': {'severity': 'medium', 'frequency': 'daily'}
+        }
+        
+        # Behavioral pattern multipliers
+        self.behavioral_patterns = {
+            'security_awareness': {
+                'low': {'risk_multiplier': 2.5},
+                'medium': {'risk_multiplier': 1.5},
+                'high': {'risk_multiplier': 0.8}
+            },
+            'compliance_adherence': {
+                'low': {'risk_multiplier': 2.0},
+                'medium': {'risk_multiplier': 1.3},
+                'high': {'risk_multiplier': 0.7}
+            }
+        }
+        
+        # Culture factors and weights
+        self.culture_factors = {
+            'leadership_commitment': {'weight': 0.3},
+            'employee_engagement': {'weight': 0.25},
+            'communication_effectiveness': {'weight': 0.2},
+            'learning_culture': {'weight': 0.15},
+            'accountability_structure': {'weight': 0.1}
+        }
+    
+    def calculate_risk_score(self, risk_type, behavior_level, culture_score):
+        """
+        Calculate comprehensive risk score based on risk, behavior, and culture.
+        
+        Args:
+            risk_type: Type of risk from risk_categories
+            behavior_level: 'low', 'medium', or 'high'
+            culture_score: Float between 0.0 and 1.0
+        
+        Returns:
+            Float risk score (0-10 scale)
+        """
+        # TODO: Get base severity score (critical=4, high=3, medium=2, low=1)
+        # TODO: Apply behavioral multipliers from both patterns
+        # TODO: Apply culture multiplier (2.0 - culture_score)
+        # TODO: Calculate final score and cap at 10.0
+        pass
+    
+    def generate_alignment_matrix(self):
+        """
+        Generate risk-behavior-culture alignment matrix.
+        
+        Returns:
+            DataFrame with alignment data
+        """
+        alignment_data = []
+        
+        # TODO: Loop through all risk types
+        # TODO: Loop through behavior levels ('low', 'medium', 'high')
+        # TODO: Loop through culture scores (0.3, 0.5, 0.7, 0.9)
+        # TODO: Calculate risk score for each combination
+        # TODO: Determine alignment status
+        # TODO: Append to alignment_data list
+        
+        return pd.DataFrame(alignment_data)
+    
+    def get_alignment_status(self, risk_score):
+        """
+        Determine alignment status based on risk score.
+        
+        Returns: 'well_aligned', 'moderately_aligned', 'poorly_aligned', 
+                 or 'critically_misaligned'
+        """
+        # TODO: Implement thresholds (<=2.0, <=4.0, <=6.0, >6.0)
+        pass
+    
+    def save_framework_data(self, filename='risk_framework_data.json'):
+        """Save framework configuration to JSON file."""
+        # TODO: Create dictionary with all framework data
+        # TODO: Add timestamp
+        # TODO: Write to JSON file with proper formatting
+        pass
+
+def main():
+    print("=== Risk-Behavior-Culture Alignment Framework ===")
+    
+    # TODO: Initialize framework
+    # TODO: Generate alignment matrix
+    # TODO: Save to CSV file
+    # TODO: Display summary statistics
+    # TODO: Show sample data (first 10 rows)
+
+if __name__ == "__main__":
+    main()
+Step 3: Implement the Framework
+Complete the TODO sections in risk_framework.py:
+
+Implement calculate_risk_score() with proper severity mapping and multipliers
+Complete generate_alignment_matrix() to create all combinations
+Implement get_alignment_status() with appropriate thresholds
+Complete save_framework_data() for JSON export
+Finish the main() function to execute the workflow
+Step 4: Test the Framework
+chmod +x risk_framework.py
+python3 risk_framework.py
+Expected output files:
+
+risk_alignment_matrix.csv - Complete alignment data
+risk_framework_data.json - Framework configuration
+Step 5: Create Visualization Module
+Create risk_visualization.py:
+
+#!/usr/bin/env python3
+"""
+Risk Management Visualization Tools
+Students will complete visualization functions
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class RiskVisualization:
+    def __init__(self):
+        plt.style.use('default')
+        sns.set_palette("husl")
+    
+    def create_risk_heatmap(self, alignment_df):
+        """
+        Create heatmap showing risk scores across conditions.
+        
+        Args:
+            alignment_df: DataFrame with alignment data
+        """
+        # TODO: Pivot data for heatmap (risk_type vs behavior_level)
+        # TODO: Create figure with appropriate size
+        # TODO: Generate heatmap with annotations
+        # TODO: Add labels and title
+        # TODO: Save to 'risk_heatmap.png'
+        pass
+    
+    def create_alignment_distribution(self, alignment_df):
+        """Create pie chart of alignment status distribution."""
+        # TODO: Count alignment statuses
+        # TODO: Create pie chart with percentages
+        # TODO: Use appropriate colors (green, yellow, orange, red)
+        # TODO: Save to 'alignment_distribution.png'
+        pass
+    
+    def create_culture_impact_chart(self, alignment_df):
+        """Create line chart showing culture score impact on risk."""
+        # TODO: Group by risk_type and culture_score
+        # TODO: Calculate average risk scores
+        # TODO: Plot lines for each risk type
+        # TODO: Add legend, labels, and grid
+        # TODO: Save to 'culture_impact_chart.png'
+        pass
+
+def main():
+    # TODO: Load alignment data from CSV
+    # TODO: Initialize visualization object
+    # TODO: Create all three visualizations
+    # TODO: Print completion message
+
+if __name__ == "__main__":
+    main()
+Complete the visualization functions and run:
+
+python3 risk_visualization.py
+Task 2: Implement Role-Based Risk Assessment
+Step 1: Create Role-Based Assessment Module
+Create role_risk_assessment.py:
+
+#!/usr/bin/env python3
+"""
+Role-Based Risk Assessment and Prioritization
+Students will implement role-specific risk analysis
+"""
+
+import pandas as pd
+import json
+import numpy as np
+
+class RoleBasedRiskAssessment:
+    def __init__(self):
+        # Organizational roles with risk profiles
+        self.organizational_roles = {
+            'executive': {
+                'access_level': 'unrestricted',
+                'target_value': 'high',
+                'primary_risks': ['social_engineering', 'phishing', 'insider_threats'],
+                'risk_weight': 0.9
+            },
+            'it_admin': {
+                'access_level': 'administrative',
+                'target_value': 'critical',
+                'primary_risks': ['insider_threats', 'weak_passwords', 'unsecured_devices'],
+                'risk_weight': 0.95
+            },
+            'finance': {
+                'access_level': 'sensitive',
+                'target_value': 'high',
+                'primary_risks': ['phishing', 'social_engineering', 'weak_passwords'],
+                'risk_weight': 0.85
+            },
+            'general_staff': {
+                'access_level': 'basic',
+                'target_value': 'low',
+                'primary_risks': ['phishing', 'weak_passwords', 'unsecured_devices'],
+                'risk_weight': 0.5
+            }
+        }
+        
+        # Risk impact across different dimensions
+        self.risk_impact_matrix = {
+            'phishing': {'financial': 8, 'operational': 7, 'reputational': 9, 'legal': 6},
+            'weak_passwords': {'financial': 6, 'operational': 8, 'reputational': 5, 'legal': 4},
+            'social_engineering': {'financial': 9, 'operational': 8, 'reputational': 9, 'legal': 7},
+            'insider_threats': {'financial': 10, 'operational': 9, 'reputational': 8, 'legal': 9},
+            'unsecured_devices': {'financial': 5, 'operational': 6, 'reputational': 4, 'legal': 3}
+        }
+    
+    def calculate_role_risk_score(self, role, risk_type):
+        """
+        Calculate risk score for specific role and risk type.
+        
+        Args:
+            role: Role name from organizational_roles
+            risk_type: Risk type from risk_impact_matrix
+        
+        Returns:
+            Float risk score (0-10 scale)
+        """
+        # TODO: Get impact scores and calculate mean
+        # TODO: Apply role-specific weight
+        # TODO: Check if primary risk (multiply by 1.3 if yes)
+        # TODO: Return final score (capped at 10.0)
+        pass
+    
+    def generate_role_risk_matrix(self):
+        """
+        Generate comprehensive role-risk assessment matrix.
+        
+        Returns:
+            DataFrame with role-risk combinations
+        """
+        assessment_data = []
+        
+        # TODO: Loop through all roles
+        # TODO: Loop through all risk types
+        # TODO: Calculate risk score for each combination
+        # TODO: Determine priority level
+        # TODO: Add role metadata
+        # TODO: Append to assessment_data
+        
+        return pd.DataFrame(assessment_data)
+    
+    def get_priority_level(self, risk_score):
+        """
+        Determine priority level based on risk score.
+        
+        Returns: 'critical', 'high', 'medium', or 'low'
+        """
+        # TODO: Implement thresholds (>=8.0, >=6.0, >=4.0, <4.0)
+        pass
+    
+    def create_prioritized_action_plan(self, assessment_df):
+        """
+        Create prioritized action plan based on assessment.
+        
+        Returns:
+            List of action items sorted by priority
+        """
+        action_plan = []
+        
+        # TODO: Group by priority level
+        # TODO: For each priority group:
+        #   - Identify top 3 affected roles
+        #   - Identify top 3 primary risks
+        #   - Calculate average risk score
+        #   - Determine timeline recommendation
+        #   - Suggest mitigation strategies
+        # TODO: Sort by average risk score (descending)
+        
+        return action_plan
+    
+    def get_timeline_recommendation(self, priority):
+        """Get recommended timeline based on priority level."""
+        timelines = {
+            'critical': 'immediate (1-2 weeks)',
+            'high': 'urgent (1 month)',
+            'medium': 'planned (3 months)',
+            'low': 'routine (6 months)'
+        }
+        return timelines.get(priority, 'planned (3 months)')
+    
+    def save_assessment_results(self, assessment_df, action_plan):
+        """Save assessment results to files."""
+        # TODO: Save assessment_df to CSV
+        # TODO: Save action_plan to JSON
+        # TODO: Save organizational_roles to JSON
+        pass
+
+def main():
+    print("=== Role-Based Risk Assessment ===")
+    
+    # TODO: Initialize assessment framework
+    # TODO: Generate role-risk matrix
+    # TODO: Create prioritized action plan
+    # TODO: Save results
+    # TODO: Display summary statistics
+    # TODO: Show top 3 priority actions
+
+if __name__ == "__main__":
+    main()
+Step 2: Complete the Assessment Implementation
+Implement all TODO sections focusing on:
+
+Risk score calculation with proper weighting
+Matrix generation with all role-risk combinations
+Priority level determination
+Action plan creation with timeline recommendations
+Step 3: Run the Assessment
+chmod +x role_risk_assessment.py
+python3 role_risk_assessment.py
+Expected outputs:
+
+role_based_risk_assessment.csv - Detailed assessment matrix
+prioritized_action_plan.json - Actionable priorities
+organizational_roles.json - Role definitions
+Step 4: Create Role-Based Visualizations
+Create role_visualization.py:
+
+#!/usr/bin/env python3
+"""
+Role-Based Risk Visualization
+Students will create specialized role-risk charts
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import json
+
+class RoleRiskVisualization:
+    def __init__(self):
+        plt.style.use('default')
+        sns.set_palette("Set2")
+    
+    def create_role_risk_heatmap(self, assessment_df):
+        """Create heatmap of risk scores by role and risk type."""
+        # TODO: Pivot data (role vs risk_type)
+        # TODO: Create heatmap with annotations
+        # TODO: Save to 'role_risk_heatmap.png'
+        pass
+    
+    def create_priority_distribution(self, assessment_df):
+        """Create stacked bar chart of priority distribution by role."""
+        # TODO: Group by role and priority_level
+        # TODO: Create stacked bar chart
+        # TODO: Use color coding (red, orange, yellow, green)
+        # TODO: Save to 'priority_distribution.png'
+        pass
+    
+    def create_action_timeline(self, action_plan_file):
+        """Create timeline visualization for action plan."""
+        # TODO: Load action plan JSON
+        # TODO: Map timeline strings to numeric weeks
+        # TODO: Create scatter plot (timeline vs risk_score)
+        # TODO: Size bubbles by number of instances
+        # TODO: Save to 'action_timeline.png'
+        pass
+
+def main():
+    # TODO: Load assessment data
+    # TODO: Create all visualizations
+    # TODO: Print completion message
+
+if __name__ == "__main__":
+    main()
+Step 5: Generate Role-Based Visualizations
+python3 role_visualization.py
+Task 3: Build Comprehensive Risk Management Reports
+Step 1: Create Report Generator
+Create risk_report_generator.py:
+
+#!/usr/bin/env python3
+"""
+Risk Management Report Generator
+Students will create comprehensive risk reports
+"""
+
+import pandas as pd
+import json
+from datetime import datetime
+
+class RiskReportGenerator:
+    def __init__(self):
+        self.report_sections = []
+    
+    def load_data(self):
+        """Load all assessment and framework data."""
+        # TODO: Load risk_alignment_matrix.csv
+        # TODO: Load role_based_risk_assessment.csv
+        # TODO: Load prioritized_action_plan.json
+        # TODO: Store in instance variables
+        pass
+    
+    def generate_executive_summary(self):
+        """Generate executive summary section."""
+        summary = {
+            'report_date': datetime.now().isoformat(),
+            'total_risks_assessed': 0,  # TODO: Calculate
+            'critical_priorities': 0,    # TODO: Calculate
+            'high_priorities': 0,        # TODO: Calculate
+            'top_risk_areas': [],        # TODO: Identify top 3
+            'most_vulnerable_roles': [], # TODO: Identify top 3
+            'recommended_immediate_actions': []  # TODO: Extract from action plan
+        }
+        # TODO: Complete calculations
+        return summary
+    
+    def generate_detailed_findings(self):
+        """Generate detailed findings section."""
+        findings = {
+            'risk_behavior_alignment': {},  # TODO: Summarize alignment data
+            'role_risk_analysis': {},       # TODO: Summarize role assessment
+            'priority_breakdown': {},       # TODO: Count by priority level
+            'culture_impact_analysis': {}   # TODO: Analyze culture scores
+        }
+        # TODO: Complete analysis
+        return findings
+    
+    def generate_recommendations(self):
+        """Generate recommendations section."""
+        recommendations = []
+        # TODO: Extract from action plan
+        # TODO: Add mitigation strategies
+        # TODO: Include timeline and resource estimates
+        return recommendations
+    
+    def save_report(self, output_file='risk_management_report.json'):
+        """Save complete report to JSON file."""
+        report = {
+            'executive_summary': self.generate_executive_summary(),
+            'detailed_findings': self.generate_detailed_findings(),
+            'recommendations': self.generate_recommendations(),
+            'generated_at': datetime.now().isoformat()
+        }
+        # TODO: Write to JSON file
+        pass
+    
+    def generate_markdown_report(self, output_file='risk_report.md'):
+        """Generate human-readable markdown report."""
+        # TODO: Create markdown formatted report
+        # TODO: Include all sections with proper formatting
+        # TODO: Add tables and lists
+        # TODO: Write to markdown file
+        pass
+
+def main():
+    print("=== Generating Risk Management Report ===")
+    
+    # TODO: Initialize report generator
+    # TODO: Load all data
+    # TODO: Generate JSON report
+    # TODO: Generate markdown report
+    # TODO: Print completion message
+
+if __name__ == "__main__":
+    main()
+Step 2: Complete Report Implementation
+Implement the report generator focusing on:
+
+Data aggregation from multiple sources
+Statistical summaries and key metrics
+Actionable recommendations with priorities
+Both JSON and markdown output formats
+Step 3: Generate Final Reports
+python3 risk_report_generator.py
+Expected outputs:
+
+risk_management_report.json - Structured data report
+risk_report.md - Human-readable report
+Step 4: Review and Validate Results
+# View generated files
+ls -lh *.csv *.json *.png *.md
+
+# Check report content
+cat risk_report.md
+
+# Verify data integrity
+python3 -c "import pandas as pd; df = pd.read_csv('role_based_risk_assessment.csv'); print(df.describe())"
+Expected Outcomes
+Upon completing this lab, you should have:
+
+Framework Implementation:
+
+Working risk-behavior-culture alignment system
+Automated risk score calculation
+Alignment matrix with multiple scenarios
+Role-Based Assessment:
+
+Comprehensive role-risk matrix
+Prioritized action plan with timelines
+Role-specific risk profiles
+Visualizations:
+
+Risk heatmaps showing patterns
+Priority distribution charts
+Culture impact analysis graphs
+Action timeline visualizations
+Reports:
+
+Executive summary with key metrics
+Detailed findings and analysis
+Actionable recommendations
+Both structured (JSON) and readable (Markdown) formats
+Troubleshooting Tips
+Issue: Import errors for pandas/matplotlib
+
+pip3 install --upgrade pandas matplotlib seaborn numpy
+Issue: Empty DataFrames or missing data
+
+Verify all TODO sections are implemented
+Check that CSV files exist before loading
+Ensure proper data types in calculations
+Issue: Visualization not saving
+
+Confirm matplotlib backend: python3 -c "import matplotlib; print(matplotlib.get_backend())"
+Add plt.close() after each save
+Check write permissions in directory
+Issue: JSON serialization errors
+
+Convert numpy types to Python types: float(value), int(value)
+Use default=str in json.dump() for datetime objects
+Conclusion
+This lab provided hands-on experience building a strategic risk management system that integrates cybersecurity risks, human behavior patterns, and organizational culture. You implemented role-based risk assessments, created prioritization frameworks, and developed automated reporting tools. These skills are essential for creating data-driven security strategies that account for both technical and human factors in organizational risk management.
+
+Key takeaways:
+
+Risk management requires alignment across technical, behavioral, and cultural dimensions
+Role-based assessments enable targeted mitigation strategies
+Automation and visualization improve decision-making efficiency
+Comprehensive reporting bridges technical analysis and executive communication
+Continue practicing by extending the framework with additional risk types, roles, or mitigation strategies relevant to your organization.

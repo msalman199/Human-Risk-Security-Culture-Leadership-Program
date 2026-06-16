@@ -1,0 +1,521 @@
+Benchmarking Your Security Program
+Objectives
+By the end of this lab, students will be able to:
+
+Understand security program maturity assessment frameworks and methodologies
+Install and configure a benchmarking environment on Linux
+Analyze security program maturity using standardized metrics
+Develop Python scripts to automate security benchmarking processes
+Generate maturity reports and identify improvement opportunities
+Prerequisites
+Basic understanding of cybersecurity frameworks (NIST, ISO 27001)
+Fundamental Linux command-line skills
+Python programming basics (functions, loops, file I/O)
+Understanding of security governance concepts
+Lab Environment
+Al Nafi provides pre-configured Ubuntu 22.04 LTS cloud machines. Click Start Lab to access your environment with:
+
+Python 3.10 and pip pre-installed
+Network connectivity for package downloads
+Text editors (nano, vim) available
+Sufficient resources for all lab activities
+Task 1: Set Up the Benchmarking Environment
+Step 1: Prepare System and Create Project Structure
+Update system packages and create the lab directory:
+
+sudo apt update && sudo apt install python3-pip python3-venv -y
+mkdir ~/security-benchmark && cd ~/security-benchmark
+python3 -m venv venv
+source venv/bin/activate
+Step 2: Install Required Python Libraries
+Install necessary packages:
+
+pip install pandas pyyaml matplotlib seaborn
+pip freeze > requirements.txt
+Step 3: Create Framework Configuration
+Create the configuration file structure:
+
+mkdir -p {config,data,scripts,reports}
+Create config/framework.yaml:
+
+framework:
+  name: "Security Maturity Benchmark"
+  version: "1.0"
+
+domains:
+  governance:
+    weight: 0.25
+    description: "Security governance and leadership"
+  risk_management:
+    weight: 0.20
+    description: "Risk assessment and management"
+  incident_response:
+    weight: 0.15
+    description: "Incident handling capabilities"
+  awareness:
+    weight: 0.15
+    description: "Security training programs"
+  technical_controls:
+    weight: 0.25
+    description: "Technical security measures"
+
+maturity_levels:
+  1: "Initial - Ad-hoc processes"
+  2: "Developing - Basic processes"
+  3: "Defined - Documented standards"
+  4: "Managed - Measured processes"
+  5: "Optimized - Continuous improvement"
+
+scoring:
+  thresholds:
+    critical: 60
+    moderate: 75
+    good: 85
+    excellent: 95
+Step 4: Create Assessment Questions
+Create data/questions.yaml:
+
+governance:
+  - question: "Is there a documented security policy?"
+    weight: 0.4
+  - question: "Is there executive security leadership?"
+    weight: 0.6
+
+risk_management:
+  - question: "Are risk assessments conducted regularly?"
+    weight: 0.5
+  - question: "Is there a risk treatment process?"
+    weight: 0.5
+
+incident_response:
+  - question: "Does an incident response plan exist?"
+    weight: 0.6
+  - question: "Is there a dedicated IR team?"
+    weight: 0.4
+
+awareness:
+  - question: "Is security training provided annually?"
+    weight: 0.7
+  - question: "Are awareness metrics tracked?"
+    weight: 0.3
+
+technical_controls:
+  - question: "Are security controls implemented?"
+    weight: 0.4
+  - question: "Is continuous monitoring in place?"
+    weight: 0.6
+Step 5: Create Sample Assessment Data
+Create data/sample_responses.yaml:
+
+organization:
+  name: "TechCorp Inc"
+  industry: "Technology"
+  date: "2024-01-15"
+
+responses:
+  governance: [3, 4]
+  risk_management: [3, 2]
+  incident_response: [3, 2]
+  awareness: [4, 3]
+  technical_controls: [4, 3]
+Task 2: Develop the Benchmarking Analysis Script
+Step 1: Create Core Analysis Module
+Create scripts/benchmark_analyzer.py with starter code:
+
+#!/usr/bin/env python3
+"""
+Security Program Benchmarking Analyzer
+Students: Complete the TODO sections
+"""
+
+import yaml
+import pandas as pd
+from typing import Dict, Tuple
+
+class BenchmarkAnalyzer:
+    def __init__(self, config_path: str, questions_path: str):
+        """
+        Initialize the analyzer with configuration files.
+        
+        Args:
+            config_path: Path to framework configuration
+            questions_path: Path to questions file
+        """
+        # TODO: Load YAML configuration files
+        # TODO: Initialize instance variables
+        pass
+    
+    def calculate_domain_score(self, domain: str, responses: list) -> float:
+        """
+        Calculate weighted score for a domain.
+        
+        Args:
+            domain: Domain name
+            responses: List of response scores (1-5)
+        
+        Returns:
+            Domain score as percentage (0-100)
+        """
+        # TODO: Get domain questions and weights
+        # TODO: Calculate weighted score
+        # TODO: Return percentage score
+        pass
+    
+    def calculate_overall_score(self, domain_scores: Dict[str, float]) -> float:
+        """
+        Calculate overall maturity score.
+        
+        Args:
+            domain_scores: Dictionary of domain scores
+        
+        Returns:
+            Overall weighted score
+        """
+        # TODO: Apply domain weights from config
+        # TODO: Calculate weighted average
+        # TODO: Return overall score
+        pass
+    
+    def determine_maturity_level(self, score: float) -> Tuple[int, str]:
+        """
+        Determine maturity level based on score.
+        
+        Args:
+            score: Overall maturity score
+        
+        Returns:
+            Tuple of (level_number, level_name)
+        """
+        # TODO: Compare score against thresholds
+        # TODO: Return appropriate maturity level
+        pass
+    
+    def analyze_assessment(self, responses_path: str) -> dict:
+        """
+        Perform complete assessment analysis.
+        
+        Args:
+            responses_path: Path to assessment responses
+        
+        Returns:
+            Dictionary containing analysis results
+        """
+        # TODO: Load assessment responses
+        # TODO: Calculate all domain scores
+        # TODO: Calculate overall score
+        # TODO: Determine maturity level
+        # TODO: Return comprehensive results
+        pass
+Step 2: Create Report Generation Module
+Create scripts/report_generator.py:
+
+#!/usr/bin/env python3
+"""
+Report Generation Module
+Students: Complete the TODO sections
+"""
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+
+class ReportGenerator:
+    def __init__(self, results: dict, org_info: dict):
+        """
+        Initialize report generator.
+        
+        Args:
+            results: Analysis results dictionary
+            org_info: Organization information
+        """
+        # TODO: Store results and organization info
+        pass
+    
+    def generate_bar_chart(self, domain_scores: dict, output_path: str):
+        """
+        Generate domain scores bar chart.
+        
+        Args:
+            domain_scores: Dictionary of domain scores
+            output_path: Path to save chart
+        """
+        # TODO: Create bar chart with matplotlib
+        # TODO: Add labels and formatting
+        # TODO: Save to output_path
+        pass
+    
+    def generate_markdown_report(self, output_path: str):
+        """
+        Generate detailed markdown report.
+        
+        Args:
+            output_path: Path to save report
+        """
+        # TODO: Create markdown formatted report
+        # TODO: Include executive summary
+        # TODO: Add domain analysis sections
+        # TODO: Include recommendations
+        # TODO: Write to file
+        pass
+    
+    def generate_recommendations(self, domain_scores: dict) -> list:
+        """
+        Generate improvement recommendations.
+        
+        Args:
+            domain_scores: Dictionary of domain scores
+        
+        Returns:
+            List of recommendation strings
+        """
+        # TODO: Identify lowest scoring domains
+        # TODO: Generate specific recommendations
+        # TODO: Prioritize by score gaps
+        pass
+Step 3: Create Main Execution Script
+Create scripts/run_benchmark.py:
+
+#!/usr/bin/env python3
+"""
+Main Benchmarking Execution Script
+Students: Complete the TODO sections
+"""
+
+from benchmark_analyzer import BenchmarkAnalyzer
+from report_generator import ReportGenerator
+import sys
+
+def main():
+    """
+    Execute complete benchmarking workflow.
+    """
+    print("Security Program Benchmarking Tool")
+    print("=" * 50)
+    
+    # TODO: Initialize analyzer with config files
+    
+    # TODO: Load and analyze assessment responses
+    
+    # TODO: Display results to console
+    
+    # TODO: Generate visualizations
+    
+    # TODO: Generate markdown report
+    
+    # TODO: Print completion message with file locations
+    
+    pass
+
+if __name__ == "__main__":
+    main()
+Make scripts executable:
+
+chmod +x scripts/*.py
+Task 3: Implement Interactive Assessment Collection
+Step 1: Create Interactive Assessment Script
+Create scripts/interactive_assessment.py:
+
+#!/usr/bin/env python3
+"""
+Interactive Assessment Collection Tool
+Students: Complete the TODO sections
+"""
+
+import yaml
+from datetime import datetime
+
+class InteractiveAssessment:
+    def __init__(self, config_path: str, questions_path: str):
+        """
+        Initialize interactive assessment tool.
+        """
+        # TODO: Load configuration and questions
+        pass
+    
+    def collect_organization_info(self) -> dict:
+        """
+        Collect organization information interactively.
+        
+        Returns:
+            Dictionary with organization details
+        """
+        # TODO: Prompt for organization name
+        # TODO: Prompt for industry
+        # TODO: Prompt for size
+        # TODO: Add current date
+        # TODO: Return dictionary
+        pass
+    
+    def conduct_domain_assessment(self, domain: str) -> list:
+        """
+        Conduct assessment for a single domain.
+        
+        Args:
+            domain: Domain name
+        
+        Returns:
+            List of response scores
+        """
+        # TODO: Display domain information
+        # TODO: Loop through domain questions
+        # TODO: Collect and validate responses (1-5)
+        # TODO: Return list of scores
+        pass
+    
+    def save_responses(self, org_info: dict, responses: dict, output_path: str):
+        """
+        Save assessment responses to YAML file.
+        
+        Args:
+            org_info: Organization information
+            responses: Assessment responses
+            output_path: Path to save file
+        """
+        # TODO: Create data structure
+        # TODO: Write to YAML file
+        pass
+    
+    def run_assessment(self) -> str:
+        """
+        Execute complete interactive assessment.
+        
+        Returns:
+            Path to saved responses file
+        """
+        # TODO: Collect organization info
+        # TODO: Conduct assessment for each domain
+        # TODO: Save responses to file
+        # TODO: Return file path
+        pass
+Step 2: Test the Interactive Tool
+Run the interactive assessment:
+
+cd ~/security-benchmark
+source venv/bin/activate
+python3 scripts/interactive_assessment.py
+Task 4: Generate and Analyze Reports
+Step 1: Execute Complete Analysis
+Run the benchmarking analysis:
+
+python3 scripts/run_benchmark.py data/sample_responses.yaml
+Step 2: Review Generated Reports
+Examine the markdown report:
+
+cat reports/assessment_report.md
+View the visualization:
+
+xdg-open reports/domain_scores.png  # or use appropriate viewer
+Step 3: Create Comparison Analysis Script
+Create scripts/compare_assessments.py:
+
+#!/usr/bin/env python3
+"""
+Assessment Comparison Tool
+Students: Complete the TODO sections
+"""
+
+import yaml
+import matplotlib.pyplot as plt
+
+def load_multiple_assessments(file_paths: list) -> list:
+    """
+    Load multiple assessment files for comparison.
+    
+    Args:
+        file_paths: List of assessment file paths
+    
+    Returns:
+        List of assessment data dictionaries
+    """
+    # TODO: Load each assessment file
+    # TODO: Return list of assessments
+    pass
+
+def compare_domain_scores(assessments: list) -> dict:
+    """
+    Compare domain scores across assessments.
+    
+    Args:
+        assessments: List of assessment results
+    
+    Returns:
+        Dictionary with comparison data
+    """
+    # TODO: Extract domain scores from each assessment
+    # TODO: Calculate differences and trends
+    # TODO: Return comparison dictionary
+    pass
+
+def generate_trend_chart(comparison_data: dict, output_path: str):
+    """
+    Generate trend comparison chart.
+    
+    Args:
+        comparison_data: Comparison results
+        output_path: Path to save chart
+    """
+    # TODO: Create line or bar chart showing trends
+    # TODO: Add labels and legend
+    # TODO: Save to file
+    pass
+Expected Outcomes
+After completing this lab, you should have:
+
+Functional benchmarking environment with all required dependencies
+Complete analysis scripts that calculate maturity scores across domains
+Report generation capability producing markdown reports and visualizations
+Interactive assessment tool for collecting responses
+Understanding of maturity models and how to apply them
+Sample Output Structure
+reports/
+├── assessment_report.md          # Detailed findings
+├── domain_scores.png             # Visual representation
+├── executive_summary.md          # High-level overview
+└── recommendations.txt           # Improvement suggestions
+Key Metrics Calculated
+Domain Scores: Weighted scores for each security domain (0-100%)
+Overall Maturity: Aggregate score across all domains
+Maturity Level: Classification (1-5) based on thresholds
+Gap Analysis: Identification of improvement areas
+Troubleshooting Tips
+Issue: YAML parsing errors
+
+Solution: Validate YAML syntax using yamllint or online validators
+Check for proper indentation (use spaces, not tabs)
+Issue: Import errors for custom modules
+
+Solution: Ensure you're in the correct directory and virtual environment is activated
+Add sys.path.append() if needed for module discovery
+Issue: Matplotlib display issues
+
+Solution: Use plt.savefig() instead of plt.show() in headless environments
+Install python3-tk if GUI display is needed
+Issue: Division by zero in score calculations
+
+Solution: Add validation to check for empty response lists
+Implement default values for missing data
+Conclusion
+This lab introduced security program benchmarking using a maturity model framework. You learned to:
+
+Structure assessment frameworks with weighted domains
+Automate maturity scoring calculations
+Generate actionable reports and visualizations
+Collect assessment data interactively
+Key Takeaways:
+
+Maturity models provide standardized measurement of security programs
+Weighted scoring reflects relative importance of different domains
+Regular assessments enable tracking improvement over time
+Automation reduces manual effort and ensures consistency
+Next Steps:
+
+Customize the framework for specific industry requirements
+Integrate with existing security tools and dashboards
+Implement historical tracking and trend analysis
+Develop remediation workflows based on assessment results
+Additional Resources:
+
+NIST Cybersecurity Framework documentation
+ISO/IEC 27001 standards
+CMMI maturity model guidelines
+Python data visualization best practices

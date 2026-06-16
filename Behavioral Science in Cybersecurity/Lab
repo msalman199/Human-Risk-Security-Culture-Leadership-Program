@@ -1,0 +1,454 @@
+Behavioral Science in Cybersecurity
+Objectives
+By the end of this lab, students will be able to:
+
+Understand and apply the B.J. Fogg Behavior Model (Motivation, Ability, Trigger) to cybersecurity contexts
+Implement behavioral assessment algorithms in Python
+Develop risk prioritization systems incorporating behavioral science principles
+Analyze security behaviors and generate actionable recommendations
+Create tools for improving organizational security culture
+Prerequisites
+Basic Python programming (functions, classes, dictionaries, lists)
+Understanding of Linux command line operations
+Familiarity with cybersecurity concepts (threats, vulnerabilities, risk)
+Basic knowledge of human behavior and motivation concepts
+Lab Environment Setup
+Al Nafi provides pre-configured Linux-based cloud machines. Click Start Lab to access your environment with:
+
+Python 3.8+ with standard libraries
+Text editors (nano, vim)
+All necessary dependencies pre-installed
+Task 1: Implement the B.J. Fogg Behavior Model
+Understanding the Fogg Model
+The B.J. Fogg Behavior Model states: B = MAT (Behavior occurs when Motivation, Ability, and Trigger converge)
+
+Motivation: Desire to perform the behavior (0-10 scale)
+Ability: Capacity to perform the behavior (0-10 scale)
+Trigger: Prompt that initiates the behavior (0-10 scale)
+Step 1: Create Project Directory
+mkdir ~/fogg_cybersecurity_lab
+cd ~/fogg_cybersecurity_lab
+Step 2: Implement the Fogg Model Class
+Create the main implementation file:
+
+nano fogg_model.py
+Add the following starter code:
+
+#!/usr/bin/env python3
+"""
+B.J. Fogg Behavior Model Implementation for Cybersecurity
+Students: Complete the TODO sections to implement the model
+"""
+
+import json
+import datetime
+from typing import Dict, List
+
+class FoggBehaviorModel:
+    """
+    Implementation of B.J. Fogg's Behavior Model for cybersecurity contexts
+    """
+    
+    def __init__(self):
+        self.behavior_history = []
+    
+    def calculate_behavior_score(self, motivation: float, ability: float, trigger: float) -> float:
+        """
+        Calculate behavior likelihood based on Fogg's B=MAT model
+        
+        Args:
+            motivation: Motivation level (0-10)
+            ability: Ability level (0-10)
+            trigger: Trigger strength (0-10)
+        
+        Returns:
+            Behavior likelihood score (0-100)
+        """
+        # TODO: Normalize inputs to 0-1 range (clamp between 0-10, divide by 10)
+        # TODO: Calculate behavior score using formula: (m * a * t) * 100
+        # TODO: Return rounded score (2 decimal places)
+        pass
+    
+    def assess_cybersecurity_behavior(self, behavior_name: str, user_profile: Dict) -> Dict:
+        """
+        Assess a specific cybersecurity behavior using the Fogg model
+        
+        Args:
+            behavior_name: Name of the cybersecurity behavior
+            user_profile: Dictionary with 'motivation', 'ability', 'trigger' keys
+        
+        Returns:
+            Assessment dictionary with scores, likelihood, risk_level, recommendations
+        """
+        # TODO: Extract motivation, ability, trigger from user_profile (default to 5)
+        # TODO: Calculate behavior score using calculate_behavior_score()
+        # TODO: Determine likelihood category:
+        #       >= 70: "High" likelihood, "Low" risk
+        #       >= 40: "Medium" likelihood, "Medium" risk
+        #       < 40: "Low" likelihood, "High" risk
+        # TODO: Generate recommendations using _generate_recommendations()
+        # TODO: Create assessment dictionary with all required fields
+        # TODO: Append to behavior_history and return assessment
+        pass
+    
+    def _generate_recommendations(self, motivation: float, ability: float, trigger: float) -> List[str]:
+        """
+        Generate recommendations based on Fogg model component scores
+        """
+        recommendations = []
+        
+        # TODO: If motivation < 5, add motivation-related recommendations
+        #       Examples: awareness campaigns, success stories, recognition programs
+        # TODO: If ability < 5, add ability-related recommendations
+        #       Examples: training, simplified tools, documentation
+        # TODO: If trigger < 5, add trigger-related recommendations
+        #       Examples: automated reminders, environmental cues, regular check-ins
+        
+        return recommendations
+    
+    def get_behavior_trends(self) -> Dict:
+        """
+        Analyze trends in behavior assessments over time
+        """
+        if not self.behavior_history:
+            return {"message": "No behavior data available"}
+        
+        # TODO: Calculate average scores for motivation, ability, trigger, behavior_score
+        # TODO: Count risk distribution (High, Medium, Low)
+        # TODO: Return dictionary with total_assessments, averages, risk_distribution
+        pass
+    
+    def export_data(self, filename: str) -> bool:
+        """
+        Export behavior history to JSON file
+        """
+        # TODO: Write behavior_history to JSON file with proper error handling
+        # TODO: Return True on success, False on failure
+        pass
+
+# Test your implementation
+if __name__ == "__main__":
+    fogg = FoggBehaviorModel()
+    
+    # Test case 1: Password management with low ability
+    user1 = {'motivation': 7, 'ability': 4, 'trigger': 8}
+    result1 = fogg.assess_cybersecurity_behavior("Password Management", user1)
+    print(f"Test 1 - Behavior Score: {result1['scores']['behavior_score']}")
+    print(f"Likelihood: {result1['likelihood']}, Risk: {result1['risk_level']}")
+    print(f"Recommendations: {len(result1['recommendations'])} items\n")
+    
+    # Test case 2: Phishing awareness with weak trigger
+    user2 = {'motivation': 9, 'ability': 8, 'trigger': 3}
+    result2 = fogg.assess_cybersecurity_behavior("Phishing Awareness", user2)
+    print(f"Test 2 - Behavior Score: {result2['scores']['behavior_score']}")
+    print(f"Likelihood: {result2['likelihood']}, Risk: {result2['risk_level']}")
+    
+    # Display trends
+    trends = fogg.get_behavior_trends()
+    print(f"\nTrends: {trends}")
+Save and make executable:
+
+chmod +x fogg_model.py
+Step 3: Test Your Implementation
+Run the script to verify your implementation:
+
+python3 fogg_model.py
+Expected behavior: The script should calculate behavior scores, determine risk levels, and generate appropriate recommendations based on the Fogg model components.
+
+Task 2: Develop a Risk Prioritization Algorithm
+Step 1: Create the Risk Prioritization Module
+nano risk_prioritization.py
+Add the following starter code:
+
+#!/usr/bin/env python3
+"""
+Cybersecurity Risk Prioritization using B.J. Fogg Model
+Students: Complete the TODO sections to implement risk prioritization
+"""
+
+import json
+from typing import Dict, List
+from fogg_model import FoggBehaviorModel
+
+class CybersecurityRiskPrioritizer:
+    """
+    Risk prioritization system using Fogg behavior model
+    """
+    
+    def __init__(self):
+        self.fogg_model = FoggBehaviorModel()
+        self.risk_database = []
+        self.prioritized_risks = []
+    
+    def add_risk_scenario(self, risk_id: str, risk_name: str, impact_score: float, 
+                         user_profiles: List[Dict], threat_frequency: float) -> None:
+        """
+        Add a cybersecurity risk scenario to the database
+        
+        Args:
+            risk_id: Unique identifier for the risk
+            risk_name: Human-readable name of the risk
+            impact_score: Business impact score (1-10)
+            user_profiles: List of user profiles affected by this risk
+            threat_frequency: How often this threat occurs (1-10)
+        """
+        # TODO: Create risk_scenario dictionary with all parameters
+        # TODO: For each user profile, assess behavior using fogg_model
+        # TODO: Store assessments in risk_scenario['behavioral_assessments']
+        # TODO: Append risk_scenario to risk_database
+        pass
+    
+    def calculate_risk_priority_score(self, risk_scenario: Dict) -> float:
+        """
+        Calculate priority score combining traditional risk with behavioral factors
+        
+        Formula: Priority = (Impact × Frequency × Behavioral_Risk_Factor) / 100
+        Where Behavioral_Risk_Factor = 100 - avg_behavior_score
+        """
+        # TODO: Extract impact_score and threat_frequency from risk_scenario
+        # TODO: Calculate average behavior score from behavioral_assessments
+        # TODO: Convert to behavioral_risk_factor (inverse: 100 - avg_score)
+        # TODO: Calculate priority_score using formula above
+        # TODO: Return rounded score (2 decimal places)
+        pass
+    
+    def prioritize_risks(self) -> List[Dict]:
+        """
+        Prioritize all risks in the database based on calculated scores
+        """
+        self.prioritized_risks = []
+        
+        # TODO: For each risk in risk_database:
+        #       - Calculate priority_score
+        #       - Determine priority_level (Critical >= 70, High >= 50, Medium >= 30, Low < 30)
+        #       - Create prioritized_risk dictionary with all relevant fields
+        #       - Generate recommendations using _generate_risk_recommendations()
+        #       - Append to prioritized_risks
+        # TODO: Sort prioritized_risks by priority_score (descending)
+        # TODO: Return prioritized_risks
+        pass
+    
+    def _generate_risk_recommendations(self, risk_scenario: Dict) -> List[str]:
+        """
+        Generate specific recommendations for addressing the risk
+        """
+        recommendations = []
+        
+        # TODO: Analyze behavioral assessments to find average M, A, T scores
+        # TODO: Add recommendations based on weak components (< 5)
+        # TODO: Add recommendations based on high impact (>= 8) or frequency (>= 8)
+        # TODO: Return list of recommendations
+        pass
+    
+    def generate_risk_report(self) -> str:
+        """
+        Generate a comprehensive risk prioritization report
+        """
+        if not self.prioritized_risks:
+            self.prioritize_risks()
+        
+        # TODO: Create report header with title and separator
+        # TODO: Add executive summary (total risks, critical count, high count)
+        # TODO: Add detailed analysis for each prioritized risk
+        # TODO: Include priority level, scores, affected users, recommendations
+        # TODO: Return formatted report string
+        pass
+    
+    def export_prioritized_risks(self, filename: str) -> bool:
+        """
+        Export prioritized risks to JSON file
+        """
+        # TODO: Write prioritized_risks to JSON file with error handling
+        # TODO: Return True on success, False on failure
+        pass
+
+# Test your implementation
+if __name__ == "__main__":
+    prioritizer = CybersecurityRiskPrioritizer()
+    
+    # Define test user profiles
+    weak_users = [
+        {'motivation': 3, 'ability': 4, 'trigger': 2},
+        {'motivation': 4, 'ability': 3, 'trigger': 3}
+    ]
+    
+    strong_users = [
+        {'motivation': 8, 'ability': 9, 'trigger': 7},
+        {'motivation': 9, 'ability': 8, 'trigger': 8}
+    ]
+    
+    # Add test scenarios
+    prioritizer.add_risk_scenario(
+        risk_id="RISK-001",
+        risk_name="Phishing Email Attacks",
+        impact_score=8.5,
+        user_profiles=weak_users,
+        threat_frequency=9.0
+    )
+    
+    prioritizer.add_risk_scenario(
+        risk_id="RISK-002",
+        risk_name="Unauthorized Software Installation",
+        impact_score=6.5,
+        user_profiles=strong_users,
+        threat_frequency=5.0
+    )
+    
+    # Prioritize and display
+    prioritized = prioritizer.prioritize_risks()
+    print("Top Priority Risks:")
+    for risk in prioritized:
+        print(f"- {risk['risk_name']}: {risk['priority_score']} ({risk['priority_level']})")
+    
+    # Generate report
+    report = prioritizer.generate_risk_report()
+    print("\n" + report)
+Step 2: Test the Risk Prioritization System
+python3 risk_prioritization.py
+Expected behavior: The system should prioritize risks based on impact, frequency, and behavioral factors, with higher scores for scenarios involving users with weak security behaviors.
+
+Task 3: Create a Comprehensive Testing Suite
+Step 1: Implement Test Cases
+nano test_system.py
+Add the following starter code:
+
+#!/usr/bin/env python3
+"""
+Comprehensive test suite for Fogg Cybersecurity Model
+Students: Complete the TODO sections to implement tests
+"""
+
+from fogg_model import FoggBehaviorModel
+from risk_prioritization import CybersecurityRiskPrioritizer
+
+def test_fogg_model():
+    """Test the basic Fogg model implementation"""
+    print("=== Testing Fogg Model ===\n")
+    
+    fogg = FoggBehaviorModel()
+    
+    # TODO: Create test cases with different M, A, T combinations
+    # TODO: Test edge cases (all zeros, all tens, mixed values)
+    # TODO: Verify behavior scores are calculated correctly
+    # TODO: Check that recommendations are generated appropriately
+    # TODO: Validate risk level assignments
+    # TODO: Print test results with pass/fail indicators
+    pass
+
+def test_risk_prioritization():
+    """Test the risk prioritization algorithm"""
+    print("=== Testing Risk Prioritization ===\n")
+    
+    prioritizer = CybersecurityRiskPrioritizer()
+    
+    # TODO: Create diverse user profiles (high-risk, medium-risk, low-risk)
+    # TODO: Add multiple risk scenarios with varying impact and frequency
+    # TODO: Verify priority scores are calculated correctly
+    # TODO: Check that risks are sorted by priority
+    # TODO: Validate priority level assignments
+    # TODO: Test recommendation generation
+    # TODO: Print test results
+    pass
+
+def test_data_export():
+    """Test data export functionality"""
+    print("=== Testing Data Export ===\n")
+    
+    # TODO: Create test data in both modules
+    # TODO: Export to JSON files
+    # TODO: Verify files are created successfully
+    # TODO: Read files back and validate content
+    # TODO: Print test results
+    pass
+
+def run_integration_test():
+    """Run comprehensive integration test"""
+    print("=== Integration Test ===\n")
+    
+    # TODO: Create realistic organizational scenario
+    # TODO: Define multiple departments with different security profiles
+    # TODO: Add various risk scenarios affecting different departments
+    # TODO: Prioritize risks and generate report
+    # TODO: Export results
+    # TODO: Validate end-to-end workflow
+    pass
+
+if __name__ == "__main__":
+    test_fogg_model()
+    test_risk_prioritization()
+    test_data_export()
+    run_integration_test()
+    print("\n=== All Tests Complete ===")
+Step 2: Run Comprehensive Tests
+python3 test_system.py
+Task 4: Apply to Real-World Scenario
+Step 1: Create Organizational Assessment Tool
+nano org_assessment.py
+Implement a tool that:
+
+Defines multiple departments with different security profiles
+Assesses common cybersecurity risks across the organization
+Prioritizes risks based on behavioral factors
+Generates actionable recommendations for each department
+Exports comprehensive reports
+Key considerations:
+
+Different departments have different security maturity levels
+High-value targets (executives, finance) may need special attention
+Technical teams typically have higher ability but may lack motivation for basic security
+Non-technical teams may have high motivation but low ability
+Step 2: Run Organizational Assessment
+python3 org_assessment.py
+Review the generated report and identify:
+
+Which departments pose the highest behavioral risk
+Which security behaviors need immediate attention
+What interventions would be most effective
+Expected Outcomes
+Upon completing this lab, you should have:
+
+Functional Fogg Model Implementation: A working Python class that assesses cybersecurity behaviors using the B.J. Fogg model
+Risk Prioritization System: An algorithm that combines traditional risk factors with behavioral science
+Comprehensive Test Suite: Validation of your implementations with various test cases
+Organizational Assessment Tool: A practical application for real-world security culture analysis
+Generated Reports: JSON exports and formatted reports showing risk priorities and recommendations
+Key insights gained:
+
+Behavioral factors significantly impact cybersecurity risk
+Low ability is often the limiting factor, not motivation
+Effective triggers can compensate for moderate motivation
+Different user populations require different intervention strategies
+Troubleshooting Tips
+Issue: Behavior scores always return 0 or incorrect values
+Verify inputs are properly normalized to 0-1 range before calculation
+Check that you're using multiplication (not addition) in the formula
+Ensure you're converting back to 0-100 scale for final score
+Issue: Risk prioritization doesn't match expectations
+Verify behavioral_risk_factor is calculated as inverse (100 - score)
+Check that all three factors (impact, frequency, behavioral) are included
+Ensure risks are sorted in descending order by priority_score
+Issue: Recommendations are empty or incorrect
+Verify threshold checks (< 5) are working correctly
+Ensure recommendations list is being populated before return
+Check that all three components (M, A, T) are being evaluated
+Issue: JSON export fails
+Verify file path is writable
+Check that data structures contain only JSON-serializable types
+Use proper error handling with try/except blocks
+Conclusion
+This lab demonstrated how behavioral science principles, specifically the B.J. Fogg Behavior Model, can be applied to cybersecurity risk assessment and prioritization. By understanding that behavior requires the convergence of motivation, ability, and triggers, security professionals can design more effective interventions.
+
+Key takeaways:
+
+Traditional risk assessment (impact × likelihood) can be enhanced with behavioral factors
+Identifying the weakest component (M, A, or T) enables targeted interventions
+Different user populations require different security strategies
+Behavioral data provides actionable insights for improving security culture
+Real-world applications:
+
+Security awareness program design
+Risk-based resource allocation
+Targeted training and intervention strategies
+Security culture measurement and improvement
+Compliance and policy effectiveness assessment
+Continue exploring how behavioral science can improve cybersecurity outcomes in your organization.

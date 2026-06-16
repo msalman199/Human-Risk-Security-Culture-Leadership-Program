@@ -1,0 +1,484 @@
+Cyber Threat Intelligence (CTI) Integration
+Objectives
+By the end of this lab, students will be able to:
+
+Integrate open-source CTI data into structured formats for analysis
+Analyze and prioritize security risks based on threat intelligence indicators
+Create risk assessment frameworks using Python
+Apply CTI data to identify human-driven security threats
+Generate actionable security recommendations from threat intelligence
+Prerequisites
+Basic understanding of cybersecurity concepts and common threats
+Familiarity with Linux command line operations
+Elementary Python programming knowledge
+Understanding of CSV/JSON data formats
+Technical Requirements:
+
+Al Nafi cloud machine with Linux environment (click Start Lab)
+Pre-installed: Python 3, pip, LibreOffice, curl
+Lab Environment Setup
+Verify your environment:
+
+python3 --version
+pip3 --version
+libreoffice --version
+Create working directory:
+
+mkdir -p ~/cti_lab/{data,scripts,output}
+cd ~/cti_lab
+Task 1: Collect and Process CTI Data
+Step 1.1: Download Open Source Threat Intelligence
+Download CTI feeds from public sources:
+
+# Download malware indicators
+curl -o data/malware_hashes.csv "https://bazaar.abuse.ch/export/csv/recent/"
+
+# Download IP reputation data
+curl -o data/feodo_ips.csv "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"
+
+# Download malicious URLs
+curl -o data/urlhaus_domains.csv "https://urlhaus.abuse.ch/downloads/csv/"
+
+# Backup original data
+cp -r data data_backup
+Step 1.2: Create Data Processing Script
+Create scripts/process_cti.py:
+
+#!/usr/bin/env python3
+import csv
+import json
+from datetime import datetime
+
+def process_malware_hashes(input_file):
+    """
+    Process malware hash indicators from MalwareBazaar.
+    
+    Args:
+        input_file: Path to CSV file with malware hashes
+    
+    Returns:
+        List of processed indicator dictionaries
+    """
+    processed = []
+    
+    # TODO: Open and read the CSV file
+    # TODO: Skip comment lines starting with '#'
+    # TODO: Extract relevant fields: timestamp, hash, malware_family
+    # TODO: Add threat_level='High', source='MalwareBazaar', type='File Hash'
+    # TODO: Limit to first 50 records
+    # TODO: Append to processed list
+    
+    return processed
+
+def process_ip_indicators(input_file):
+    """
+    Process IP reputation data from Feodo Tracker.
+    
+    Args:
+        input_file: Path to file with malicious IPs
+    
+    Returns:
+        List of processed IP indicator dictionaries
+    """
+    processed = []
+    
+    # TODO: Read file line by line
+    # TODO: Skip comments and empty lines
+    # TODO: Extract IP addresses
+    # TODO: Create records with: ip_address, threat_level='Medium', 
+    #       source='Feodo Tracker', type='IP Address'
+    # TODO: Limit to first 50 records
+    
+    return processed
+
+def process_url_indicators(input_file):
+    """
+    Process malicious URL indicators from URLhaus.
+    
+    Args:
+        input_file: Path to CSV with malicious URLs
+    
+    Returns:
+        List of processed URL indicator dictionaries
+    """
+    processed = []
+    
+    # TODO: Open and parse CSV file
+    # TODO: Skip comment lines
+    # TODO: Extract: timestamp, url, status
+    # TODO: Add threat_level='High', source='URLhaus', type='URL/Domain'
+    # TODO: Limit to first 50 records
+    
+    return processed
+
+def create_master_dataset():
+    """Combine all CTI sources into master dataset."""
+    all_indicators = []
+    
+    # TODO: Call each processing function
+    # TODO: Combine results into all_indicators list
+    # TODO: Save as JSON to output/master_cti_dataset.json
+    # TODO: Save as CSV to output/master_cti_dataset.csv
+    
+    print(f"Processed {len(all_indicators)} indicators")
+    return all_indicators
+
+if __name__ == "__main__":
+    create_master_dataset()
+Run the script:
+
+python3 scripts/process_cti.py
+Step 1.3: Create CTI Spreadsheet
+Create scripts/create_spreadsheet.py:
+
+#!/usr/bin/env python3
+import csv
+import json
+
+def calculate_risk_score(record):
+    """
+    Calculate numerical risk score (1-10) for an indicator.
+    
+    Scoring factors:
+    - Threat level: High=7, Medium=4, Low=1
+    - Source reliability: +2 for trusted sources
+    - Indicator type: URL/Domain=+3, IP=+2, Hash=+1
+    
+    Args:
+        record: Dictionary with indicator data
+    
+    Returns:
+        Integer risk score (1-10)
+    """
+    score = 0
+    
+    # TODO: Implement scoring logic based on threat_level
+    # TODO: Add points for source reliability
+    # TODO: Add points for indicator type
+    # TODO: Cap maximum score at 10
+    
+    return score
+
+def create_main_sheet(data):
+    """
+    Create main CTI indicators spreadsheet.
+    
+    Columns: ID, Timestamp, Type, Indicator_Value, Threat_Level, 
+             Source, Description, Risk_Score
+    """
+    headers = ['ID', 'Timestamp', 'Type', 'Indicator_Value', 
+               'Threat_Level', 'Source', 'Description', 'Risk_Score']
+    
+    # TODO: Load data from output/master_cti_dataset.json
+    # TODO: Extract indicator values based on type
+    # TODO: Calculate risk score for each indicator
+    # TODO: Write to output/cti_main_sheet.csv
+
+def create_risk_summary(data):
+    """
+    Create risk assessment summary sheet.
+    
+    Columns: Threat_Category, Count, High_Risk, Medium_Risk, 
+             Low_Risk, Priority_Score
+    """
+    # TODO: Group indicators by type
+    # TODO: Count threat levels within each category
+    # TODO: Calculate priority scores
+    # TODO: Write to output/cti_risk_summary.csv
+
+if __name__ == "__main__":
+    # TODO: Call functions to create spreadsheets
+    pass
+Run and view:
+
+python3 scripts/create_spreadsheet.py
+libreoffice --calc output/cti_main_sheet.csv &
+Task 2: Analyze and Prioritize Threats
+Step 2.1: Create Risk Analysis Framework
+Create scripts/risk_analyzer.py:
+
+#!/usr/bin/env python3
+import json
+from collections import Counter, defaultdict
+
+class CTIRiskAnalyzer:
+    def __init__(self, data_file):
+        """Initialize analyzer with CTI data."""
+        # TODO: Load JSON data from file
+        # TODO: Define risk_matrix with weights for high/medium/low
+        pass
+    
+    def analyze_threat_landscape(self):
+        """
+        Perform threat landscape analysis.
+        
+        Calculate and display:
+        - Total indicator count
+        - Threat level distribution (percentages)
+        - Source distribution
+        - Indicator type distribution
+        """
+        # TODO: Count total indicators
+        # TODO: Calculate threat level percentages
+        # TODO: Count indicators by source
+        # TODO: Count indicators by type
+        # TODO: Print formatted results
+        pass
+    
+    def calculate_priority_score(self, record):
+        """
+        Calculate priority score (1-15) based on multiple factors.
+        
+        Factors:
+        - Threat level weight × 3
+        - Source reliability: +2 for trusted sources
+        - Indicator type: URL/Domain=+3, IP=+2, Hash=+1
+        - Recency: +1 if recent timestamp
+        
+        Args:
+            record: Indicator dictionary
+        
+        Returns:
+            Integer priority score (1-15)
+        """
+        score = 0
+        
+        # TODO: Calculate base score from threat level
+        # TODO: Add source reliability factor
+        # TODO: Add indicator type factor
+        # TODO: Add recency factor if timestamp exists
+        # TODO: Cap at 15
+        
+        return score
+    
+    def prioritize_threats(self):
+        """
+        Prioritize all threats and return sorted list.
+        
+        Returns:
+            List of threat dictionaries sorted by priority_score
+        """
+        prioritized = []
+        
+        # TODO: Loop through all indicators
+        # TODO: Calculate priority score for each
+        # TODO: Add recommended action based on score:
+        #       >=12: "Immediate Response"
+        #       >=8: "Urgent Investigation"
+        #       >=5: "Scheduled Review"
+        #       <5: "Monitor"
+        # TODO: Add response timeline
+        # TODO: Sort by priority score (descending)
+        # TODO: Display top 10 threats
+        
+        return prioritized
+    
+    def analyze_human_risk_factors(self):
+        """
+        Identify threats targeting human vulnerabilities.
+        
+        Human risk indicators:
+        - URLs/Domains (direct user interaction)
+        - Social engineering keywords
+        - User-targeting malware families
+        
+        Returns:
+            List of human-targeting threats with risk scores
+        """
+        human_threats = []
+        
+        # TODO: Loop through indicators
+        # TODO: Score URLs/domains higher (+3)
+        # TODO: Check for social engineering terms (+2)
+        # TODO: Check for user-targeting malware (+2)
+        # TODO: Sort by human risk score
+        # TODO: Display top 5 human-targeting threats
+        
+        return human_threats
+    
+    def generate_recommendations(self, prioritized, human_risks):
+        """
+        Generate actionable security recommendations.
+        
+        Categories:
+        - Immediate Actions (for high-priority threats)
+        - Human Risk Mitigation
+        - Ongoing Security Improvements
+        """
+        recommendations = []
+        
+        # TODO: Create recommendations for high-priority threats
+        # TODO: Create human risk mitigation recommendations
+        # TODO: Create general security improvement recommendations
+        
+        return recommendations
+    
+    def generate_report(self, output_file):
+        """Generate comprehensive risk assessment report."""
+        # TODO: Call analysis methods
+        # TODO: Compile results into report dictionary
+        # TODO: Save as JSON to output_file
+        pass
+
+def main():
+    analyzer = CTIRiskAnalyzer('output/master_cti_dataset.json')
+    
+    # TODO: Run all analysis methods
+    # TODO: Generate final report
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 2.2: Execute Risk Analysis
+Run the analysis:
+
+python3 scripts/risk_analyzer.py
+Step 2.3: Create Risk Prioritization Matrix
+Create scripts/risk_matrix.py:
+
+#!/usr/bin/env python3
+import json
+import csv
+from collections import defaultdict
+
+def create_risk_matrix():
+    """
+    Create risk prioritization matrix CSV.
+    
+    Categories:
+    - Critical (12-15): Immediate response required
+    - High (8-11): Urgent investigation needed
+    - Medium (5-7): Scheduled review
+    - Low (1-4): Routine monitoring
+    """
+    # TODO: Load risk assessment report
+    # TODO: Categorize threats by priority score
+    # TODO: Calculate statistics for each category
+    # TODO: Create CSV with columns: Risk_Category, Count, 
+    #       Indicator_Types, Avg_Score, Primary_Action, Timeline
+    # TODO: Save to output/risk_matrix.csv
+    pass
+
+if __name__ == "__main__":
+    create_risk_matrix()
+Run and review:
+
+python3 scripts/risk_matrix.py
+libreoffice --calc output/risk_matrix.csv &
+Task 3: Visualize Threat Intelligence
+Step 3.1: Create Threat Visualization Dashboard
+Create scripts/visualize_threats.py:
+
+#!/usr/bin/env python3
+import json
+from collections import Counter
+
+def generate_html_dashboard():
+    """
+    Generate HTML dashboard with threat visualizations.
+    
+    Visualizations:
+    - Threat level distribution (bar chart)
+    - Indicator type breakdown (pie chart)
+    - Priority score distribution (histogram)
+    - Top sources (horizontal bar chart)
+    """
+    # TODO: Load master CTI dataset
+    # TODO: Calculate statistics for each visualization
+    # TODO: Generate HTML with embedded CSS
+    # TODO: Use simple HTML tables or ASCII charts
+    # TODO: Save to output/threat_dashboard.html
+    pass
+
+def create_ascii_chart(data, title):
+    """
+    Create simple ASCII bar chart.
+    
+    Args:
+        data: Dictionary with labels and values
+        title: Chart title
+    
+    Returns:
+        String with ASCII chart
+    """
+    # TODO: Find max value for scaling
+    # TODO: Create bars using '#' characters
+    # TODO: Add labels and values
+    # TODO: Return formatted string
+    pass
+
+if __name__ == "__main__":
+    generate_html_dashboard()
+Run and view:
+
+python3 scripts/visualize_threats.py
+firefox output/threat_dashboard.html &
+Expected Outcomes
+After completing this lab, you should have:
+
+Processed CTI Data: Master dataset with 150+ threat indicators from multiple sources
+Risk Analysis: Prioritized threat list with calculated risk scores
+Spreadsheets: Organized CTI data in LibreOffice Calc format
+Risk Matrix: Categorized threats by priority level
+Recommendations: Actionable security recommendations based on analysis
+Visualizations: HTML dashboard showing threat landscape
+Key Files Generated:
+
+output/master_cti_dataset.json - Combined threat intelligence
+output/cti_main_sheet.csv - Main indicators spreadsheet
+output/risk_assessment_report.json - Comprehensive analysis
+output/risk_matrix.csv - Prioritization matrix
+output/threat_dashboard.html - Visual dashboard
+Troubleshooting Tips
+Issue: Download fails with SSL error
+
+# Use --insecure flag (for lab environment only)
+curl --insecure -o data/file.csv "URL"
+Issue: CSV parsing errors
+
+Check for comment lines starting with '#'
+Verify file encoding: file -i data/filename.csv
+Use errors='ignore' when opening files
+Issue: Empty or missing data
+
+Verify downloads completed: ls -lh data/
+Check file contents: head -20 data/filename.csv
+Ensure processing script limits are set (50 records per source)
+Issue: LibreOffice won't open
+
+# Kill existing processes
+killall soffice.bin
+# Try again
+libreoffice --calc output/file.csv &
+Issue: JSON formatting errors
+
+Validate JSON: python3 -m json.tool output/file.json
+Check for proper dictionary/list structures
+Ensure all strings are properly quoted
+Conclusion
+This lab demonstrated practical CTI integration and analysis techniques. You learned to:
+
+Collect threat intelligence from open sources
+Process and normalize CTI data into structured formats
+Calculate risk scores based on multiple threat factors
+Prioritize threats for security response
+Identify human-targeted threats requiring awareness training
+Generate actionable security recommendations
+Key Takeaways:
+
+CTI provides context for security decision-making
+Risk prioritization ensures efficient resource allocation
+Human factors are critical in threat assessment
+Automation enables scalable threat analysis
+Next Steps:
+
+Integrate CTI into SIEM or security tools
+Automate daily CTI feed processing
+Develop custom threat hunting queries
+Create incident response playbooks for identified threats
+Additional Resources:
+
+MISP Threat Sharing Platform
+STIX/TAXII standards documentation
+MITRE ATT&CK Framework
+Threat intelligence platforms (TIPs)

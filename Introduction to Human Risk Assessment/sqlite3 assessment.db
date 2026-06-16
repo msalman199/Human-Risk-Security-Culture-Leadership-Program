@@ -1,0 +1,28 @@
+CREATE TABLE participants (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id TEXT UNIQUE,
+    department TEXT,
+    role TEXT,
+    experience_years INTEGER,
+    created_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE risk_responses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    participant_id INTEGER,
+    question_id TEXT,
+    response_value INTEGER,
+    category TEXT,
+    created_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (participant_id) REFERENCES participants (id)
+);
+
+CREATE TABLE risk_scores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    participant_id INTEGER,
+    category TEXT,
+    score INTEGER,
+    risk_level TEXT,
+    calculated_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (participant_id) REFERENCES participants (id)
+);

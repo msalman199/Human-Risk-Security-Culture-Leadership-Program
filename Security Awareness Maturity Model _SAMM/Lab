@@ -1,0 +1,624 @@
+Security Awareness Maturity Model (SAMM)
+Objectives
+By the end of this lab, students will be able to:
+
+Understand and implement the Security Awareness Maturity Model (SAMM) framework
+Develop Python scripts to assess organizational security awareness maturity
+Analyze survey data using statistical methods to calculate maturity levels
+Generate actionable recommendations based on assessment results
+Create visualization reports for security awareness metrics
+Prerequisites
+Before starting this lab, students should have:
+
+Basic Python programming knowledge
+Understanding of cybersecurity fundamentals
+Familiarity with Linux command line operations
+Basic knowledge of data analysis concepts
+Lab Environment
+Al Nafi provides ready-to-use Linux-based cloud machines for this lab. Click Start Lab to access your pre-configured environment with:
+
+Ubuntu 22.04 LTS
+Python 3.10 with pip
+Pre-installed packages: pandas, numpy, matplotlib
+Text editors (nano, vim)
+Task 1: Set Up SAMM Framework Structure
+Step 1: Create Project Directory Structure
+Open a terminal and create the project structure:
+
+mkdir -p ~/samm-lab/{data,scripts,reports,config}
+cd ~/samm-lab
+touch scripts/__init__.py
+Step 2: Define SAMM Configuration
+Create the configuration file:
+
+nano config/samm_config.py
+Add the following configuration:
+
+# SAMM Configuration File
+
+# Maturity Levels (0-5 scale)
+MATURITY_LEVELS = {
+    0: "Non-existent",
+    1: "Initial/Ad-hoc",
+    2: "Repeatable",
+    3: "Defined",
+    4: "Managed",
+    5: "Optimizing"
+}
+
+# Assessment Categories with weights
+ASSESSMENT_CATEGORIES = {
+    "governance": {
+        "name": "Security Governance",
+        "weight": 0.25,
+        "subcategories": ["policy_framework", "leadership_commitment", 
+                         "resource_allocation", "compliance_monitoring"]
+    },
+    "training": {
+        "name": "Security Training & Education",
+        "weight": 0.30,
+        "subcategories": ["awareness_programs", "role_based_training",
+                         "training_effectiveness", "continuous_learning"]
+    },
+    "culture": {
+        "name": "Security Culture",
+        "weight": 0.25,
+        "subcategories": ["behavioral_change", "incident_reporting",
+                         "peer_influence", "recognition_programs"]
+    },
+    "measurement": {
+        "name": "Measurement & Metrics",
+        "weight": 0.20,
+        "subcategories": ["kpi_tracking", "assessment_frequency",
+                         "data_analysis", "improvement_actions"]
+    }
+}
+
+# Scoring thresholds for maturity levels
+SCORING_THRESHOLDS = {
+    5: 4.5,  # Optimizing
+    4: 3.5,  # Managed
+    3: 2.5,  # Defined
+    2: 1.5,  # Repeatable
+    1: 0.5,  # Initial
+    0: 0.0   # Non-existent
+}
+Step 3: Generate Sample Survey Data
+Create a data generator script:
+
+nano scripts/generate_sample_data.py
+Add the following starter code:
+
+#!/usr/bin/env python3
+"""
+Sample Survey Data Generator for SAMM Assessment
+Students: Complete the TODO sections to generate realistic survey data
+"""
+
+import csv
+import random
+from datetime import datetime, timedelta
+
+def generate_sample_responses(num_responses=50):
+    """
+    Generate sample survey responses for SAMM assessment.
+    
+    Args:
+        num_responses: Number of survey responses to generate
+    
+    Returns:
+        Tuple of (responses list, questions dictionary)
+    """
+    
+    # Define survey questions
+    questions = {
+        # TODO: Add governance category questions
+        "governance_policy_framework": "Rate security policy framework (1-5)",
+        # TODO: Add remaining governance questions
+        
+        # TODO: Add training category questions
+        "training_awareness_programs": "Rate awareness programs (1-5)",
+        # TODO: Add remaining training questions
+        
+        # TODO: Add culture category questions
+        # TODO: Add measurement category questions
+    }
+    
+    responses = []
+    
+    for i in range(num_responses):
+        response = {
+            "response_id": f"RESP_{i+1:03d}",
+            "timestamp": (datetime.now() - timedelta(days=random.randint(1, 30))).isoformat(),
+            # TODO: Add demographic fields (department, role_level, years_experience)
+        }
+        
+        # TODO: Generate realistic scores for each question
+        # Hint: Use random values with some correlation to simulate real data
+        # Hint: Consider using a base maturity level with variations
+        
+        responses.append(response)
+    
+    return responses, questions
+
+def save_sample_data(filename, responses, questions):
+    """
+    Save sample data to CSV file.
+    
+    Args:
+        filename: Output CSV filename
+        responses: List of response dictionaries
+        questions: Dictionary of questions
+    
+    Returns:
+        Boolean indicating success
+    """
+    try:
+        # TODO: Create CSV writer with appropriate fieldnames
+        # TODO: Write header and all responses
+        # TODO: Add error handling
+        
+        print(f"Sample data saved to {filename}")
+        return True
+    except Exception as e:
+        print(f"Error saving data: {e}")
+        return False
+
+if __name__ == "__main__":
+    # TODO: Generate 75 sample responses
+    # TODO: Save to ../data/sample_survey_data.csv
+    pass
+Run the generator after completing the code:
+
+cd ~/samm-lab/scripts
+python3 generate_sample_data.py
+Task 2: Implement SAMM Assessment Engine
+Step 1: Create Core Assessment Class
+Create the main assessment engine:
+
+nano scripts/samm_engine.py
+Add the following starter template:
+
+#!/usr/bin/env python3
+"""
+SAMM Assessment Engine
+Students: Complete the assessment logic and scoring calculations
+"""
+
+import json
+import csv
+import statistics
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
+from samm_config import MATURITY_LEVELS, ASSESSMENT_CATEGORIES, SCORING_THRESHOLDS
+
+class SAMMAssessment:
+    def __init__(self):
+        self.assessment_data = {}
+        self.results = {}
+        self.recommendations = []
+    
+    def load_survey_data(self, csv_file):
+        """
+        Load survey data from CSV file.
+        
+        Args:
+            csv_file: Path to CSV file containing survey responses
+        
+        Returns:
+            List of survey response dictionaries
+        """
+        # TODO: Implement CSV file reading
+        # TODO: Handle file not found errors
+        # TODO: Return list of response dictionaries
+        pass
+    
+    def calculate_category_score(self, responses, category):
+        """
+        Calculate maturity score for a specific category.
+        
+        Args:
+            responses: List of survey responses
+            category: Category key (governance, training, culture, measurement)
+        
+        Returns:
+            Float representing average category score
+        """
+        # TODO: Extract subcategories for the given category
+        # TODO: Calculate average score for each subcategory
+        # TODO: Return overall category average
+        # Hint: Use statistics.mean() for averaging
+        pass
+    
+    def assess_maturity_level(self, score):
+        """
+        Determine maturity level based on score.
+        
+        Args:
+            score: Numeric score (0-5 scale)
+        
+        Returns:
+            Tuple of (level_number, level_name)
+        """
+        # TODO: Compare score against SCORING_THRESHOLDS
+        # TODO: Return appropriate maturity level and name
+        pass
+    
+    def generate_recommendations(self, category, score, level):
+        """
+        Generate improvement recommendations based on maturity level.
+        
+        Args:
+            category: Category key
+            score: Current score
+            level: Current maturity level
+        
+        Returns:
+            List of recommendation strings
+        """
+        # TODO: Define recommendations for each category and level
+        # TODO: Return appropriate recommendations for next level
+        # TODO: Handle case where already at highest level
+        pass
+    
+    def run_assessment(self, survey_file):
+        """
+        Run complete SAMM assessment.
+        
+        Args:
+            survey_file: Path to survey data CSV
+        
+        Returns:
+            Boolean indicating success
+        """
+        print("Starting SAMM Assessment...")
+        print("=" * 50)
+        
+        # TODO: Load survey data
+        # TODO: Calculate scores for each category
+        # TODO: Determine maturity levels
+        # TODO: Generate recommendations
+        # TODO: Calculate overall weighted score
+        # TODO: Store results in self.results dictionary
+        
+        return True
+    
+    def save_results(self, output_file):
+        """
+        Save assessment results to JSON file.
+        
+        Args:
+            output_file: Path to output JSON file
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Write self.results to JSON file
+        # TODO: Handle errors appropriately
+        pass
+
+if __name__ == "__main__":
+    # TODO: Parse command line arguments
+    # TODO: Create SAMMAssessment instance
+    # TODO: Run assessment and save results
+    pass
+Step 2: Test the Assessment Engine
+After completing the code, test it:
+
+python3 samm_engine.py ../data/sample_survey_data.csv
+Verify the output JSON file:
+
+cat ../reports/samm_results.json
+Task 3: Develop Data Analysis Module
+Step 1: Create Statistical Analysis Script
+Create the analysis module:
+
+nano scripts/data_analyzer.py
+Add the following template:
+
+#!/usr/bin/env python3
+"""
+SAMM Data Analysis Module
+Students: Implement statistical analysis and visualization functions
+"""
+
+import pandas as pd
+import numpy as np
+import json
+import matplotlib.pyplot as plt
+import sys
+
+plt.switch_backend('Agg')
+
+class SAMMDataAnalyzer:
+    def __init__(self):
+        self.data = None
+        self.analysis_results = {}
+    
+    def load_data(self, csv_file):
+        """
+        Load survey data into pandas DataFrame.
+        
+        Args:
+            csv_file: Path to CSV file
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Use pandas to read CSV
+        # TODO: Store in self.data
+        # TODO: Print basic info about loaded data
+        pass
+    
+    def basic_statistics(self):
+        """
+        Calculate basic statistics for all categories.
+        """
+        print("\nBasic Statistics Analysis")
+        print("=" * 40)
+        
+        # TODO: Identify score columns (exclude metadata)
+        # TODO: Calculate mean, median, std, min, max for each category
+        # TODO: Store results in self.analysis_results
+        # TODO: Print formatted statistics
+        pass
+    
+    def demographic_analysis(self):
+        """
+        Analyze scores by demographic factors (department, role).
+        """
+        # TODO: Calculate overall score for each response
+        # TODO: Group by department and calculate statistics
+        # TODO: Group by role level and calculate statistics
+        # TODO: Store and print results
+        pass
+    
+    def correlation_analysis(self):
+        """
+        Analyze correlations between categories.
+        
+        Returns:
+            Correlation matrix DataFrame
+        """
+        # TODO: Calculate average score for each category
+        # TODO: Create correlation matrix
+        # TODO: Print and store correlation results
+        pass
+    
+    def generate_visualizations(self, output_dir):
+        """
+        Generate visualization plots.
+        
+        Args:
+            output_dir: Directory to save plots
+        """
+        # TODO: Create box plots for category distributions
+        # TODO: Create bar charts for demographic comparisons
+        # TODO: Create histogram for overall score distribution
+        # TODO: Save plots to output_dir
+        pass
+    
+    def save_analysis_results(self, output_file):
+        """
+        Save analysis results to JSON file.
+        
+        Args:
+            output_file: Path to output JSON file
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Write self.analysis_results to JSON
+        pass
+    
+    def run_complete_analysis(self, csv_file, output_dir):
+        """
+        Run complete data analysis pipeline.
+        
+        Args:
+            csv_file: Input CSV file path
+            output_dir: Output directory for results
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Load data
+        # TODO: Run all analysis functions
+        # TODO: Generate visualizations
+        # TODO: Save results
+        pass
+
+if __name__ == "__main__":
+    # TODO: Parse command line arguments
+    # TODO: Create analyzer instance and run analysis
+    pass
+Step 2: Install Required Packages
+Install necessary Python packages:
+
+pip3 install pandas numpy matplotlib seaborn scipy scikit-learn
+Step 3: Run Data Analysis
+Execute the analysis after completing the code:
+
+python3 data_analyzer.py ../data/sample_survey_data.csv ../reports
+Task 4: Create Comprehensive Reporting System
+Step 1: Build Report Generator
+Create a report generation script:
+
+nano scripts/report_generator.py
+Add the following template:
+
+#!/usr/bin/env python3
+"""
+SAMM Report Generator
+Students: Create comprehensive HTML/PDF reports from assessment results
+"""
+
+import json
+from datetime import datetime
+import sys
+
+class SAMMReportGenerator:
+    def __init__(self):
+        self.assessment_results = None
+        self.analysis_results = None
+    
+    def load_results(self, assessment_file, analysis_file):
+        """
+        Load assessment and analysis results.
+        
+        Args:
+            assessment_file: Path to assessment results JSON
+            analysis_file: Path to analysis results JSON
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Load both JSON files
+        # TODO: Store in instance variables
+        pass
+    
+    def generate_executive_summary(self):
+        """
+        Generate executive summary section.
+        
+        Returns:
+            String containing formatted executive summary
+        """
+        # TODO: Extract overall maturity level
+        # TODO: Identify strengths and weaknesses
+        # TODO: Summarize key findings
+        # TODO: Return formatted summary text
+        pass
+    
+    def generate_category_details(self):
+        """
+        Generate detailed category analysis.
+        
+        Returns:
+            String containing formatted category details
+        """
+        # TODO: For each category, include:
+        #   - Current score and level
+        #   - Comparison to other categories
+        #   - Specific recommendations
+        pass
+    
+    def generate_recommendations_section(self):
+        """
+        Generate prioritized recommendations.
+        
+        Returns:
+            String containing formatted recommendations
+        """
+        # TODO: Collect all recommendations
+        # TODO: Prioritize based on impact and effort
+        # TODO: Format as actionable items
+        pass
+    
+    def generate_html_report(self, output_file):
+        """
+        Generate complete HTML report.
+        
+        Args:
+            output_file: Path to output HTML file
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Create HTML structure with CSS styling
+        # TODO: Include all sections:
+        #   - Executive summary
+        #   - Category details
+        #   - Visualizations (embed images)
+        #   - Recommendations
+        # TODO: Write to output file
+        pass
+    
+    def generate_text_report(self, output_file):
+        """
+        Generate plain text report.
+        
+        Args:
+            output_file: Path to output text file
+        
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Create formatted text report
+        # TODO: Include all key information
+        # TODO: Use ASCII formatting for readability
+        pass
+
+if __name__ == "__main__":
+    # TODO: Parse command line arguments
+    # TODO: Generate reports in multiple formats
+    pass
+Step 2: Generate Reports
+After completing the code, generate reports:
+
+python3 report_generator.py ../reports/samm_results.json ../reports/analysis_results.json
+Step 3: View Generated Reports
+View the text report:
+
+cat ../reports/samm_report.txt
+View the HTML report (if web browser available):
+
+firefox ../reports/samm_report.html &
+Expected Outcomes
+After completing this lab, you should have:
+
+A functional SAMM assessment framework with configuration files
+Sample survey data representing organizational security awareness
+Assessment engine that calculates maturity scores and levels
+Data analysis module with statistical insights and visualizations
+Comprehensive reporting system generating actionable recommendations
+Understanding of how to measure and improve security awareness maturity
+Your reports should show:
+
+Overall maturity score and level (0-5 scale)
+Individual category scores with strengths and weaknesses
+Statistical analysis of survey responses
+Demographic breakdowns by department and role
+Prioritized recommendations for improvement
+Visual charts showing score distributions and correlations
+Troubleshooting Tips
+Issue: Module import errors
+
+Ensure you're running scripts from the scripts/ directory
+Verify __init__.py exists in the scripts folder
+Check that config path is correctly added to sys.path
+Issue: Missing data or empty results
+
+Verify sample data was generated successfully
+Check CSV file format matches expected structure
+Ensure all required columns are present in survey data
+Issue: Visualization errors in headless environment
+
+Confirm matplotlib backend is set to 'Agg'
+Check that output directories exist before saving plots
+Verify sufficient permissions to write to reports directory
+Issue: Incorrect maturity level calculations
+
+Review scoring thresholds in configuration
+Verify weighted score calculations use correct category weights
+Check that all subcategories are included in calculations
+Conclusion
+This lab provided hands-on experience implementing a Security Awareness Maturity Model (SAMM) assessment framework. You learned to:
+
+Structure a maturity assessment system with configurable categories and levels
+Process survey data to calculate organizational security awareness maturity
+Apply statistical analysis to identify trends and patterns in security awareness
+Generate actionable recommendations based on assessment results
+Create comprehensive reports for stakeholders
+The SAMM framework is valuable for organizations to measure and improve their security awareness programs systematically. By understanding current maturity levels and following data-driven recommendations, organizations can enhance their security posture through improved awareness and culture.
+
+Key takeaways:
+
+Maturity models provide structured approaches to capability assessment
+Data-driven analysis reveals insights not visible through subjective evaluation
+Weighted scoring ensures important categories receive appropriate emphasis
+Continuous measurement enables tracking progress over time
+Actionable recommendations drive meaningful improvement initiatives
+Apply these concepts to assess and improve security awareness in real-world organizational contexts.

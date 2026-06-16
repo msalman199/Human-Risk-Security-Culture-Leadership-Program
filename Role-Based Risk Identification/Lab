@@ -1,0 +1,596 @@
+Role-Based Risk Identification
+Objectives
+By the end of this lab, students will be able to:
+
+Understand role-based risk assessment in organizational security contexts
+Identify security risks associated with different organizational roles
+Develop a Python tool for analyzing role-based security risks
+Apply Cyber Threat Intelligence (CTI) data to risk calculations
+Generate risk reports and classify roles by risk level
+Prerequisites
+Basic Python programming knowledge
+Understanding of JSON file formats
+Familiarity with Linux command line
+Basic knowledge of organizational security concepts
+Lab Environment
+Al Nafi provides Linux-based cloud machines for this lab. Click Start Lab to access your pre-configured environment with Python 3 and necessary tools already installed.
+
+Task 1: Set Up the Risk Analysis Environment
+Step 1: Create Project Directory and Install Dependencies
+mkdir ~/role_risk_lab
+cd ~/role_risk_lab
+
+# Create virtual environment
+python3 -m venv risk_env
+source risk_env/bin/activate
+
+# Install required packages
+pip install pandas numpy matplotlib
+Step 2: Create Organizational Roles Data File
+Create a file named organizational_roles.json:
+
+nano organizational_roles.json
+Add the following sample data:
+
+{
+  "role_001": {
+    "name": "Chief Executive Officer",
+    "type": "executive",
+    "department": "Executive",
+    "access_level": 5,
+    "data_sensitivity": 5,
+    "external_exposure": 4,
+    "privilege_level": 5
+  },
+  "role_002": {
+    "name": "IT Administrator",
+    "type": "technical",
+    "department": "IT",
+    "access_level": 5,
+    "data_sensitivity": 4,
+    "external_exposure": 2,
+    "privilege_level": 5
+  },
+  "role_003": {
+    "name": "HR Manager",
+    "type": "management",
+    "department": "Human Resources",
+    "access_level": 4,
+    "data_sensitivity": 5,
+    "external_exposure": 3,
+    "privilege_level": 4
+  },
+  "role_004": {
+    "name": "Sales Representative",
+    "type": "sales",
+    "department": "Sales",
+    "access_level": 2,
+    "data_sensitivity": 3,
+    "external_exposure": 5,
+    "privilege_level": 2
+  },
+  "role_005": {
+    "name": "Customer Support Agent",
+    "type": "support",
+    "department": "Customer Service",
+    "access_level": 2,
+    "data_sensitivity": 3,
+    "external_exposure": 4,
+    "privilege_level": 1
+  }
+}
+Step 3: Create CTI Threat Data File
+Create a file named cti_data.json:
+
+nano cti_data.json
+Add the following threat intelligence data:
+
+{
+  "phishing_attacks": [
+    {
+      "threat_id": "PHI_001",
+      "name": "Executive Spear Phishing",
+      "target_roles": ["executive", "management"],
+      "severity": 4
+    },
+    {
+      "threat_id": "PHI_002",
+      "name": "IT Credential Harvesting",
+      "target_roles": ["technical"],
+      "severity": 5
+    }
+  ],
+  "social_engineering": [
+    {
+      "threat_id": "SE_001",
+      "name": "Customer Service Impersonation",
+      "target_roles": ["support", "sales"],
+      "severity": 3
+    }
+  ],
+  "insider_threats": [
+    {
+      "threat_id": "IN_001",
+      "name": "Privileged User Abuse",
+      "target_roles": ["technical", "executive"],
+      "severity": 5
+    }
+  ]
+}
+Task 2: Develop the Role Risk Analyzer
+Step 1: Create the Base Analyzer Class
+Create role_risk_analyzer.py:
+
+#!/usr/bin/env python3
+"""
+Role-Based Risk Identification Tool
+Students: Complete the TODO sections
+"""
+
+import json
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+class RoleRiskAnalyzer:
+    def __init__(self):
+        self.roles_data = {}
+        self.cti_data = {}
+        self.risk_scores = {}
+        
+    def load_organizational_data(self, roles_file):
+        """
+        Load organizational role data from JSON file.
+        
+        Args:
+            roles_file: Path to roles JSON file
+            
+        Returns:
+            Boolean indicating success
+        """
+        try:
+            # TODO: Open and load the JSON file
+            # TODO: Store data in self.roles_data
+            # TODO: Print success message with role count
+            # TODO: Return True on success
+            pass
+        except FileNotFoundError:
+            print(f"[ERROR] File {roles_file} not found")
+            return False
+        except json.JSONDecodeError:
+            print(f"[ERROR] Invalid JSON format")
+            return False
+    
+    def load_cti_data(self, cti_file):
+        """
+        Load Cyber Threat Intelligence data.
+        
+        Args:
+            cti_file: Path to CTI JSON file
+            
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Implement CTI data loading similar to load_organizational_data
+        # TODO: Store in self.cti_data
+        pass
+    
+    def calculate_base_risk_score(self, role_info):
+        """
+        Calculate base risk score for a role.
+        
+        Formula: (access_level * 0.3 + data_sensitivity * 0.25 + 
+                  external_exposure * 0.25 + privilege_level * 0.2) * 10
+        
+        Args:
+            role_info: Dictionary containing role attributes
+            
+        Returns:
+            Float: Base risk score (0-100)
+        """
+        # TODO: Extract the four risk factors from role_info
+        # TODO: Apply the weighted formula
+        # TODO: Return rounded score (2 decimal places)
+        pass
+    
+    def apply_cti_modifiers(self, base_score, role_type):
+        """
+        Apply CTI-based risk modifiers to base score.
+        
+        Args:
+            base_score: Base risk score
+            role_type: Type of role (executive, technical, etc.)
+            
+        Returns:
+            Float: Modified risk score
+        """
+        if not self.cti_data:
+            return base_score
+        
+        modifier = 1.0
+        
+        # TODO: Iterate through CTI threat categories
+        # TODO: Check if role_type matches target_roles in threats
+        # TODO: Increase modifier based on threat severity (modifier += severity * 0.1)
+        # TODO: Apply modifier to base_score
+        # TODO: Return modified score (capped at 100)
+        pass
+    
+    def classify_risk_level(self, score):
+        """
+        Classify risk level based on score.
+        
+        Thresholds:
+        - CRITICAL: >= 80
+        - HIGH: >= 60
+        - MEDIUM: >= 40
+        - LOW: >= 20
+        - MINIMAL: < 20
+        
+        Args:
+            score: Risk score
+            
+        Returns:
+            String: Risk level classification
+        """
+        # TODO: Implement risk level classification logic
+        pass
+    
+    def analyze_all_roles(self):
+        """
+        Analyze risk for all loaded roles.
+        
+        Returns:
+            Boolean indicating success
+        """
+        if not self.roles_data:
+            print("[ERROR] No role data loaded")
+            return False
+        
+        print("\n[INFO] Starting role-based risk analysis...")
+        
+        # TODO: Iterate through all roles in self.roles_data
+        # TODO: For each role:
+        #   - Calculate base risk score
+        #   - Apply CTI modifiers
+        #   - Classify risk level
+        #   - Store results in self.risk_scores dictionary
+        # TODO: Print completion message
+        # TODO: Return True
+        pass
+    
+    def generate_risk_report(self, output_file='risk_report.json'):
+        """
+        Generate comprehensive risk report.
+        
+        Args:
+            output_file: Output filename for report
+            
+        Returns:
+            Boolean indicating success
+        """
+        if not self.risk_scores:
+            print("[ERROR] No risk analysis data available")
+            return False
+        
+        # TODO: Calculate summary statistics (average, min, max scores)
+        # TODO: Count risk level distribution
+        # TODO: Create report dictionary with summary and detailed analysis
+        # TODO: Save report to JSON file
+        # TODO: Print success message
+        pass
+    
+    def display_top_risks(self, top_n=10):
+        """
+        Display top N highest risk roles.
+        
+        Args:
+            top_n: Number of top risks to display
+        """
+        if not self.risk_scores:
+            print("[ERROR] No risk analysis data available")
+            return
+        
+        # TODO: Sort roles by final_score (descending)
+        # TODO: Print formatted table header
+        # TODO: Display top N roles with rank, name, department, score, level
+        pass
+
+if __name__ == "__main__":
+    print("Role-Based Risk Identification Tool")
+    print("=" * 50)
+    analyzer = RoleRiskAnalyzer()
+    print("\nTool initialized. Ready for analysis.")
+Step 2: Create the Analysis Execution Script
+Create run_analysis.py:
+
+#!/usr/bin/env python3
+"""
+Execute role-based risk analysis
+Students: Complete the main analysis workflow
+"""
+
+from role_risk_analyzer import RoleRiskAnalyzer
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def create_risk_visualization(analyzer):
+    """
+    Create visualizations for risk analysis results.
+    
+    Args:
+        analyzer: RoleRiskAnalyzer instance with completed analysis
+    """
+    if not analyzer.risk_scores:
+        print("[ERROR] No risk data available")
+        return
+    
+    # TODO: Convert risk_scores to pandas DataFrame
+    # TODO: Create figure with 2x2 subplots
+    # TODO: Plot 1: Histogram of risk score distribution
+    # TODO: Plot 2: Pie chart of risk level distribution
+    # TODO: Plot 3: Bar chart of average risk by department
+    # TODO: Plot 4: Bar chart of average risk by role type
+    # TODO: Save figure as 'risk_analysis_charts.png'
+    pass
+
+def generate_detailed_report(analyzer):
+    """
+    Generate detailed text report.
+    
+    Args:
+        analyzer: RoleRiskAnalyzer instance with completed analysis
+    """
+    # TODO: Open output file 'detailed_risk_report.txt'
+    # TODO: Write report header
+    # TODO: Write risk level summary statistics
+    # TODO: Write detailed analysis for each role (sorted by risk score)
+    # TODO: Close file and print success message
+    pass
+
+def main():
+    """Main execution function"""
+    print("Starting Role-Based Risk Analysis")
+    print("=" * 40)
+    
+    # TODO: Initialize RoleRiskAnalyzer
+    # TODO: Load organizational_roles.json
+    # TODO: Load cti_data.json
+    # TODO: Run analyze_all_roles()
+    # TODO: Display top 10 risks
+    # TODO: Generate JSON report
+    # TODO: Generate detailed text report
+    # TODO: Create visualizations
+    # TODO: Print completion message with generated files
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 3: Execute the Analysis
+# Make scripts executable
+chmod +x role_risk_analyzer.py
+chmod +x run_analysis.py
+
+# Run the analysis
+python3 run_analysis.py
+Task 3: Implement Advanced Risk Classification
+Step 1: Create Advanced Classifier
+Create advanced_classifier.py:
+
+#!/usr/bin/env python3
+"""
+Advanced Role-Based Risk Classifier
+Students: Implement advanced classification features
+"""
+
+import json
+from datetime import datetime
+
+class AdvancedRiskClassifier:
+    def __init__(self):
+        self.risk_thresholds = {
+            'CRITICAL': 80,
+            'HIGH': 60,
+            'MEDIUM': 40,
+            'LOW': 20,
+            'MINIMAL': 0
+        }
+        self.department_multipliers = {
+            'Executive': 1.2,
+            'IT': 1.15,
+            'Finance': 1.1,
+            'Human Resources': 1.1,
+            'Sales': 1.05,
+            'Customer Service': 1.0
+        }
+    
+    def calculate_advanced_risk_score(self, role_data, cti_data):
+        """
+        Calculate advanced risk score with department multipliers.
+        
+        Args:
+            role_data: Dictionary with role information
+            cti_data: CTI threat data
+            
+        Returns:
+            Float: Advanced risk score
+        """
+        # TODO: Calculate base score using weighted factors
+        # TODO: Get department multiplier from self.department_multipliers
+        # TODO: Apply department multiplier to base score
+        # TODO: Calculate and apply CTI modifier
+        # TODO: Return final score (capped at 100)
+        pass
+    
+    def identify_risk_factors(self, role_data):
+        """
+        Identify specific risk factors for a role.
+        
+        Args:
+            role_data: Dictionary with role information
+            
+        Returns:
+            List of risk factor strings
+        """
+        factors = []
+        
+        # TODO: Check if access_level >= 4, add "High system access privileges"
+        # TODO: Check if data_sensitivity >= 4, add "Access to sensitive data"
+        # TODO: Check if external_exposure >= 4, add "High external exposure"
+        # TODO: Check if privilege_level >= 4, add "Administrative privileges"
+        # TODO: Check role type for additional factors
+        # TODO: Return list of identified factors
+        pass
+    
+    def generate_recommendations(self, role_data, risk_level):
+        """
+        Generate security recommendations based on risk level.
+        
+        Args:
+            role_data: Dictionary with role information
+            risk_level: Classified risk level
+            
+        Returns:
+            List of recommendation strings
+        """
+        recommendations = []
+        
+        # TODO: For CRITICAL/HIGH: Add MFA, monitoring, access reviews
+        # TODO: For MEDIUM: Add email filtering, endpoint protection
+        # TODO: For high external_exposure: Add social engineering training
+        # TODO: For high privilege_level: Add privileged account monitoring
+        # TODO: Return unique recommendations list
+        pass
+    
+    def classify_role_risk_profile(self, role_data, risk_score):
+        """
+        Create detailed risk profile for a role.
+        
+        Args:
+            role_data: Dictionary with role information
+            risk_score: Calculated risk score
+            
+        Returns:
+            Dictionary with complete risk profile
+        """
+        # TODO: Determine risk level from score
+        # TODO: Identify risk factors
+        # TODO: Generate recommendations
+        # TODO: Create profile dictionary with all information
+        # TODO: Return complete profile
+        pass
+
+def run_advanced_classification():
+    """Run the advanced classification process"""
+    print("Advanced Role-Based Risk Classification")
+    print("=" * 45)
+    
+    # TODO: Load organizational_roles.json
+    # TODO: Load cti_data.json
+    # TODO: Initialize AdvancedRiskClassifier
+    # TODO: For each role:
+    #   - Calculate advanced risk score
+    #   - Create detailed risk profile
+    # TODO: Save results to 'advanced_risk_classification.json'
+    # TODO: Generate summary report
+    pass
+
+if __name__ == "__main__":
+    run_advanced_classification()
+Step 2: Run Advanced Classification
+chmod +x advanced_classifier.py
+python3 advanced_classifier.py
+Step 3: Review Classification Results
+# View the advanced classification results
+cat advanced_risk_classification.json | python3 -m json.tool | head -50
+
+# Check summary statistics
+cat classification_summary.txt
+Task 4: Analyze and Interpret Results
+Step 1: Examine Risk Distribution
+# View the comprehensive risk report
+python3 -m json.tool comprehensive_risk_report.json
+
+# Read the detailed text report
+less detailed_risk_report.txt
+Step 2: Identify High-Risk Roles
+Create a script to filter high-risk roles:
+
+#!/usr/bin/env python3
+"""
+Filter and display high-risk roles
+"""
+
+import json
+
+def filter_high_risk_roles(report_file, threshold=60):
+    """
+    Filter roles with risk score above threshold.
+    
+    Args:
+        report_file: Path to risk report JSON
+        threshold: Minimum risk score to include
+    """
+    # TODO: Load the risk report
+    # TODO: Filter roles with final_score >= threshold
+    # TODO: Sort by score (descending)
+    # TODO: Print formatted results
+    pass
+
+if __name__ == "__main__":
+    filter_high_risk_roles('comprehensive_risk_report.json', 60)
+Step 3: Generate Mitigation Priority List
+# Create a prioritized list of roles requiring immediate attention
+python3 -c "
+import json
+with open('comprehensive_risk_report.json', 'r') as f:
+    data = json.load(f)
+    
+critical = [(k, v) for k, v in data['detailed_analysis'].items() 
+            if v['risk_level'] == 'CRITICAL']
+            
+print('CRITICAL PRIORITY ROLES:')
+for role_id, info in sorted(critical, key=lambda x: x[1]['final_score'], reverse=True):
+    print(f\"- {info['role_name']}: {info['final_score']} ({info['department']})\")
+"
+Expected Outcomes
+After completing this lab, you should have:
+
+A functional role-based risk analysis tool
+Risk reports in JSON and text formats
+Visualization charts showing risk distribution
+Advanced classification with security recommendations
+Understanding of how organizational roles impact security posture
+Ability to prioritize security controls based on role risk
+Troubleshooting Tips
+Issue: JSON decode errors when loading data files
+
+Verify JSON syntax using: python3 -m json.tool filename.json
+Check for missing commas, brackets, or quotes
+Ensure proper UTF-8 encoding
+Issue: Module import errors
+
+Confirm virtual environment is activated: source risk_env/bin/activate
+Reinstall packages: pip install pandas numpy matplotlib
+Check Python version: python3 --version (should be 3.6+)
+Issue: Empty risk_scores dictionary
+
+Ensure data files are loaded successfully before analysis
+Check that analyze_all_roles() completes without errors
+Verify role data contains required fields (access_level, data_sensitivity, etc.)
+Issue: Visualization not displaying
+
+Install display backend: pip install python-tk
+Save plots to file instead of showing: Use plt.savefig() without plt.show()
+Check file permissions in working directory
+Conclusion
+This lab introduced role-based risk identification as a critical component of organizational security assessment. You developed a Python-based tool that analyzes security risks associated with different organizational roles by considering access levels, data sensitivity, external exposure, and privilege levels. By integrating Cyber Threat Intelligence data, the tool provides context-aware risk scoring that reflects current threat landscapes.
+
+Key takeaways:
+
+Different organizational roles present varying levels of security risk
+Risk assessment should consider multiple factors including CTI data
+Automated tools can help prioritize security controls and monitoring
+Risk classification enables targeted security recommendations
+Regular role-based risk analysis supports proactive security management
+The skills developed in this lab are applicable to real-world security operations, compliance requirements, and risk management programs.

@@ -1,0 +1,707 @@
+Final Security Culture Program Assessment
+Objectives
+By the end of this lab, students will be able to:
+
+Conduct comprehensive security culture program assessments using quantitative metrics
+Develop Python-based tools for automated security culture analysis
+Generate professional assessment reports with data visualizations
+Calculate security culture maturity scores across multiple dimensions
+Create actionable recommendations based on assessment findings
+Prerequisites
+Before starting this lab, students should have:
+
+Basic Python programming skills (functions, file I/O, data structures)
+Understanding of security awareness and culture concepts
+Familiarity with Linux command-line operations
+Basic knowledge of data analysis principles
+Lab Environment
+Al Nafi provides Linux-based cloud machines for this lab. Click Start Lab to access your pre-configured environment.
+
+Your lab machine includes:
+
+Ubuntu 22.04 LTS
+Python 3.10+ with pandas, matplotlib, seaborn
+Text editors (nano, vim)
+All necessary libraries pre-installed
+Task 1: Set Up Assessment Framework
+Step 1: Create Project Structure
+Create the directory structure for your assessment project:
+
+mkdir -p ~/security_culture_assessment/{data,reports,scripts}
+cd ~/security_culture_assessment
+Step 2: Create Configuration File
+Create the assessment configuration:
+
+nano scripts/config.py
+Add the following starter configuration:
+
+#!/usr/bin/env python3
+"""
+Security Culture Assessment Configuration
+Students: Complete the configuration parameters
+"""
+
+# Assessment metadata
+ASSESSMENT_CONFIG = {
+    'program_name': 'Security Culture Program',
+    'organization': 'Sample Organization',
+    'assessment_period': '2024-Q1',
+    # TODO: Add assessment version
+    # TODO: Add assessment date
+}
+
+# Maturity scoring weights (must sum to 1.0)
+CATEGORY_WEIGHTS = {
+    'awareness': 0.25,
+    'behavior': 0.30,
+    'culture': 0.25,
+    'outcomes': 0.20
+}
+
+# TODO: Define maturity level thresholds
+# Format: {'Level_Name': (min_score, max_score)}
+MATURITY_THRESHOLDS = {
+    # TODO: Define Initial (0-20)
+    # TODO: Define Developing (21-40)
+    # TODO: Define Defined (41-60)
+    # TODO: Define Managed (61-80)
+    # TODO: Define Optimizing (81-100)
+}
+
+# Metrics to collect for each category
+METRICS_DEFINITION = {
+    'awareness': ['training_completion', 'phishing_click_rate', 'knowledge_scores'],
+    'behavior': ['incident_reporting', 'policy_compliance', 'security_practices'],
+    'culture': ['leadership_support', 'employee_engagement', 'communication'],
+    'outcomes': ['incident_reduction', 'response_time', 'risk_mitigation']
+}
+Step 3: Generate Sample Assessment Data
+Create a data generator script:
+
+nano scripts/generate_data.py
+#!/usr/bin/env python3
+"""
+Sample Data Generator for Security Culture Assessment
+Students: Complete the data generation functions
+"""
+
+import json
+import random
+from pathlib import Path
+
+class DataGenerator:
+    def __init__(self, output_dir="data"):
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(exist_ok=True)
+    
+    def generate_training_metrics(self):
+        """
+        Generate sample training and awareness metrics
+        
+        Returns:
+            dict: Training metrics data
+        """
+        metrics = {
+            'total_employees': 500,
+            'training_completed': 0,  # TODO: Calculate completion count
+            'completion_rate': 0.0,   # TODO: Calculate percentage
+            'average_score': 0.0,     # TODO: Generate realistic score
+            'satisfaction_rating': 0.0 # TODO: Generate rating (1-5)
+        }
+        
+        # TODO: Implement realistic data generation
+        # Hint: Use random values within realistic ranges
+        
+        return metrics
+    
+    def generate_phishing_metrics(self):
+        """
+        Generate phishing simulation results
+        
+        Returns:
+            dict: Phishing simulation data
+        """
+        # TODO: Create dictionary with phishing metrics
+        # Include: campaigns_sent, total_emails, clicked_links, 
+        #          click_rate, reported_suspicious, reporting_rate
+        pass
+    
+    def generate_incident_metrics(self):
+        """
+        Generate incident reporting and response metrics
+        
+        Returns:
+            dict: Incident metrics data
+        """
+        # TODO: Create dictionary with incident metrics
+        # Include: total_incidents, self_reported, self_reporting_rate,
+        #          average_response_time, resolved_incidents
+        pass
+    
+    def generate_culture_survey(self, num_responses=100):
+        """
+        Generate employee culture survey responses
+        
+        Args:
+            num_responses: Number of survey responses to generate
+        
+        Returns:
+            list: Survey response data
+        """
+        responses = []
+        
+        questions = [
+            "Security is a priority in our organization",
+            "Leadership demonstrates commitment to security",
+            "I feel comfortable reporting security concerns",
+            "Security training is relevant and useful"
+        ]
+        
+        # TODO: Generate realistic survey responses (1-5 scale)
+        # TODO: Include demographic data (department, role, tenure)
+        # TODO: Simulate realistic response distribution
+        
+        return responses
+    
+    def save_all_data(self):
+        """Generate and save all assessment data files"""
+        # TODO: Call all generation methods
+        # TODO: Save each dataset as JSON file
+        # TODO: Print confirmation message
+        pass
+
+if __name__ == "__main__":
+    generator = DataGenerator()
+    generator.save_all_data()
+Run the data generator:
+
+python3 scripts/generate_data.py
+Task 2: Develop Assessment Analyzer
+Step 1: Create Assessment Calculator
+Create the main assessment analyzer:
+
+nano scripts/assessment_analyzer.py
+#!/usr/bin/env python3
+"""
+Security Culture Assessment Analyzer
+Students: Complete the assessment calculation methods
+"""
+
+import json
+import numpy as np
+from pathlib import Path
+from datetime import datetime
+
+class SecurityCultureAssessment:
+    def __init__(self, data_dir="data", reports_dir="reports"):
+        self.data_dir = Path(data_dir)
+        self.reports_dir = Path(reports_dir)
+        self.reports_dir.mkdir(exist_ok=True)
+        
+        # Load weights from config
+        self.weights = {
+            'awareness': 0.25,
+            'behavior': 0.30,
+            'culture': 0.25,
+            'outcomes': 0.20
+        }
+    
+    def load_data(self, filename):
+        """
+        Load JSON data file
+        
+        Args:
+            filename: Name of the JSON file to load
+        
+        Returns:
+            dict: Loaded data or empty dict if file not found
+        """
+        # TODO: Implement file loading with error handling
+        # TODO: Return empty dict if file doesn't exist
+        pass
+    
+    def calculate_awareness_score(self, training_data, phishing_data):
+        """
+        Calculate awareness maturity score (0-100)
+        
+        Args:
+            training_data: Training metrics dictionary
+            phishing_data: Phishing simulation metrics dictionary
+        
+        Returns:
+            float: Awareness score (0-100)
+        """
+        # TODO: Extract training completion rate
+        # TODO: Extract average training score
+        # TODO: Calculate phishing resilience (100 - click_rate)
+        # TODO: Weight and combine metrics
+        # Formula: (training_metrics * 0.4) + (phishing_resilience * 0.6)
+        
+        score = 0.0
+        return round(score, 2)
+    
+    def calculate_behavior_score(self, incident_data, compliance_data):
+        """
+        Calculate behavior maturity score (0-100)
+        
+        Args:
+            incident_data: Incident reporting metrics
+            compliance_data: Policy compliance metrics
+        
+        Returns:
+            float: Behavior score (0-100)
+        """
+        # TODO: Calculate incident reporting effectiveness
+        # TODO: Calculate policy compliance rate
+        # TODO: Weight and combine (50% each)
+        
+        score = 0.0
+        return round(score, 2)
+    
+    def calculate_culture_score(self, culture_data, survey_responses):
+        """
+        Calculate culture maturity score (0-100)
+        
+        Args:
+            culture_data: Leadership and engagement metrics
+            survey_responses: Employee survey data
+        
+        Returns:
+            float: Culture score (0-100)
+        """
+        # TODO: Calculate leadership engagement score
+        # TODO: Calculate average survey sentiment
+        # TODO: Weight and combine (60% leadership, 40% survey)
+        
+        score = 0.0
+        return round(score, 2)
+    
+    def calculate_outcomes_score(self, incident_data):
+        """
+        Calculate outcomes maturity score (0-100)
+        
+        Args:
+            incident_data: Incident and response metrics
+        
+        Returns:
+            float: Outcomes score (0-100)
+        """
+        # TODO: Evaluate incident reduction trends
+        # TODO: Evaluate response time effectiveness
+        # TODO: Weight and combine metrics
+        
+        score = 0.0
+        return round(score, 2)
+    
+    def determine_maturity_level(self, overall_score):
+        """
+        Determine maturity level based on score
+        
+        Args:
+            overall_score: Overall maturity score (0-100)
+        
+        Returns:
+            str: Maturity level name
+        """
+        # TODO: Implement threshold logic
+        # 81-100: Optimizing
+        # 61-80: Managed
+        # 41-60: Defined
+        # 21-40: Developing
+        # 0-20: Initial
+        
+        return "Unknown"
+    
+    def generate_recommendations(self, scores, maturity_level):
+        """
+        Generate improvement recommendations
+        
+        Args:
+            scores: Dictionary of category scores
+            maturity_level: Current maturity level
+        
+        Returns:
+            list: List of recommendation dictionaries
+        """
+        recommendations = []
+        
+        # TODO: Add recommendations for scores below 70
+        # TODO: Include category, priority, and recommendation text
+        # TODO: Add maturity-level specific recommendations
+        
+        return recommendations
+    
+    def perform_assessment(self):
+        """
+        Execute complete security culture assessment
+        
+        Returns:
+            dict: Complete assessment results
+        """
+        print("Loading assessment data...")
+        
+        # TODO: Load all data files
+        # TODO: Calculate all category scores
+        # TODO: Calculate overall weighted score
+        # TODO: Determine maturity level
+        # TODO: Generate recommendations
+        # TODO: Save results to JSON file
+        
+        results = {
+            'assessment_date': datetime.now().isoformat(),
+            'category_scores': {},
+            'overall_score': 0.0,
+            'maturity_level': 'Unknown',
+            'recommendations': []
+        }
+        
+        return results
+
+if __name__ == "__main__":
+    assessor = SecurityCultureAssessment()
+    results = assessor.perform_assessment()
+    print(f"Assessment complete: {results['maturity_level']} ({results['overall_score']}%)")
+Step 2: Run the Assessment
+Execute the assessment analyzer:
+
+python3 scripts/assessment_analyzer.py
+Verify the results file was created:
+
+ls -l reports/
+cat reports/assessment_results.json
+Task 3: Generate Assessment Reports
+Step 1: Create Report Generator
+Create the report generation script:
+
+nano scripts/report_generator.py
+#!/usr/bin/env python3
+"""
+Security Culture Assessment Report Generator
+Students: Complete the report generation functions
+"""
+
+import json
+import matplotlib.pyplot as plt
+import numpy as np
+from pathlib import Path
+from datetime import datetime
+
+class ReportGenerator:
+    def __init__(self, reports_dir="reports"):
+        self.reports_dir = Path(reports_dir)
+        self.reports_dir.mkdir(exist_ok=True)
+    
+    def load_results(self):
+        """
+        Load assessment results from JSON file
+        
+        Returns:
+            dict: Assessment results or None if not found
+        """
+        # TODO: Load assessment_results.json
+        # TODO: Handle file not found error
+        pass
+    
+    def create_bar_chart(self, scores, output_file="maturity_scores.png"):
+        """
+        Create bar chart of maturity scores
+        
+        Args:
+            scores: Dictionary of category scores
+            output_file: Output filename for chart
+        """
+        # TODO: Create figure and axis
+        # TODO: Create bar chart with category scores
+        # TODO: Add labels, title, and grid
+        # TODO: Add horizontal lines for maturity thresholds
+        # TODO: Save figure to reports directory
+        
+        # Hint: Use plt.bar(), plt.axhline(), plt.savefig()
+        pass
+    
+    def create_radar_chart(self, scores, output_file="maturity_radar.png"):
+        """
+        Create radar chart of maturity scores
+        
+        Args:
+            scores: Dictionary of category scores
+            output_file: Output filename for chart
+        """
+        # TODO: Set up polar projection
+        # TODO: Calculate angles for each category
+        # TODO: Plot values and fill area
+        # TODO: Add category labels
+        # TODO: Save figure
+        
+        # Hint: Use subplot_kw=dict(projection='polar')
+        pass
+    
+    def generate_executive_summary(self, results):
+        """
+        Generate executive summary text
+        
+        Args:
+            results: Assessment results dictionary
+        
+        Returns:
+            str: Formatted executive summary
+        """
+        summary = f"""
+SECURITY CULTURE ASSESSMENT - EXECUTIVE SUMMARY
+================================================
+
+Assessment Date: {datetime.now().strftime('%B %d, %Y')}
+Overall Maturity: {results['maturity_level']}
+Overall Score: {results['overall_score']}%
+
+CATEGORY SCORES:
+"""
+        # TODO: Add category scores to summary
+        # TODO: Add key findings section
+        # TODO: Add top 3 recommendations
+        
+        return summary
+    
+    def generate_detailed_report(self, results):
+        """
+        Generate comprehensive assessment report
+        
+        Args:
+            results: Assessment results dictionary
+        
+        Returns:
+            str: Formatted detailed report
+        """
+        # TODO: Create report header with metadata
+        # TODO: Add assessment methodology section
+        # TODO: Add detailed category analysis
+        # TODO: Add all recommendations with priorities
+        # TODO: Add next steps and action plan
+        # TODO: Add conclusion
+        
+        report = "SECURITY CULTURE ASSESSMENT - DETAILED REPORT\n"
+        report += "=" * 60 + "\n\n"
+        
+        return report
+    
+    def generate_all_reports(self):
+        """Generate complete report package"""
+        print("Loading assessment results...")
+        results = self.load_results()
+        
+        if not results:
+            print("Error: No assessment results found")
+            return
+        
+        print("Generating visualizations...")
+        # TODO: Create bar chart
+        # TODO: Create radar chart
+        
+        print("Generating text reports...")
+        # TODO: Generate executive summary
+        # TODO: Generate detailed report
+        # TODO: Save both reports to text files
+        
+        print(f"Reports generated in {self.reports_dir}")
+
+if __name__ == "__main__":
+    generator = ReportGenerator()
+    generator.generate_all_reports()
+Step 2: Generate Reports
+Run the report generator:
+
+python3 scripts/report_generator.py
+Step 3: Review Generated Reports
+View the generated reports:
+
+ls -l reports/
+cat reports/executive_summary.txt
+cat reports/detailed_report.txt
+View the visualizations (if GUI available):
+
+# If X11 forwarding is enabled
+display reports/maturity_scores.png
+display reports/maturity_radar.png
+Task 4: Create Presentation Summary
+Step 1: Generate Presentation Outline
+Create a presentation summary script:
+
+nano scripts/presentation_summary.py
+#!/usr/bin/env python3
+"""
+Generate presentation-ready summary
+Students: Complete the presentation generation
+"""
+
+import json
+from pathlib import Path
+
+class PresentationGenerator:
+    def __init__(self, reports_dir="reports"):
+        self.reports_dir = Path(reports_dir)
+    
+    def create_slide_outline(self, results):
+        """
+        Create presentation slide outline
+        
+        Args:
+            results: Assessment results dictionary
+        
+        Returns:
+            str: Formatted slide outline
+        """
+        outline = """
+SECURITY CULTURE ASSESSMENT PRESENTATION
+=========================================
+
+SLIDE 1: Title Slide
+- Security Culture Program Assessment
+- Assessment Period: [PERIOD]
+- Presented by: [YOUR NAME]
+
+SLIDE 2: Assessment Overview
+- Methodology and approach
+- Four assessment categories
+- Maturity scoring framework
+
+SLIDE 3: Overall Results
+"""
+        # TODO: Add overall score and maturity level
+        # TODO: Add key metrics summary
+        
+        outline += """
+SLIDE 4: Category Breakdown
+"""
+        # TODO: Add each category score
+        # TODO: Add brief interpretation
+        
+        outline += """
+SLIDE 5: Key Findings
+"""
+        # TODO: Add 3-5 key findings
+        
+        outline += """
+SLIDE 6: Recommendations
+"""
+        # TODO: Add top recommendations with priorities
+        
+        outline += """
+SLIDE 7: Next Steps
+- Immediate actions (0-3 months)
+- Short-term initiatives (3-6 months)
+- Long-term goals (6-12 months)
+
+SLIDE 8: Questions
+- Contact information
+- Additional resources
+"""
+        return outline
+    
+    def generate_talking_points(self, results):
+        """
+        Generate speaker notes for presentation
+        
+        Args:
+            results: Assessment results dictionary
+        
+        Returns:
+            str: Formatted talking points
+        """
+        # TODO: Create talking points for each slide
+        # TODO: Include key statistics and context
+        # TODO: Add transition statements
+        
+        talking_points = "PRESENTATION TALKING POINTS\n"
+        talking_points += "=" * 60 + "\n\n"
+        
+        return talking_points
+
+if __name__ == "__main__":
+    generator = PresentationGenerator()
+    # TODO: Load results and generate presentation materials
+    print("Presentation materials generated")
+Step 2: Generate Final Documentation Package
+Create a documentation packager:
+
+nano scripts/package_deliverables.py
+#!/usr/bin/env python3
+"""
+Package all assessment deliverables
+Students: Complete the packaging function
+"""
+
+import shutil
+from pathlib import Path
+from datetime import datetime
+
+def package_deliverables():
+    """
+    Create final deliverables package
+    """
+    # TODO: Create deliverables directory
+    # TODO: Copy all reports
+    # TODO: Copy all visualizations
+    # TODO: Create README with file descriptions
+    # TODO: Create archive (optional)
+    
+    print("Deliverables packaged successfully")
+
+if __name__ == "__main__":
+    package_deliverables()
+Run the packaging script:
+
+python3 scripts/package_deliverables.py
+Expected Outcomes
+Upon completing this lab, you should have:
+
+Assessment Framework: Complete Python-based assessment system with configuration and data generation
+Analysis Tools: Functional analyzer calculating maturity scores across four categories
+Reports Package: Executive summary, detailed report, and visualizations (bar chart, radar chart)
+Presentation Materials: Slide outline and talking points for stakeholder presentation
+Documentation: Complete deliverables package ready for review
+Your final directory structure should look like:
+
+~/security_culture_assessment/
+├── data/
+│   ├── training_metrics.json
+│   ├── phishing_metrics.json
+│   ├── incident_metrics.json
+│   └── survey_responses.json
+├── reports/
+│   ├── assessment_results.json
+│   ├── executive_summary.txt
+│   ├── detailed_report.txt
+│   ├── maturity_scores.png
+│   └── maturity_radar.png
+└── scripts/
+    ├── config.py
+    ├── generate_data.py
+    ├── assessment_analyzer.py
+    ├── report_generator.py
+    └── presentation_summary.py
+Troubleshooting Tips
+Issue: ModuleNotFoundError for matplotlib or pandas
+
+Solution: Install required packages: pip3 install matplotlib pandas seaborn numpy
+Issue: JSON decode errors when loading data
+
+Solution: Verify JSON files are properly formatted. Use python3 -m json.tool filename.json to validate
+Issue: Charts not displaying or saving
+
+Solution: Ensure reports directory exists and has write permissions. Check matplotlib backend with plt.get_backend()
+Issue: Division by zero in score calculations
+
+Solution: Add validation checks for zero values before division operations. Use default values for missing data
+Issue: Assessment results showing unrealistic scores
+
+Solution: Review data generation logic and ensure metrics are within valid ranges (0-100). Check weight calculations sum to 1.0
+Conclusion
+In this lab, you developed a comprehensive security culture assessment system using Python. You created tools to collect and analyze security culture metrics, calculate maturity scores across multiple dimensions, and generate professional reports with visualizations.
+
+Key accomplishments:
+
+Built modular assessment framework with configurable parameters
+Implemented scoring algorithms for awareness, behavior, culture, and outcomes
+Generated executive and detailed reports with actionable recommendations
+Created data visualizations to communicate assessment results effectively
+This assessment methodology can be adapted for real-world security culture program evaluation, providing quantitative insights to drive continuous improvement and demonstrate program value to stakeholders

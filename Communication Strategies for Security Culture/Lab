@@ -1,0 +1,761 @@
+ Communication Strategies for Security Culture
+Objectives
+By the end of this lab, students will be able to:
+
+Apply the Golden Circle model (Why-How-What) to security culture communication
+Develop targeted messaging for different organizational stakeholders
+Create automated communication workflows using Python
+Build a communication plan with scheduling and tracking capabilities
+Implement practical tools for ongoing security awareness campaigns
+Prerequisites
+Basic Python programming knowledge
+Understanding of organizational security concepts
+Familiarity with Linux command line
+Basic knowledge of email protocols and JSON data structures
+Lab Environment
+Al Nafi provides Linux-based cloud machines for this lab. Click Start Lab to access your pre-configured environment with:
+
+Ubuntu 22.04 LTS
+Python 3.10+
+Text editors (nano, vim)
+All necessary packages pre-installed
+Task 1: Implementing the Golden Circle Framework
+Step 1: Create Project Structure
+Set up the lab directory structure:
+
+mkdir -p ~/security-communication-lab/{golden-circle,templates,scripts,logs,data}
+cd ~/security-communication-lab
+Step 2: Build the Golden Circle Communication Framework
+Create the framework file:
+
+nano golden-circle/security_golden_circle.py
+Add the following starter code:
+
+#!/usr/bin/env python3
+"""
+Security Culture Golden Circle Communication Framework
+Students: Complete the implementation of this framework
+"""
+
+class SecurityGoldenCircle:
+    def __init__(self):
+        self.why_statements = []
+        self.how_statements = []
+        self.what_statements = []
+        
+    def add_why(self, statement):
+        """
+        Add a WHY statement - the purpose/belief
+        
+        Args:
+            statement: String describing the purpose or belief
+        """
+        # TODO: Implement adding WHY statements to the list
+        pass
+        
+    def add_how(self, statement):
+        """
+        Add a HOW statement - the process/values
+        
+        Args:
+            statement: String describing the process or approach
+        """
+        # TODO: Implement adding HOW statements to the list
+        pass
+        
+    def add_what(self, statement):
+        """
+        Add a WHAT statement - the product/proof
+        
+        Args:
+            statement: String describing tangible results
+        """
+        # TODO: Implement adding WHAT statements to the list
+        pass
+        
+    def generate_executive_message(self):
+        """
+        Generate message tailored for executives
+        Focus on: ROI, risk reduction, strategic value
+        
+        Returns:
+            Formatted string with executive-focused messaging
+        """
+        # TODO: Create executive message format
+        # TODO: Include all WHY, HOW, WHAT statements
+        # TODO: Use business-focused language
+        pass
+        
+    def generate_employee_message(self):
+        """
+        Generate message tailored for employees
+        Focus on: personal relevance, practical benefits, ease of use
+        
+        Returns:
+            Formatted string with employee-focused messaging
+        """
+        # TODO: Create employee message format
+        # TODO: Include all WHY, HOW, WHAT statements
+        # TODO: Use accessible, practical language
+        pass
+    
+    def save_messages(self, exec_file, emp_file):
+        """
+        Save generated messages to files
+        
+        Args:
+            exec_file: Path for executive message file
+            emp_file: Path for employee message file
+        """
+        # TODO: Generate both messages
+        # TODO: Write to respective files
+        pass
+
+def main():
+    # TODO: Create SecurityGoldenCircle instance
+    # TODO: Add sample WHY statements (purpose/belief)
+    # TODO: Add sample HOW statements (process/approach)
+    # TODO: Add sample WHAT statements (results/proof)
+    # TODO: Generate and save messages
+    # TODO: Print preview of generated messages
+    pass
+
+if __name__ == "__main__":
+    main()
+Make executable and test:
+
+chmod +x golden-circle/security_golden_circle.py
+python3 golden-circle/security_golden_circle.py
+Step 3: Create Communication Plan Template
+Create the communication plan generator:
+
+nano templates/communication_plan.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Security Culture Communication Plan Generator
+Students: Complete this communication planning tool
+"""
+
+import json
+from datetime import datetime, timedelta
+
+class CommunicationPlan:
+    def __init__(self, plan_name):
+        self.plan = {
+            "plan_name": plan_name,
+            "created_date": datetime.now().strftime("%Y-%m-%d"),
+            "target_audiences": {},
+            "communication_channels": [],
+            "messaging_calendar": [],
+            "success_metrics": []
+        }
+    
+    def add_target_audience(self, name, characteristics, channels):
+        """
+        Add target audience with characteristics
+        
+        Args:
+            name: Audience name (e.g., "Executives", "Employees")
+            characteristics: List of audience characteristics
+            channels: List of preferred communication channels
+        """
+        # TODO: Add audience to plan with all details
+        pass
+    
+    def add_communication_channel(self, name, description, frequency):
+        """
+        Add communication channel to plan
+        
+        Args:
+            name: Channel name
+            description: Channel description
+            frequency: How often to use (e.g., "Weekly", "Monthly")
+        """
+        # TODO: Add channel to plan
+        pass
+    
+    def schedule_message(self, date, audience, channel, message_type, content):
+        """
+        Schedule a message in the communication calendar
+        
+        Args:
+            date: Date string (YYYY-MM-DD)
+            audience: Target audience name
+            channel: Communication channel
+            message_type: Type of message
+            content: Message content or description
+        """
+        # TODO: Add scheduled message to calendar
+        pass
+    
+    def add_success_metric(self, metric_name, target, measurement):
+        """
+        Add success metric to track
+        
+        Args:
+            metric_name: Name of the metric
+            target: Target value or goal
+            measurement: How to measure this metric
+        """
+        # TODO: Add metric to plan
+        pass
+    
+    def save_plan(self, filename):
+        """
+        Save communication plan to JSON file
+        
+        Args:
+            filename: Path to save the plan
+        """
+        # TODO: Write plan to JSON file with proper formatting
+        pass
+    
+    def generate_summary(self):
+        """
+        Generate a summary of the communication plan
+        
+        Returns:
+            Dictionary with plan statistics
+        """
+        # TODO: Count audiences, channels, messages, metrics
+        # TODO: Return summary dictionary
+        pass
+
+def main():
+    # TODO: Create CommunicationPlan instance
+    # TODO: Add 3 target audiences (Executives, Managers, Employees)
+    # TODO: Add 3-4 communication channels
+    # TODO: Schedule 12 months of messages
+    # TODO: Add 3-4 success metrics
+    # TODO: Save plan and print summary
+    pass
+
+if __name__ == "__main__":
+    main()
+Task 2: Building Automated Email Communication System
+Step 1: Create Email Configuration Module
+Create email configuration handler:
+
+nano scripts/email_config.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Email Configuration and Sender for Security Communications
+Students: Complete the email handling functionality
+"""
+
+import json
+import os
+from datetime import datetime
+
+class EmailConfig:
+    def __init__(self, config_file="data/email_config.json"):
+        self.config_file = config_file
+        self.config = self.load_config()
+    
+    def load_config(self):
+        """
+        Load email configuration from file or create default
+        
+        Returns:
+            Dictionary with email configuration
+        """
+        default_config = {
+            "smtp_server": "localhost",
+            "smtp_port": 587,
+            "from_name": "Security Team",
+            "from_email": "security-team@company.local"
+        }
+        
+        # TODO: Check if config file exists
+        # TODO: Load and merge with defaults if exists
+        # TODO: Return configuration dictionary
+        pass
+    
+    def save_config(self):
+        """Save current configuration to file"""
+        # TODO: Create directory if needed
+        # TODO: Write config to JSON file
+        pass
+
+class SecurityEmailSender:
+    def __init__(self, config):
+        self.config = config
+        self.sent_log = []
+    
+    def create_message(self, to_email, subject, body):
+        """
+        Create email message structure
+        
+        Args:
+            to_email: Recipient email address
+            subject: Email subject line
+            body: Email body content (HTML or plain text)
+            
+        Returns:
+            Dictionary representing the email message
+        """
+        # TODO: Create message dictionary with all fields
+        # TODO: Include from, to, subject, body, timestamp
+        pass
+    
+    def send_email(self, to_email, subject, body):
+        """
+        Send email (simulated for lab environment)
+        
+        Args:
+            to_email: Recipient email
+            subject: Email subject
+            body: Email body
+            
+        Returns:
+            Boolean indicating success
+        """
+        # TODO: Create message using create_message()
+        # TODO: Simulate sending (print details)
+        # TODO: Log the sent email
+        # TODO: Return success status
+        pass
+    
+    def save_log(self, filename="logs/email_log.json"):
+        """
+        Save email sending log to file
+        
+        Args:
+            filename: Path to log file
+        """
+        # TODO: Create logs directory if needed
+        # TODO: Write sent_log to JSON file
+        pass
+
+def main():
+    # TODO: Create EmailConfig instance
+    # TODO: Create SecurityEmailSender instance
+    # TODO: Send test emails to multiple recipients
+    # TODO: Save email log
+    # TODO: Print summary of sent emails
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 2: Create Audience-Specific Email Templates
+Create template generator:
+
+nano scripts/email_templates.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Security Culture Email Templates for Different Audiences
+Students: Complete the template system
+"""
+
+from datetime import datetime
+
+class SecurityEmailTemplates:
+    def __init__(self):
+        self.templates = {
+            "executive": {},
+            "manager": {},
+            "employee": {}
+        }
+        self.create_templates()
+    
+    def create_templates(self):
+        """
+        Create HTML email templates for each audience type
+        Each template should follow Golden Circle structure
+        """
+        
+        # Executive Template - Focus on ROI and risk
+        self.templates["executive"] = {
+            "subject": "Security Culture ROI Report - {month}",
+            "body": """
+            <html>
+            <body style="font-family: Arial, sans-serif;">
+            <h2>Executive Security Update</h2>
+            
+            <div style="background-color: #f0f0f0; padding: 15px; margin: 10px 0;">
+                <h3>WHY This Matters</h3>
+                <ul>
+                    <li>Risk Reduction: {risk_reduction}%</li>
+                    <li>Cost Savings: ${cost_savings}</li>
+                    <li>Compliance Score: {compliance_score}%</li>
+                </ul>
+            </div>
+            
+            <!-- TODO: Add HOW section with strategic approach -->
+            <!-- TODO: Add WHAT section with concrete results -->
+            <!-- TODO: Add next steps and action items -->
+            
+            </body>
+            </html>
+            """
+        }
+        
+        # TODO: Create manager template
+        # Focus on: team support, practical tools, team metrics
+        
+        # TODO: Create employee template
+        # Focus on: personal relevance, ease of use, practical tips
+    
+    def generate_email(self, audience_type, **kwargs):
+        """
+        Generate email for specific audience with provided data
+        
+        Args:
+            audience_type: "executive", "manager", or "employee"
+            **kwargs: Template variables to fill in
+            
+        Returns:
+            Tuple of (subject, body) with variables filled in
+        """
+        # TODO: Get template for audience type
+        # TODO: Format subject with kwargs
+        # TODO: Format body with kwargs
+        # TODO: Return formatted subject and body
+        pass
+    
+    def save_sample_emails(self):
+        """
+        Generate and save sample emails for each audience type
+        """
+        # TODO: Generate sample data for each audience
+        # TODO: Create emails using generate_email()
+        # TODO: Save to templates/ directory
+        pass
+
+def main():
+    # TODO: Create SecurityEmailTemplates instance
+    # TODO: Generate sample emails with realistic data
+    # TODO: Save samples to files
+    # TODO: Print summary of created templates
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 3: Build Email Scheduler
+Create the scheduling system:
+
+nano scripts/email_scheduler.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Automated Email Scheduler for Security Communications
+Students: Complete the scheduling functionality
+"""
+
+import json
+from datetime import datetime, timedelta
+from email_config import SecurityEmailSender, EmailConfig
+from email_templates import SecurityEmailTemplates
+
+class EmailScheduler:
+    def __init__(self):
+        self.schedule = []
+        self.email_sender = None
+        self.templates = None
+    
+    def initialize(self):
+        """Initialize email sender and templates"""
+        # TODO: Create EmailConfig instance
+        # TODO: Create SecurityEmailSender instance
+        # TODO: Create SecurityEmailTemplates instance
+        pass
+    
+    def add_scheduled_email(self, send_date, audience, recipients, template_data):
+        """
+        Add email to schedule
+        
+        Args:
+            send_date: Date to send (datetime object)
+            audience: Audience type
+            recipients: List of email addresses
+            template_data: Dictionary of template variables
+        """
+        # TODO: Create schedule entry with all details
+        # TODO: Add to schedule list
+        pass
+    
+    def create_monthly_schedule(self, start_date, months=12):
+        """
+        Create a 12-month communication schedule
+        
+        Args:
+            start_date: Starting date
+            months: Number of months to schedule
+        """
+        # TODO: Loop through months
+        # TODO: Schedule executive emails (monthly)
+        # TODO: Schedule manager emails (bi-weekly)
+        # TODO: Schedule employee emails (weekly)
+        pass
+    
+    def process_due_emails(self, current_date):
+        """
+        Process and send emails that are due
+        
+        Args:
+            current_date: Current date to check against
+            
+        Returns:
+            List of sent email records
+        """
+        # TODO: Find emails due on or before current_date
+        # TODO: Generate email content from templates
+        # TODO: Send emails using email_sender
+        # TODO: Mark as sent in schedule
+        # TODO: Return list of sent emails
+        pass
+    
+    def save_schedule(self, filename="data/email_schedule.json"):
+        """Save schedule to file"""
+        # TODO: Write schedule to JSON file
+        pass
+    
+    def load_schedule(self, filename="data/email_schedule.json"):
+        """Load schedule from file"""
+        # TODO: Read schedule from JSON file
+        # TODO: Convert date strings back to datetime objects
+        pass
+    
+    def get_schedule_summary(self):
+        """
+        Get summary of scheduled emails
+        
+        Returns:
+            Dictionary with schedule statistics
+        """
+        # TODO: Count total scheduled emails
+        # TODO: Count by audience type
+        # TODO: Count sent vs pending
+        # TODO: Return summary dictionary
+        pass
+
+def main():
+    # TODO: Create EmailScheduler instance
+    # TODO: Initialize with sender and templates
+    # TODO: Create 12-month schedule
+    # TODO: Save schedule to file
+    # TODO: Simulate processing current month's emails
+    # TODO: Print schedule summary
+    pass
+
+if __name__ == "__main__":
+    main()
+Task 3: Creating a Communication Dashboard
+Step 1: Build Metrics Tracking System
+Create metrics tracker:
+
+nano scripts/communication_metrics.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Communication Metrics Tracking and Reporting
+Students: Complete the metrics tracking system
+"""
+
+import json
+from datetime import datetime
+from collections import defaultdict
+
+class CommunicationMetrics:
+    def __init__(self):
+        self.metrics = {
+            "emails_sent": 0,
+            "emails_opened": 0,
+            "links_clicked": 0,
+            "by_audience": defaultdict(dict),
+            "by_month": defaultdict(dict),
+            "engagement_scores": []
+        }
+    
+    def record_email_sent(self, audience, date):
+        """
+        Record an email being sent
+        
+        Args:
+            audience: Audience type
+            date: Date sent
+        """
+        # TODO: Increment total emails sent
+        # TODO: Update audience-specific metrics
+        # TODO: Update monthly metrics
+        pass
+    
+    def record_email_opened(self, audience, date):
+        """Record email being opened"""
+        # TODO: Increment opens
+        # TODO: Update audience and monthly metrics
+        pass
+    
+    def record_link_clicked(self, audience, date, link_type):
+        """Record link click in email"""
+        # TODO: Increment clicks
+        # TODO: Track link type
+        # TODO: Update metrics
+        pass
+    
+    def calculate_engagement_rate(self, audience=None):
+        """
+        Calculate engagement rate (opens + clicks / sent)
+        
+        Args:
+            audience: Optional audience filter
+            
+        Returns:
+            Float representing engagement rate
+        """
+        # TODO: Get relevant metrics
+        # TODO: Calculate rate
+        # TODO: Return percentage
+        pass
+    
+    def generate_report(self):
+        """
+        Generate comprehensive metrics report
+        
+        Returns:
+            Dictionary with formatted report data
+        """
+        # TODO: Compile all metrics
+        # TODO: Calculate rates and trends
+        # TODO: Format for display
+        pass
+    
+    def save_metrics(self, filename="data/communication_metrics.json"):
+        """Save metrics to file"""
+        # TODO: Write metrics to JSON file
+        pass
+
+def main():
+    # TODO: Create CommunicationMetrics instance
+    # TODO: Simulate recording various events
+    # TODO: Calculate engagement rates
+    # TODO: Generate and display report
+    # TODO: Save metrics
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 2: Create Dashboard Visualization
+Create simple text-based dashboard:
+
+nano scripts/communication_dashboard.py
+Add starter code:
+
+#!/usr/bin/env python3
+"""
+Communication Dashboard for Security Culture Program
+Students: Complete the dashboard display system
+"""
+
+import json
+from communication_metrics import CommunicationMetrics
+from email_scheduler import EmailScheduler
+
+class CommunicationDashboard:
+    def __init__(self):
+        self.metrics = None
+        self.scheduler = None
+    
+    def load_data(self):
+        """Load metrics and schedule data"""
+        # TODO: Load metrics from file
+        # TODO: Load schedule from file
+        pass
+    
+    def display_overview(self):
+        """
+        Display overview dashboard
+        Shows: total emails, engagement rates, upcoming schedule
+        """
+        # TODO: Print header
+        # TODO: Display key metrics
+        # TODO: Display engagement rates by audience
+        # TODO: Display upcoming scheduled emails
+        pass
+    
+    def display_audience_breakdown(self):
+        """Display metrics broken down by audience"""
+        # TODO: For each audience type
+        # TODO: Display sent, opened, clicked
+        # TODO: Display engagement rate
+        pass
+    
+    def display_monthly_trends(self):
+        """Display monthly trend data"""
+        # TODO: For each month
+        # TODO: Display metrics
+        # TODO: Show trend indicators
+        pass
+    
+    def display_recommendations(self):
+        """
+        Display recommendations based on metrics
+        """
+        # TODO: Analyze metrics
+        # TODO: Generate recommendations
+        # TODO: Display actionable insights
+        pass
+    
+    def generate_full_dashboard(self):
+        """Generate complete dashboard display"""
+        # TODO: Call all display methods
+        # TODO: Format nicely with separators
+        pass
+
+def main():
+    # TODO: Create CommunicationDashboard instance
+    # TODO: Load data
+    # TODO: Generate and display full dashboard
+    pass
+
+if __name__ == "__main__":
+    main()
+Expected Outcomes
+After completing this lab, you should have:
+
+Golden Circle Framework: Working implementation that generates audience-specific messages
+Communication Plan: JSON-based plan with audiences, channels, schedule, and metrics
+Email System: Functional email configuration, templates, and sender
+Scheduler: Automated scheduling system for ongoing communications
+Metrics Tracking: System to track and analyze communication effectiveness
+Dashboard: Visual representation of communication program status
+Test your complete system:
+
+cd ~/security-communication-lab
+python3 golden-circle/security_golden_circle.py
+python3 templates/communication_plan.py
+python3 scripts/email_templates.py
+python3 scripts/email_scheduler.py
+python3 scripts/communication_metrics.py
+python3 scripts/communication_dashboard.py
+Troubleshooting Tips
+Issue: Import errors between modules
+
+Solution: Ensure all scripts are in correct directories and use proper import paths
+Issue: JSON file errors
+
+Solution: Check that directories exist before writing files; use os.makedirs(dirname, exist_ok=True)
+Issue: Date formatting issues
+
+Solution: Use consistent date format (YYYY-MM-DD) and datetime.strptime() for parsing
+Issue: Template variables not substituting
+
+Solution: Verify all template variables in format strings match the kwargs passed to format()
+Conclusion
+This lab demonstrated how to build a comprehensive security culture communication system using the Golden Circle model. You created targeted messaging for different audiences, implemented automated email workflows, and built tracking systems to measure effectiveness.
+
+Key takeaways:
+
+Golden Circle provides a powerful framework for compelling communication
+Audience segmentation ensures messages resonate with different stakeholders
+Automation enables consistent, scalable communication programs
+Metrics tracking allows continuous improvement of communication strategies
+These skills are essential for security professionals who need to build and maintain strong security cultures through effective communication.

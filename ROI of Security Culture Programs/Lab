@@ -1,0 +1,389 @@
+ROI of Security Culture Programs
+Objectives
+By the end of this lab, students will be able to:
+
+Calculate Return on Investment (ROI) for cybersecurity culture programs using quantitative metrics
+Develop Python-based models to analyze cost-benefit relationships in security initiatives
+Create data visualizations to communicate ROI findings to stakeholders
+Generate professional reports demonstrating the business value of security culture investments
+Apply financial analysis techniques to cybersecurity program evaluation
+Prerequisites
+Before starting this lab, students should have:
+
+Basic Python programming knowledge (functions, data structures, file I/O)
+Understanding of fundamental cybersecurity concepts
+Familiarity with basic financial metrics (costs, benefits, ROI calculations)
+Lab Environment
+Al Nafi provides ready-to-use Linux-based cloud machines for this lab. Simply click Start Lab to access your pre-configured environment with Python 3 and necessary tools pre-installed.
+
+Task 1: Environment Setup and Data Structure
+Step 1.1: Install Required Libraries
+Create a virtual environment and install dependencies:
+
+python3 -m venv security_roi_env
+source security_roi_env/bin/activate
+pip install pandas numpy matplotlib seaborn plotly
+Step 1.2: Create Project Structure
+Set up the working directory:
+
+mkdir -p ~/security_roi_lab/{data,scripts,reports,visualizations}
+cd ~/security_roi_lab
+Step 1.3: Generate Sample Security Metrics Data
+Create scripts/data_generator.py:
+
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+
+def generate_security_culture_data():
+    """
+    Generate sample security culture program metrics.
+    
+    Returns:
+        DataFrame with monthly security metrics
+    """
+    np.random.seed(42)
+    
+    # TODO: Define time period (24 months of data)
+    # TODO: Set baseline metrics (phishing rate, incidents, compliance)
+    # TODO: Calculate improvement over time with diminishing returns
+    # TODO: Generate monthly costs (setup + operational)
+    # TODO: Calculate incident costs and savings
+    # TODO: Return DataFrame with all metrics
+    
+    pass
+
+def save_data_to_csv(df, filename):
+    """Save DataFrame to CSV file"""
+    # TODO: Implement CSV export
+    pass
+
+if __name__ == "__main__":
+    df = generate_security_culture_data()
+    save_data_to_csv(df, '../data/security_metrics.csv')
+Key metrics to include:
+
+phishing_success_rate: Percentage of employees falling for phishing (baseline: 15%, target: 6%)
+security_incidents: Monthly incident count (baseline: 8, target: 4)
+compliance_rate: Policy compliance percentage (baseline: 70%, target: 95%)
+program_cost: Monthly program expenses
+incident_cost: Cost of security incidents (avg $25,000 per incident)
+productivity_gain: Employee productivity improvements
+compliance_savings: Cost savings from improved compliance
+Task 2: ROI Calculation Model
+Step 2.1: Create ROI Calculator Class
+Create scripts/roi_calculator.py:
+
+import pandas as pd
+import numpy as np
+import json
+
+class SecurityCultureROICalculator:
+    """
+    Calculate ROI metrics for security culture programs.
+    """
+    
+    def __init__(self, data_file):
+        """
+        Initialize calculator with data file.
+        
+        Args:
+            data_file: Path to CSV file with security metrics
+        """
+        # TODO: Load data from CSV
+        # TODO: Convert date column to datetime
+        pass
+    
+    def calculate_monthly_roi(self):
+        """
+        Calculate monthly ROI metrics.
+        
+        Returns:
+            DataFrame with monthly ROI calculations
+        """
+        # TODO: Calculate baseline incident costs
+        # TODO: Calculate incident cost savings
+        # TODO: Sum total benefits (savings + gains)
+        # TODO: Calculate net benefits (benefits - costs)
+        # TODO: Calculate ROI percentage: (net_benefits / costs) * 100
+        pass
+    
+    def calculate_cumulative_roi(self):
+        """
+        Calculate cumulative ROI over time.
+        
+        Returns:
+            DataFrame with cumulative metrics
+        """
+        # TODO: Calculate cumulative costs using cumsum()
+        # TODO: Calculate cumulative benefits
+        # TODO: Calculate cumulative net benefits
+        # TODO: Calculate cumulative ROI percentage
+        pass
+    
+    def calculate_payback_period(self):
+        """
+        Determine when the program breaks even.
+        
+        Returns:
+            Tuple of (months_to_payback, payback_date)
+        """
+        # TODO: Find first month where cumulative net benefits > 0
+        # TODO: Return payback period in months and date
+        pass
+    
+    def generate_roi_summary(self):
+        """
+        Generate comprehensive ROI summary statistics.
+        
+        Returns:
+            Dictionary with key ROI metrics
+        """
+        # TODO: Calculate total investment, benefits, net benefits
+        # TODO: Calculate final ROI percentage
+        # TODO: Get payback period
+        # TODO: Calculate average, best, worst monthly ROI
+        # TODO: Return summary dictionary
+        pass
+    
+    def export_results(self, csv_file, json_file):
+        """Export detailed results and summary"""
+        # TODO: Export detailed DataFrame to CSV
+        # TODO: Export summary dictionary to JSON
+        pass
+
+def main():
+    """Main execution function"""
+    # TODO: Initialize calculator with data file
+    # TODO: Calculate all ROI metrics
+    # TODO: Generate and display summary
+    # TODO: Export results
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 2.2: Run ROI Calculations
+Execute the calculator:
+
+cd ~/security_roi_lab/scripts
+python3 roi_calculator.py
+Expected calculations:
+
+Monthly ROI = (Monthly Benefits - Monthly Costs) / Monthly Costs × 100
+Cumulative ROI = (Total Benefits - Total Costs) / Total Costs × 100
+Payback Period = First month where cumulative net benefits > 0
+Task 3: Data Visualization
+Step 3.1: Create Static Visualizations
+Create scripts/visualization.py:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import json
+
+class SecurityROIVisualizer:
+    """
+    Create visualizations for ROI analysis.
+    """
+    
+    def __init__(self, data_file, summary_file):
+        """Initialize with data and summary files"""
+        # TODO: Load data and summary
+        pass
+    
+    def create_roi_trend_chart(self, save_path):
+        """
+        Create ROI trend visualization with two subplots.
+        
+        Args:
+            save_path: Path to save the chart
+        """
+        # TODO: Create figure with 2 subplots (monthly and cumulative ROI)
+        # TODO: Plot monthly ROI with markers
+        # TODO: Plot cumulative ROI
+        # TODO: Add break-even line at y=0
+        # TODO: Add labels, title, legend, grid
+        # TODO: Save figure
+        pass
+    
+    def create_cost_benefit_analysis(self, save_path):
+        """
+        Create cost vs benefit comparison charts.
+        
+        Args:
+            save_path: Path to save the chart
+        """
+        # TODO: Create 2x2 subplot grid
+        # TODO: Plot monthly costs vs benefits (bar chart)
+        # TODO: Plot cumulative costs vs benefits (line chart)
+        # TODO: Create pie chart for benefit breakdown
+        # TODO: Plot net benefits over time (bar chart with color coding)
+        # TODO: Save figure
+        pass
+    
+    def create_security_metrics_dashboard(self, save_path):
+        """
+        Create dashboard showing security metric improvements.
+        
+        Args:
+            save_path: Path to save the dashboard
+        """
+        # TODO: Create 2x2 subplot grid
+        # TODO: Plot phishing success rate reduction
+        # TODO: Plot security incidents reduction
+        # TODO: Plot compliance rate improvement
+        # TODO: Calculate and plot composite security score
+        # TODO: Save figure
+        pass
+    
+    def create_executive_summary_chart(self, save_path):
+        """
+        Create executive summary visualization.
+        
+        Args:
+            save_path: Path to save the chart
+        """
+        # TODO: Create 2x2 subplot grid
+        # TODO: Bar chart of ROI metrics (final, average, best)
+        # TODO: Bar chart of financial summary (investment, benefits, net)
+        # TODO: Payback period visualization
+        # TODO: Text summary of key metrics
+        # TODO: Save figure
+        pass
+
+def main():
+    """Generate all visualizations"""
+    # TODO: Initialize visualizer
+    # TODO: Create all four visualization types
+    # TODO: Save to visualizations folder
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 3.2: Generate Visualizations
+Run the visualization script:
+
+python3 visualization.py
+View the generated charts:
+
+ls -lh ../visualizations/
+Task 4: Interactive Dashboard (Optional Advanced Task)
+Step 4.1: Create Web Dashboard
+Create scripts/interactive_dashboard.py:
+
+import dash
+from dash import dcc, html, Input, Output
+import plotly.graph_objs as go
+import pandas as pd
+import json
+
+class InteractiveROIDashboard:
+    """
+    Create interactive web dashboard for ROI analysis.
+    """
+    
+    def __init__(self, data_file, summary_file):
+        """Initialize dashboard"""
+        # TODO: Load data and summary
+        # TODO: Initialize Dash app
+        # TODO: Setup layout
+        # TODO: Setup callbacks
+        pass
+    
+    def setup_layout(self):
+        """Define dashboard layout"""
+        # TODO: Create summary cards (ROI, net benefits, payback, investment)
+        # TODO: Add chart type dropdown selector
+        # TODO: Add time period range slider
+        # TODO: Add main chart area
+        # TODO: Add data table
+        pass
+    
+    def setup_callbacks(self):
+        """Setup interactive callbacks"""
+        # TODO: Create callback for chart updates based on dropdown
+        # TODO: Create callback for time range filtering
+        # TODO: Create callback for data table updates
+        pass
+    
+    def run(self, port=8050):
+        """Run the dashboard server"""
+        # TODO: Start Dash server
+        pass
+
+def main():
+    """Launch interactive dashboard"""
+    # TODO: Initialize dashboard
+    # TODO: Run server
+    pass
+
+if __name__ == "__main__":
+    main()
+Step 4.2: Launch Dashboard
+Run the dashboard:
+
+python3 interactive_dashboard.py
+Access at: http://localhost:8050
+
+Expected Outcomes
+Upon completing this lab, students should have:
+
+Generated sample data representing 24 months of security culture program metrics
+Calculated ROI metrics including:
+Monthly and cumulative ROI percentages
+Payback period (typically 8-12 months)
+Total net benefits (should be positive for successful programs)
+Created visualizations showing:
+ROI trends over time
+Cost-benefit analysis
+Security metric improvements
+Executive summary charts
+Produced reports in CSV and JSON formats for stakeholder presentation
+Sample expected results:
+
+Final ROI: 150-250%
+Payback period: 8-12 months
+Net benefits: $200,000-$400,000 over 2 years
+Incident reduction: 50%
+Compliance improvement: 25 percentage points
+Troubleshooting Tips
+Issue: Data generation produces unrealistic values
+
+Solution: Verify baseline metrics are reasonable (phishing: 10-20%, incidents: 5-10/month)
+Check improvement factors use gradual curves, not linear progression
+Ensure costs include both fixed (setup) and variable (operational) components
+Issue: ROI calculations show negative values throughout
+
+Solution: Review benefit calculations - ensure all three categories are included (incident savings, productivity, compliance)
+Verify incident cost per event is realistic ($20,000-$30,000)
+Check that improvement factors are applied correctly to baseline metrics
+Issue: Visualizations don't display or show errors
+
+Solution: Ensure matplotlib backend is configured: export MPLBACKEND=Agg for headless environments
+Verify all required columns exist in DataFrame before plotting
+Check file paths are correct and directories exist
+Issue: Dashboard won't start
+
+Solution: Verify port 8050 is available: netstat -tuln | grep 8050
+Check Dash and Plotly are installed: pip list | grep -E "dash|plotly"
+Run with debug mode: app.run_server(debug=True) to see detailed errors
+Conclusion
+This lab demonstrated how to quantify the business value of security culture programs through ROI analysis. Students learned to:
+
+Model security culture program costs and benefits using realistic metrics
+Calculate financial returns using standard ROI formulas
+Visualize complex financial data for different audiences
+Present data-driven justification for security investments
+Key takeaways:
+
+Security culture programs typically achieve positive ROI within 8-12 months
+Primary benefits come from incident reduction (50-60%), productivity gains (20-30%), and compliance improvements (10-20%)
+Effective visualization is crucial for communicating ROI to non-technical stakeholders
+Continuous measurement and reporting builds support for ongoing security initiatives
+Next steps:
+
+Apply this model to real organizational data
+Customize metrics based on industry-specific risks
+Integrate with security information and event management (SIEM) systems for automated data collection
+Develop predictive models to forecast future ROI based on program maturity
+This framework provides a foundation for demonstrating the tangible business value of investing in security culture, helping justify budgets and secure executive support for security awareness initiatives.

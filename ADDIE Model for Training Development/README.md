@@ -1,0 +1,886 @@
+# 🎓 ADDIE Model for Training Development
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
+![VS Code](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+![License](https://img.shields.io/badge/License-Educational-blue?style=flat-square)
+![Level](https://img.shields.io/badge/Level-Intermediate-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![Model](https://img.shields.io/badge/Model-ADDIE-purple?style=flat-square)
+
+> *A systematic instructional design framework implemented in Python — from needs analysis to evaluation.*
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [🎯 Objectives](#-objectives)
+- [✅ Prerequisites](#-prerequisites)
+- [🖥️ Lab Environment](#️-lab-environment)
+- [📖 Introduction to ADDIE](#-introduction-to-addie-model)
+- [⚙️ Task 1 — Setup the Framework](#️-task-1-setting-up-the-addie-framework)
+- [🔍 Task 2 — Analyze Phase](#-task-2-implementing-the-analyze-phase)
+- [🎨 Task 3 — Design Phase](#-task-3-implementing-the-design-phase)
+- [🛠️ Task 4 — Develop Phase](#️-task-4-implementing-the-develop-phase)
+- [🚀 Task 5 — Implement & Evaluate](#-task-5-implementing-implementation-and-evaluation-phases)
+- [🔗 Task 6 — Integrated Workflow](#-task-6-creating-an-integrated-addie-workflow)
+- [🏆 Expected Outcomes](#-expected-outcomes)
+- [🐛 Troubleshooting](#-troubleshooting-tips)
+- [📌 Key Takeaways](#-key-takeaways)
+
+---
+
+## 🎯 Objectives
+
+By the end of this lab, students will be able to:
+
+- 📌 Understand and apply the **five phases** of the ADDIE instructional design model
+- 🐍 Develop a **Python framework** to manage training development workflows
+- 📄 Create structured training programs following ADDIE methodology
+- 📊 Implement **assessment strategies** for training effectiveness
+- 🌍 Apply ADDIE principles to **real-world training scenarios**
+
+---
+
+## ✅ Prerequisites
+
+| Requirement | Details |
+|---|---|
+| 🐍 Python | Basic programming (functions, dictionaries, file I/O) |
+| 🐧 Linux | Familiarity with the command line |
+| 📚 Instructional Design | Understanding of basic concepts |
+| ✏️ Text Editor | Experience with nano, vim, or gedit |
+
+---
+
+## 🖥️ Lab Environment
+
+> **Al Nafi** provides pre-configured Linux cloud machines.
+> Click **Start Lab** to access your environment with all necessary tools pre-installed.
+
+---
+
+## 📖 Introduction to ADDIE Model
+
+The **ADDIE model** is a systematic instructional design framework with five phases:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   ADDIE LIFECYCLE                       │
+│                                                         │
+│  🔍 Analyze → 🎨 Design → 🛠 Develop →                  │
+│              🚀 Implement → 📊 Evaluate                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+| Phase | Icon | Description |
+|---|---|---|
+| **Analyze** | 🔍 | Identify training needs and learner characteristics |
+| **Design** | 🎨 | Define learning objectives and assessment strategies |
+| **Develop** | 🛠️ | Create training materials and content |
+| **Implement** | 🚀 | Deliver the training program |
+| **Evaluate** | 📊 | Assess effectiveness and gather feedback |
+
+---
+
+## ⚙️ Task 1: Setting Up the ADDIE Framework
+
+### 📁 Step 1 — Create Project Structure
+
+```bash
+mkdir -p ~/addie_training_lab/{analyze,design,develop,implement,evaluate,scripts,data,reports}
+cd ~/addie_training_lab
+```
+
+### 🐍 Step 2 — Create Base Framework Class
+
+```bash
+nano scripts/addie_framework.py
+```
+
+Add the following starter code:
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Model Training Development Framework
+Students: Complete the TODO sections to implement full functionality
+"""
+
+import json
+import datetime
+from typing import Dict, List
+
+class ADDIEFramework:
+    def __init__(self, project_name: str):
+        """
+        Initialize ADDIE project framework
+
+        Args:
+            project_name: Name of the training project
+        """
+        self.project_name = project_name
+        self.project_data = {
+            'project_name': project_name,
+            'created_date': datetime.datetime.now().isoformat(),
+            'phases': {
+                'analyze':   {'status': 'pending', 'data': {}},
+                'design':    {'status': 'pending', 'data': {}},
+                'develop':   {'status': 'pending', 'data': {}},
+                'implement': {'status': 'pending', 'data': {}},
+                'evaluate':  {'status': 'pending', 'data': {}}
+            }
+        }
+
+    def save_project(self, filename: str = None):
+        """
+        Save project data to JSON file
+
+        Args:
+            filename: Optional custom filename
+        """
+        # TODO: Implement file saving logic
+        # TODO: Handle filename generation if not provided
+        # TODO: Add error handling
+        pass
+
+    def load_project(self, filename: str):
+        """
+        Load existing project from file
+
+        Args:
+            filename: Path to project file
+        """
+        # TODO: Implement file loading
+        # TODO: Validate loaded data structure
+        # TODO: Add error handling for missing files
+        pass
+
+    def update_phase_status(self, phase: str, status: str):
+        """
+        Update the status of a specific phase
+
+        Args:
+            phase:  Phase name (analyze, design, develop, implement, evaluate)
+            status: New status (pending, in_progress, complete)
+        """
+        # TODO: Validate phase name
+        # TODO: Update phase status
+        # TODO: Log the status change
+        pass
+
+    def display_project_overview(self):
+        """Display project status overview"""
+        # TODO: Format and print project information
+        # TODO: Show status of each phase
+        # TODO: Display completion percentage
+        pass
+
+if __name__ == "__main__":
+    # Test the framework
+    addie = ADDIEFramework("Security_Awareness_Training")
+    addie.display_project_overview()
+```
+
+Make the script executable:
+
+```bash
+chmod +x scripts/addie_framework.py
+```
+
+---
+
+## 🔍 Task 2: Implementing the Analyze Phase
+
+### 📝 Step 1 — Create Analysis Module
+
+```bash
+nano scripts/analyze_phase.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Analyze Phase Implementation
+Students: Complete the analysis methods
+"""
+
+import json
+from datetime import datetime
+from typing import Dict, List
+
+class AnalyzePhase:
+    def __init__(self):
+        self.analysis_data = {
+            'needs_assessment': {},
+            'learner_analysis': {},
+            'goals':            {},
+            'constraints':      {}
+        }
+
+    def conduct_needs_assessment(self) -> Dict:
+        """
+        Conduct training needs assessment
+
+        Returns:
+            Dictionary containing needs assessment data
+        """
+        print("\n=== TRAINING NEEDS ASSESSMENT ===")
+
+        # TODO: Collect performance gaps from user input
+        # TODO: Identify business objectives
+        # TODO: Determine training priority level
+        # TODO: Store data in self.analysis_data['needs_assessment']
+        pass
+
+    def analyze_learners(self) -> Dict:
+        """
+        Analyze target learner characteristics
+
+        Returns:
+            Dictionary containing learner analysis
+        """
+        print("\n=== LEARNER ANALYSIS ===")
+
+        # TODO: Collect learner demographics (roles, experience)
+        # TODO: Identify learning preferences
+        # TODO: Document constraints (time, location)
+        # TODO: Store in self.analysis_data['learner_analysis']
+        pass
+
+    def identify_goals(self) -> Dict:
+        """
+        Identify training goals and success metrics
+
+        Returns:
+            Dictionary containing goals and metrics
+        """
+        print("\n=== GOAL IDENTIFICATION ===")
+
+        # TODO: Define learning goals
+        # TODO: Establish success metrics
+        # TODO: Set timeline expectations
+        # TODO: Store in self.analysis_data['goals']
+        pass
+
+    def document_constraints(self) -> Dict:
+        """
+        Document project constraints
+
+        Returns:
+            Dictionary containing constraint information
+        """
+        # TODO: Identify budget constraints
+        # TODO: List available resources
+        # TODO: Note technology limitations
+        # TODO: Document compliance requirements
+        pass
+
+    def generate_analysis_report(self, output_dir: str = "analyze"):
+        """
+        Generate comprehensive analysis report
+
+        Args:
+            output_dir: Directory to save report
+        """
+        # TODO: Compile all analysis data
+        # TODO: Generate JSON file
+        # TODO: Create human-readable text report
+        # TODO: Return file paths
+        pass
+
+if __name__ == "__main__":
+    analyzer = AnalyzePhase()
+    # TODO: Call analysis methods
+    # TODO: Generate report
+```
+
+### 📊 Step 2 — Create Sample Analysis Data
+
+```bash
+nano scripts/sample_analysis_data.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+Generate sample analysis data for testing
+"""
+
+import json
+from datetime import datetime
+
+def generate_sample_data():
+    """Generate sample analysis data for security training"""
+
+    sample = {
+        'needs_assessment': {
+            'performance_gaps': [
+                'High phishing click rates',
+                'Weak password practices',
+                'Poor incident reporting'
+            ],
+            'business_objectives': [
+                'Reduce security incidents by 40%',
+                'Improve compliance scores',
+                'Strengthen security culture'
+            ],
+            'priority': 'High'
+        },
+        'learner_analysis': {
+            'demographics': {
+                'roles':            ['Office Staff', 'Managers', 'IT Personnel'],
+                'experience_level': 'Mixed',
+                'department':       'All'
+            },
+            'preferences': {
+                'methods':             ['Interactive', 'Visual', 'Scenario-based'],
+                'technology_comfort':  'Medium'
+            },
+            'constraints': {
+                'time_available': '2-3 hours',
+                'location':       'Online'
+            }
+        },
+        'goals': {
+            'learning_goals': [
+                'Identify phishing attempts',
+                'Create strong passwords',
+                'Follow secure practices',
+                'Report incidents properly'
+            ],
+            'success_metrics': [
+                'Phishing click rate < 10%',
+                'Password compliance > 90%',
+                'Training completion > 95%'
+            ],
+            'timeline_weeks': 4
+        },
+        'constraints': {
+            'budget':     15000,
+            'resources':  ['LMS', 'SMEs', 'Consultant'],
+            'technology': 'Cross-platform required',
+            'compliance': ['SOX', 'HIPAA']
+        }
+    }
+
+    # TODO: Save to file
+    # TODO: Print confirmation
+
+    return sample
+
+if __name__ == "__main__":
+    generate_sample_data()
+```
+
+---
+
+## 🎨 Task 3: Implementing the Design Phase
+
+### ✏️ Step 1 — Create Design Module
+
+```bash
+nano scripts/design_phase.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Design Phase Implementation
+Students: Complete the design methods
+"""
+
+import json
+from datetime import datetime
+from typing import Dict, List
+
+class DesignPhase:
+    def __init__(self, analysis_data: Dict = None):
+        self.analysis_data = analysis_data
+        self.design_data = {
+            'learning_objectives':   [],
+            'assessment_strategy':   {},
+            'instructional_strategy':{},
+            'content_outline':       {},
+            'delivery_method':       {}
+        }
+
+    def create_learning_objectives(self):
+        """
+        Create SMART learning objectives based on analysis
+
+        SMART: Specific, Measurable, Achievable, Relevant, Time-bound
+        """
+        print("\n=== LEARNING OBJECTIVES ===")
+
+        # TODO: Create objectives from analysis goals
+        # TODO: Ensure objectives are SMART
+        # TODO: Assign Bloom's taxonomy levels
+        # TODO: Define assessment methods for each
+        # TODO: Allocate time for each objective
+        pass
+
+    def design_assessment_strategy(self):
+        """Design comprehensive assessment approach"""
+
+        # TODO: Select assessment types (pre, formative, summative)
+        # TODO: Define passing criteria
+        # TODO: Choose assessment tools
+        # TODO: Plan feedback mechanisms
+        pass
+
+    def design_instructional_strategy(self):
+        """Design instructional approach and methods"""
+
+        # TODO: Select learning theory (behaviorism, cognitivism, etc.)
+        # TODO: Choose instructional methods
+        # TODO: Plan engagement strategies
+        # TODO: Consider learner preferences from analysis
+        pass
+
+    def create_content_outline(self):
+        """Create detailed content structure"""
+
+        # TODO: Break content into modules
+        # TODO: Define topics for each module
+        # TODO: Plan activities and exercises
+        # TODO: Allocate time for each module
+        # TODO: Ensure alignment with objectives
+        pass
+
+    def design_delivery_method(self):
+        """Design delivery logistics and requirements"""
+
+        # TODO: Define format (online, in-person, hybrid)
+        # TODO: Select platform/tools
+        # TODO: Specify technical requirements
+        # TODO: Plan support resources
+        pass
+
+    def generate_design_document(self, output_dir: str = "design"):
+        """
+        Generate comprehensive design document
+
+        Args:
+            output_dir: Directory to save document
+        """
+        # TODO: Compile all design data
+        # TODO: Generate JSON file
+        # TODO: Create formatted text document
+        # TODO: Include visual content outline
+        pass
+
+if __name__ == "__main__":
+    designer = DesignPhase()
+    # TODO: Execute design methods
+    # TODO: Generate documentation
+```
+
+---
+
+## 🛠️ Task 4: Implementing the Develop Phase
+
+### 🔧 Step 1 — Create Development Module
+
+```bash
+nano scripts/develop_phase.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Develop Phase Implementation
+Students: Complete the development methods
+"""
+
+import json
+import os
+from datetime import datetime
+from typing import Dict, List
+
+class DevelopPhase:
+    def __init__(self, design_data: Dict = None):
+        self.design_data = design_data
+        self.develop_data = {
+            'content_materials': {},
+            'assessments':       {},
+            'multimedia':        {},
+            'quality_checks':    {}
+        }
+
+    def create_content_materials(self):
+        """Create training content based on design"""
+
+        # TODO: Generate content for each module
+        # TODO: Create presentation materials
+        # TODO: Develop handouts and job aids
+        # TODO: Write scripts for videos/narration
+        pass
+
+    def develop_assessments(self):
+        """Create assessment materials"""
+
+        # TODO: Create quiz questions
+        # TODO: Develop practical exercises
+        # TODO: Design simulations
+        # TODO: Create rubrics and answer keys
+        pass
+
+    def create_multimedia_resources(self):
+        """Plan multimedia resource development"""
+
+        # TODO: List required images/graphics
+        # TODO: Plan video content
+        # TODO: Design interactive elements
+        # TODO: Create audio scripts
+        pass
+
+    def conduct_quality_assurance(self):
+        """Perform quality checks on materials"""
+
+        # TODO: Review content accuracy
+        # TODO: Check alignment with objectives
+        # TODO: Test technical functionality
+        # TODO: Verify accessibility compliance
+        # TODO: Conduct peer review
+        pass
+
+    def generate_development_report(self, output_dir: str = "develop"):
+        """
+        Generate development phase report
+
+        Args:
+            output_dir: Directory to save report
+        """
+        # TODO: Document all developed materials
+        # TODO: List quality assurance results
+        # TODO: Note any issues or revisions needed
+        # TODO: Create material inventory
+        pass
+
+if __name__ == "__main__":
+    developer = DevelopPhase()
+    # TODO: Execute development methods
+```
+
+---
+
+## 🚀 Task 5: Implementing Implementation and Evaluation Phases
+
+### 📦 Step 1 — Create Implementation Module
+
+```bash
+nano scripts/implement_phase.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Implement Phase
+Students: Complete implementation tracking
+"""
+
+import json
+from datetime import datetime
+from typing import Dict, List
+
+class ImplementPhase:
+    def __init__(self):
+        self.implement_data = {
+            'deployment':          {},
+            'participant_tracking':{},
+            'support_logs':        {},
+            'completion_data':     {}
+        }
+
+    def plan_deployment(self):
+        """Plan training deployment"""
+
+        # TODO: Schedule training sessions
+        # TODO: Prepare delivery environment
+        # TODO: Test all systems
+        # TODO: Brief facilitators/instructors
+        pass
+
+    def track_participants(self):
+        """Track participant enrollment and progress"""
+
+        # TODO: Register participants
+        # TODO: Monitor progress
+        # TODO: Track completion rates
+        # TODO: Record attendance
+        pass
+
+    def provide_support(self):
+        """Manage learner support"""
+
+        # TODO: Set up help desk
+        # TODO: Log support requests
+        # TODO: Resolve technical issues
+        # TODO: Provide additional resources
+        pass
+
+if __name__ == "__main__":
+    implementer = ImplementPhase()
+```
+
+### 📊 Step 2 — Create Evaluation Module
+
+```bash
+nano scripts/evaluate_phase.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+ADDIE Evaluate Phase
+Students: Complete evaluation methods
+"""
+
+import json
+from datetime import datetime
+from typing import Dict, List
+
+class EvaluatePhase:
+    def __init__(self):
+        self.evaluation_data = {
+            'kirkpatrick_level1': {},  # Reaction
+            'kirkpatrick_level2': {},  # Learning
+            'kirkpatrick_level3': {},  # Behavior
+            'kirkpatrick_level4': {},  # Results
+            'recommendations':    []
+        }
+
+    def evaluate_reaction(self):
+        """Level 1: Evaluate learner reactions"""
+
+        # TODO: Collect satisfaction surveys
+        # TODO: Analyze feedback
+        # TODO: Calculate satisfaction scores
+        # TODO: Identify improvement areas
+        pass
+
+    def evaluate_learning(self):
+        """Level 2: Measure learning outcomes"""
+
+        # TODO: Analyze assessment scores
+        # TODO: Compare pre/post test results
+        # TODO: Calculate achievement rates
+        # TODO: Identify knowledge gaps
+        pass
+
+    def evaluate_behavior(self):
+        """Level 3: Assess behavior change"""
+
+        # TODO: Conduct follow-up observations
+        # TODO: Survey supervisors
+        # TODO: Measure on-the-job application
+        # TODO: Track behavior changes over time
+        pass
+
+    def evaluate_results(self):
+        """Level 4: Measure business impact"""
+
+        # TODO: Compare against success metrics
+        # TODO: Calculate ROI
+        # TODO: Measure business outcomes
+        # TODO: Document organizational impact
+        pass
+
+    def generate_recommendations(self):
+        """Generate improvement recommendations"""
+
+        # TODO: Analyze all evaluation data
+        # TODO: Identify strengths and weaknesses
+        # TODO: Propose specific improvements
+        # TODO: Prioritize recommendations
+        pass
+
+    def create_evaluation_report(self, output_dir: str = "evaluate"):
+        """
+        Generate comprehensive evaluation report
+
+        Args:
+            output_dir: Directory to save report
+        """
+        # TODO: Compile all evaluation data
+        # TODO: Create visualizations
+        # TODO: Write executive summary
+        # TODO: Document lessons learned
+        pass
+
+if __name__ == "__main__":
+    evaluator = EvaluatePhase()
+```
+
+---
+
+## 🔗 Task 6: Creating an Integrated ADDIE Workflow
+
+### 🌐 Step 1 — Create Complete Workflow Script
+
+```bash
+nano scripts/complete_addie_workflow.py
+```
+
+```python
+#!/usr/bin/env python3
+"""
+Complete ADDIE Workflow Integration
+Students: Complete the workflow orchestration
+"""
+
+from addie_framework import ADDIEFramework
+from analyze_phase   import AnalyzePhase
+from design_phase    import DesignPhase
+from develop_phase   import DevelopPhase
+from implement_phase import ImplementPhase
+from evaluate_phase  import EvaluatePhase
+
+class ADDIEWorkflow:
+    def __init__(self, project_name: str):
+        self.framework = ADDIEFramework(project_name)
+        self.phases = {
+            'analyze':  AnalyzePhase(),
+            'design':   None,
+            'develop':  None,
+            'implement':ImplementPhase(),
+            'evaluate': EvaluatePhase()
+        }
+
+    def run_complete_workflow(self):
+        """Execute complete ADDIE workflow"""
+
+        # TODO: Run analyze phase
+        # TODO: Pass analysis data to design phase
+        # TODO: Pass design data to develop phase
+        # TODO: Execute implement phase
+        # TODO: Run evaluate phase
+        # TODO: Generate final project report
+        pass
+
+    def run_phase(self, phase_name: str):
+        """
+        Run a specific phase
+
+        Args:
+            phase_name: Name of phase to run
+        """
+        # TODO: Validate phase name
+        # TODO: Check prerequisites
+        # TODO: Execute phase
+        # TODO: Update framework status
+        pass
+
+    def generate_project_report(self):
+        """Generate comprehensive project report"""
+
+        # TODO: Compile data from all phases
+        # TODO: Create timeline visualization
+        # TODO: Document outcomes
+        # TODO: Include all artifacts
+        pass
+
+if __name__ == "__main__":
+    workflow = ADDIEWorkflow("Security_Awareness_Training")
+    # TODO: Execute workflow
+```
+
+---
+
+## 🏆 Expected Outcomes
+
+After completing this lab, you should have:
+
+| ✅ Deliverable | Description |
+|---|---|
+| 🐍 Python Framework | A functional ADDIE framework |
+| 📦 Phase Modules | Completed modules for all five ADDIE phases |
+| 📋 Sample Data | Sample training project data |
+| 📄 Reports | Generated reports and documentation |
+| 🧠 Knowledge | Understanding of systematic instructional design |
+| 💼 Skills | Ability to apply ADDIE to real training projects |
+
+---
+
+## 🐛 Troubleshooting Tips
+
+### ⚠️ Issue: Import Errors Between Modules
+
+> **Solution:** Ensure all scripts are in the same directory or add proper path handling.
+
+```bash
+# Quick fix: run scripts from the same directory
+cd ~/addie_training_lab/scripts
+python3 complete_addie_workflow.py
+```
+
+### ⚠️ Issue: JSON File Not Found Errors
+
+> **Solution:** Check file paths and ensure directories exist before saving.
+
+```bash
+# Create directories if missing
+mkdir -p ~/addie_training_lab/{analyze,design,develop,implement,evaluate,scripts,data,reports}
+```
+
+### ⚠️ Issue: Data Not Persisting Between Phases
+
+> **Solution:** Verify data is being saved to files and loaded correctly in subsequent phases.
+
+```python
+# Always save after completing a phase
+framework.save_project("my_project.json")
+
+# Always load before starting the next phase
+framework.load_project("my_project.json")
+```
+
+---
+
+## 📌 Key Takeaways
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║                     KEY TAKEAWAYS                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  🔄  ADDIE provides a systematic approach to training       ║
+║  🔗  Each phase builds upon the previous phase's outputs    ║
+║  📝  Documentation and data tracking are essential          ║
+║  📈  Evaluation drives continuous improvement               ║
+║  🔧  The model is flexible and adaptable to any context     ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## 📚 Conclusion
+
+This lab introduced the **ADDIE model** for systematic training development. You created a Python-based framework to manage all five phases: **Analyze, Design, Develop, Implement, and Evaluate**.
+
+The ADDIE model is widely used in:
+
+- 🏢 Corporate training environments
+- 🎓 Educational institutions
+- 🏛️ Government organizations
+
+By completing this lab, you've gained practical experience in instructional design methodology that can be applied to various training and development projects.
+
+---
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Built%20with-Python%203-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![ADDIE](https://img.shields.io/badge/Framework-ADDIE-blueviolet?style=for-the-badge)
+![Al Nafi](https://img.shields.io/badge/Lab-Al%20Nafi-orange?style=for-the-badge)
+
+*Happy Learning! 🚀*
+
+</div>

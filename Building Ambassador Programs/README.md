@@ -1,0 +1,973 @@
+# 🛡️ Building Ambassador Programs
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
+![CSV](https://img.shields.io/badge/CSV-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
+
+![License](https://img.shields.io/badge/License-Educational-blue?style=flat-square)
+![Level](https://img.shields.io/badge/Level-Intermediate-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![Program](https://img.shields.io/badge/Program-Ambassador-blueviolet?style=flat-square)
+
+> *Design, analyze, and manage a complete cybersecurity ambassador program — from candidate surveys and Python analytics to training curricula and KPI dashboards.*
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [🎯 Objectives](#-objectives)
+- [✅ Prerequisites](#-prerequisites)
+- [🖥️ Lab Environment](#️-lab-environment)
+- [🏗️ Task 1 — Program Structure](#️-task-1-designing-the-ambassador-program-structure)
+- [📋 Task 2 — Assessment Surveys](#-task-2-creating-assessment-surveys)
+- [🔬 Task 3 — Survey Data Analysis](#-task-3-survey-data-analysis-with-python)
+- [📚 Task 4 — Training Materials](#-task-4-developing-training-materials)
+- [📊 Task 5 — Program Metrics](#-task-5-establishing-program-metrics)
+- [🏆 Expected Outcomes](#-expected-outcomes)
+- [🐛 Troubleshooting](#-troubleshooting-tips)
+- [📌 Key Takeaways](#-key-takeaways)
+
+---
+
+## 🎯 Objectives
+
+By the end of this lab, students will be able to:
+
+- 🏗️ Design a **cybersecurity ambassador program** structure
+- 📋 Create **employee surveys** to assess security culture and identify candidates
+- 🐍 Develop **Python scripts** to analyze survey data and track program metrics
+- 📚 Build **training materials** for security ambassadors
+- 📊 Establish **metrics** for measuring program effectiveness
+
+---
+
+## ✅ Prerequisites
+
+| Requirement | Details |
+|---|---|
+| 🐍 Python | Basic programming knowledge |
+| 📋 Survey Design | Understanding of survey design principles |
+| 🐧 Linux | Familiarity with the command line |
+| 🔐 Security Awareness | Basic knowledge of organizational security awareness concepts |
+
+---
+
+## 🖥️ Lab Environment
+
+> **Al Nafi** provides Linux-based cloud machines for this lab.
+> Click **Start Lab** to access your pre-configured environment with all necessary tools pre-installed.
+
+---
+
+## 🏗️ Task 1: Designing the Ambassador Program Structure
+
+### 📐 Step 1 — Define Program Framework
+
+Create the program structure document:
+
+```bash
+mkdir -p ~/ambassador_program/{surveys,analysis,training,reports}
+cd ~/ambassador_program
+
+cat > program_framework.md << 'EOF'
+# Cybersecurity Ambassador Program Framework
+
+## Program Goals
+- Improve organizational security culture
+- Distribute security knowledge across departments
+- Create peer-to-peer security support network
+- Increase security awareness engagement
+
+## Ambassador Selection Criteria
+- Security knowledge (minimum intermediate level)
+- Communication skills and willingness to help others
+- Leadership potential and peer respect
+- Time availability (3-5 hours/month minimum)
+- Department representation for broad coverage
+
+## Program Structure
+- 10-15 ambassadors across key departments
+- Monthly training and coordination meetings
+- Quarterly program reviews and adjustments
+- Recognition and incentive system
+
+## Ambassador Responsibilities
+- Conduct monthly security awareness activities
+- Serve as security resource for their department
+- Report security concerns and trends
+- Participate in program development
+- Complete ongoing training requirements
+EOF
+```
+
+### 📝 Step 2 — Create Ambassador Role Description
+
+```bash
+cat > ambassador_role.md << 'EOF'
+# Security Ambassador Role Description
+
+## Time Commitment
+- 3-5 hours per month for program activities
+- 2 hours quarterly for training sessions
+- Ad-hoc support for department security questions
+
+## Key Activities
+- Host monthly security awareness sessions
+- Share security tips and updates
+- Assist colleagues with security questions
+- Participate in security campaigns
+- Provide feedback on security initiatives
+
+## Support Provided
+- Comprehensive training program
+- Access to security resources and materials
+- Direct line to security team
+- Recognition in organizational communications
+- Professional development opportunities
+
+## Success Metrics
+- Number of awareness activities conducted
+- Employee reach and engagement
+- Security incident reduction in department
+- Peer feedback and satisfaction scores
+EOF
+```
+
+---
+
+## 📋 Task 2: Creating Assessment Surveys
+
+### 🗂️ Step 1 — Design Survey Structure
+
+Create a comprehensive survey template:
+
+```bash
+cd ~/ambassador_program/surveys
+
+cat > survey_questions.json << 'EOF'
+{
+  "survey_title": "Cybersecurity Ambassador Program Assessment",
+  "sections": [
+    {
+      "section_name": "Demographics",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is your primary department?",
+          "type": "multiple_choice",
+          "options": ["IT", "HR", "Finance", "Operations", "Marketing", "Sales", "Other"]
+        },
+        {
+          "id": 2,
+          "question": "How many years have you been with the organization?",
+          "type": "multiple_choice",
+          "options": ["<1 year", "1-3 years", "3-5 years", "5-10 years", "10+ years"]
+        }
+      ]
+    },
+    {
+      "section_name": "Security Knowledge",
+      "questions": [
+        {
+          "id": 3,
+          "question": "Rate your cybersecurity knowledge",
+          "type": "scale",
+          "scale": "1-5",
+          "labels": {"1": "Beginner", "5": "Expert"}
+        },
+        {
+          "id": 4,
+          "question": "Which security topics are you most confident about?",
+          "type": "checkbox",
+          "options": ["Password security", "Email security", "Social engineering", "Data protection", "Mobile security", "Physical security"]
+        }
+      ]
+    },
+    {
+      "section_name": "Leadership and Communication",
+      "questions": [
+        {
+          "id": 5,
+          "question": "How often do colleagues ask you for technical help?",
+          "type": "multiple_choice",
+          "options": ["Daily", "Weekly", "Monthly", "Rarely", "Never"]
+        },
+        {
+          "id": 6,
+          "question": "Rate your comfort level presenting to groups",
+          "type": "scale",
+          "scale": "1-5",
+          "labels": {"1": "Very uncomfortable", "5": "Very comfortable"}
+        }
+      ]
+    },
+    {
+      "section_name": "Program Interest",
+      "questions": [
+        {
+          "id": 7,
+          "question": "How interested are you in becoming a security ambassador?",
+          "type": "scale",
+          "scale": "1-5",
+          "labels": {"1": "Not interested", "5": "Very interested"}
+        },
+        {
+          "id": 8,
+          "question": "How much time could you dedicate monthly?",
+          "type": "multiple_choice",
+          "options": ["1-2 hours", "3-5 hours", "6-10 hours", "10+ hours"]
+        },
+        {
+          "id": 9,
+          "question": "What would motivate you to participate?",
+          "type": "text",
+          "max_length": 500
+        }
+      ]
+    }
+  ]
+}
+EOF
+```
+
+### 🚀 Step 2 — Survey Deployment Guide
+
+```bash
+cat > survey_deployment_guide.md << 'EOF'
+# Survey Deployment Guide
+
+## Platform Options
+
+### Option 1: LimeSurvey (Open Source)
+- Install on internal server for data control
+- Customizable and feature-rich
+- Requires technical setup
+
+### Option 2: Google Forms
+- Quick deployment
+- Easy to use
+- Limited customization
+
+### Option 3: Microsoft Forms
+- Integrates with Microsoft 365
+- Good for organizations using Microsoft ecosystem
+- Built-in analytics
+
+## Deployment Steps
+1. Choose platform based on organizational needs
+2. Import survey questions from template
+3. Configure survey settings (anonymous/identified)
+4. Test survey with small group
+5. Distribute via email and internal communications
+6. Set 2-week response window
+7. Send reminder after 1 week
+8. Close survey and export data
+
+## Communication Template
+Subject: Help Shape Our Security Culture - Ambassador Program Survey
+
+We're launching a Cybersecurity Ambassador Program to strengthen our security
+culture through peer support and awareness. This 5-minute survey helps us
+identify potential ambassadors and understand our current security landscape.
+
+Your input is valuable and confidential. Complete by [DATE].
+
+[SURVEY LINK]
+EOF
+```
+
+---
+
+## 🔬 Task 3: Survey Data Analysis with Python
+
+### 🐍 Step 1 — Create Data Analysis Script Template
+
+```python
+# File: survey_analyzer.py
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import json
+
+class SurveyAnalyzer:
+    def __init__(self):
+        self.data       = None
+        self.candidates = None
+
+    def load_survey_data(self, file_path):
+        """
+        Load survey data from CSV or Excel file.
+
+        Args:
+            file_path: Path to survey data file
+
+        TODO: Implement file loading logic
+        TODO: Handle different file formats (CSV, Excel)
+        TODO: Validate data structure
+        """
+        pass
+
+    def create_sample_data(self, n_responses=100):
+        """
+        Generate sample survey data for testing.
+
+        Args:
+            n_responses: Number of sample responses to generate
+
+        TODO: Create realistic sample data matching survey structure
+        TODO: Include various departments and response patterns
+        TODO: Return DataFrame with sample data
+        """
+        pass
+
+    def calculate_ambassador_score(self):
+        """
+        Calculate ambassador potential score for each respondent.
+
+        Scoring criteria:
+        - Security knowledge    (25%)
+        - Ambassador interest   (30%)
+        - Presentation comfort  (20%)
+        - Colleague help freq.  (15%)
+        - Time availability     (10%)
+
+        TODO: Implement scoring algorithm
+        TODO: Add weighted calculation
+        TODO: Create 'ambassador_score' column in dataframe
+        """
+        pass
+
+    def identify_candidates(self, min_score=3.5):
+        """
+        Identify top ambassador candidates based on criteria.
+
+        Args:
+            min_score: Minimum ambassador score threshold
+
+        TODO: Filter candidates above threshold
+        TODO: Sort by score descending
+        TODO: Return top candidates dataframe
+        """
+        pass
+
+    def analyze_by_department(self):
+        """
+        Analyze survey responses by department.
+
+        TODO: Group data by department
+        TODO: Calculate average scores per department
+        TODO: Identify departments with high/low engagement
+        TODO: Return department analysis dataframe
+        """
+        pass
+
+    def create_visualizations(self):
+        """
+        Generate analysis visualizations.
+
+        TODO: Create 4-6 key visualizations:
+        - Ambassador interest distribution
+        - Security knowledge by department
+        - Candidate score distribution
+        - Time availability breakdown
+        TODO: Save plots to files
+        """
+        pass
+
+    def generate_report(self, output_file='analysis_report.txt'):
+        """
+        Generate comprehensive analysis report.
+
+        Args:
+            output_file: Path for output report
+
+        TODO: Compile key findings
+        TODO: Include candidate recommendations
+        TODO: Add department insights
+        TODO: Write formatted report to file
+        """
+        pass
+
+# Usage example
+if __name__ == "__main__":
+    analyzer = SurveyAnalyzer()
+
+    # TODO: Load actual survey data or create sample data
+    # TODO: Calculate scores and identify candidates
+    # TODO: Generate visualizations
+    # TODO: Create final report
+
+    print("Analysis complete. Check output files.")
+```
+
+Save this template:
+
+```bash
+cd ~/ambassador_program/analysis
+cat > survey_analyzer.py << 'EOF'
+[Copy the Python template above]
+EOF
+```
+
+### 📊 Step 2 — Create Program Tracking Script Template
+
+```python
+# File: program_tracker.py
+import pandas as pd
+import json
+from datetime import datetime
+
+class AmbassadorProgramTracker:
+    def __init__(self):
+        self.ambassadors = []
+        self.activities  = []
+        self.metrics     = {}
+
+    def add_ambassador(self, name, department, start_date):
+        """
+        Add new ambassador to tracking system.
+
+        Args:
+            name:       Ambassador name
+            department: Department
+            start_date: Program start date
+
+        TODO: Create ambassador record
+        TODO: Initialize tracking metrics
+        TODO: Add to ambassadors list
+        """
+        pass
+
+    def log_activity(self, ambassador_id, activity_type, participants, date=None):
+        """
+        Log ambassador activity.
+
+        Args:
+            ambassador_id: ID of ambassador
+            activity_type: Type of activity (training, presentation, etc.)
+            participants:  Number of people reached
+            date:          Activity date (default: today)
+
+        TODO: Create activity record
+        TODO: Update ambassador metrics
+        TODO: Add to activities list
+        """
+        pass
+
+    def calculate_metrics(self):
+        """
+        Calculate program performance metrics.
+
+        TODO: Total activities conducted
+        TODO: Total people reached
+        TODO: Activities per ambassador
+        TODO: Department coverage
+        TODO: Monthly activity trends
+        """
+        pass
+
+    def generate_dashboard(self):
+        """
+        Create visual dashboard of program metrics.
+
+        TODO: Create 4-6 key visualizations
+        TODO: Show ambassador performance
+        TODO: Display activity trends
+        TODO: Highlight department coverage
+        TODO: Save dashboard image
+        """
+        pass
+
+    def export_data(self):
+        """
+        Export program data for reporting.
+
+        TODO: Export ambassadors to CSV
+        TODO: Export activities to CSV
+        TODO: Export metrics to JSON
+        """
+        pass
+
+# Usage example
+if __name__ == "__main__":
+    tracker = AmbassadorProgramTracker()
+
+    # TODO: Add ambassadors
+    # TODO: Log activities
+    # TODO: Calculate metrics
+    # TODO: Generate dashboard
+    # TODO: Export data
+
+    print("Program tracking complete.")
+```
+
+---
+
+## 📚 Task 4: Developing Training Materials
+
+### 🎓 Step 1 — Create Training Curriculum
+
+```bash
+cd ~/ambassador_program/training
+
+cat > training_curriculum.md << 'EOF'
+# Ambassador Training Curriculum
+
+## Module 1: Security Culture Fundamentals (2 hours)
+**Objectives:**
+- Understand security culture components
+- Recognize ambassador role and impact
+- Identify culture change strategies
+
+**Topics:**
+- What is security culture?
+- Psychology of security behavior
+- Ambassador responsibilities
+- Building credibility and trust
+
+**Activities:**
+- Culture assessment exercise
+- Role discussion
+- Personal action planning
+
+## Module 2: Communication Skills (2 hours)
+**Objectives:**
+- Develop effective communication techniques
+- Learn to influence behavior change
+- Handle difficult conversations
+
+**Topics:**
+- Communication principles
+- Behavioral change models
+- Presentation skills
+- Handling resistance
+
+**Activities:**
+- Practice presentations
+- Scenario role-plays
+- Peer feedback sessions
+
+## Module 3: Content Creation (1.5 hours)
+**Objectives:**
+- Create engaging security content
+- Adapt messages for audiences
+- Use storytelling effectively
+
+**Topics:**
+- Adult learning principles
+- Content development techniques
+- Visual design basics
+- Measuring effectiveness
+
+**Activities:**
+- Content creation workshop
+- Peer review
+- Audience analysis
+
+## Module 4: Program Management (1.5 hours)
+**Objectives:**
+- Plan security initiatives
+- Track and report progress
+- Manage ambassador activities
+
+**Topics:**
+- Initiative planning
+- Metrics and measurement
+- Event execution
+- Continuous improvement
+
+**Activities:**
+- Planning exercise
+- Metrics development
+- Success story sharing
+EOF
+```
+
+### 📦 Step 2 — Create Training Resources
+
+```bash
+cat > training_resources.md << 'EOF'
+# Ambassador Training Resources
+
+## Presentation Templates
+- Security awareness session template
+- Phishing awareness presentation
+- Password security workshop
+- Social engineering defense
+
+## Communication Tools
+- Email templates for announcements
+- Poster templates for campaigns
+- Newsletter content examples
+- Social media post templates
+
+## Activity Guides
+- Phishing simulation planning guide
+- Security quiz development
+- Lunch-and-learn session guide
+- Security challenge event planning
+
+## Reference Materials
+- Security policy quick reference
+- Threat landscape overview
+- Incident reporting procedures
+- Security tool guides
+
+## Measurement Tools
+- Activity tracking spreadsheet
+- Feedback survey templates
+- Impact assessment forms
+- Quarterly report template
+EOF
+```
+
+### 📝 Step 3 — Create Assessment Template
+
+```bash
+cat > ambassador_assessment.json << 'EOF'
+{
+  "assessment_title": "Ambassador Training Assessment",
+  "passing_score": 80,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What are the three key components of security culture?",
+      "type": "multiple_choice",
+      "options": [
+        "Technology, policies, and people",
+        "Values, beliefs, and behaviors",
+        "Training, awareness, and enforcement",
+        "Prevention, detection, and response"
+      ],
+      "correct_answer": 1
+    },
+    {
+      "id": 2,
+      "question": "What is the primary role of a security ambassador?",
+      "type": "multiple_choice",
+      "options": [
+        "Enforce security policies",
+        "Monitor employee behavior",
+        "Educate and support peers",
+        "Report security violations"
+      ],
+      "correct_answer": 2
+    },
+    {
+      "id": 3,
+      "question": "Which communication approach is most effective for behavior change?",
+      "type": "multiple_choice",
+      "options": [
+        "Fear-based messaging",
+        "Technical explanations",
+        "Positive reinforcement and practical examples",
+        "Policy enforcement threats"
+      ],
+      "correct_answer": 2
+    },
+    {
+      "id": 4,
+      "question": "How often should ambassadors conduct awareness activities?",
+      "type": "multiple_choice",
+      "options": [
+        "Daily",
+        "Weekly",
+        "Monthly",
+        "Quarterly"
+      ],
+      "correct_answer": 2
+    },
+    {
+      "id": 5,
+      "question": "What is the best way to measure ambassador program success?",
+      "type": "multiple_choice",
+      "options": [
+        "Number of policy violations",
+        "Employee engagement and behavior change",
+        "Number of training hours",
+        "Security tool adoption rates"
+      ],
+      "correct_answer": 1
+    }
+  ]
+}
+EOF
+```
+
+---
+
+## 📊 Task 5: Establishing Program Metrics
+
+### 📌 Step 1 — Define Key Performance Indicators
+
+```bash
+cd ~/ambassador_program/reports
+
+cat > program_metrics.md << 'EOF'
+# Ambassador Program Metrics
+
+## Participation Metrics
+- Number of active ambassadors
+- Ambassador retention rate
+- Training completion rate
+- Activity participation rate
+
+## Reach Metrics
+- Total employees reached
+- Unique participants in activities
+- Department coverage percentage
+- Repeat engagement rate
+
+## Activity Metrics
+- Number of awareness sessions conducted
+- Types of activities delivered
+- Average attendance per session
+- Content diversity score
+
+## Impact Metrics
+- Security incident reduction rate
+- Phishing simulation click rate improvement
+- Policy compliance improvement
+- Employee security confidence increase
+
+## Engagement Metrics
+- Employee feedback scores
+- Ambassador satisfaction scores
+- Peer recommendation rate
+- Program awareness level
+
+## Measurement Methods
+- Monthly activity reports from ambassadors
+- Quarterly employee surveys
+- Security incident tracking
+- Phishing simulation results
+- Training completion data
+- Feedback forms after activities
+EOF
+```
+
+### 📄 Step 2 — Create Reporting Template
+
+```bash
+cat > quarterly_report_template.md << 'EOF'
+# Ambassador Program Quarterly Report
+
+## Executive Summary
+[Brief overview of quarter highlights and key achievements]
+
+## Program Statistics
+- Active Ambassadors:   [NUMBER]
+- Total Activities:     [NUMBER]
+- Employees Reached:    [NUMBER]
+- Department Coverage:  [PERCENTAGE]
+
+## Activity Breakdown
+| Activity Type            | Count | Participants | Avg Rating |
+|--------------------------|-------|--------------|------------|
+| Training Sessions        |       |              |            |
+| Awareness Presentations  |       |              |            |
+| Phishing Simulations     |       |              |            |
+| Security Workshops       |       |              |            |
+| Other Activities         |       |              |            |
+
+## Impact Metrics
+- Security Incidents:   [CHANGE vs PREVIOUS QUARTER]
+- Phishing Click Rate:  [CHANGE vs BASELINE]
+- Policy Compliance:    [CHANGE vs PREVIOUS QUARTER]
+- Employee Confidence:  [SURVEY RESULTS]
+
+## Ambassador Highlights
+[Notable achievements and success stories]
+
+## Challenges and Solutions
+[Issues encountered and how they were addressed]
+
+## Next Quarter Goals
+1. [Goal 1]
+2. [Goal 2]
+3. [Goal 3]
+
+## Recommendations
+[Suggestions for program improvement]
+EOF
+```
+
+### 🖥️ Step 3 — Create Metrics Dashboard Script Template
+
+```python
+# File: metrics_dashboard.py
+import pandas as pd
+import matplotlib.pyplot as plt
+from datetime import datetime
+
+class MetricsDashboard:
+    def __init__(self):
+        self.metrics_data = {}
+
+    def load_metrics(self, file_path):
+        """
+        Load metrics data from file.
+
+        Args:
+            file_path: Path to metrics data file
+
+        TODO: Load data from CSV or JSON
+        TODO: Validate data structure
+        TODO: Store in metrics_data dictionary
+        """
+        pass
+
+    def calculate_kpis(self):
+        """
+        Calculate key performance indicators.
+
+        TODO: Calculate participation rate
+        TODO: Calculate reach metrics
+        TODO: Calculate impact scores
+        TODO: Calculate trend changes
+        """
+        pass
+
+    def create_dashboard(self):
+        """
+        Generate visual metrics dashboard.
+
+        TODO: Create 6-panel dashboard
+        TODO: Include trend charts
+        TODO: Show comparative metrics
+        TODO: Highlight key achievements
+        TODO: Save dashboard image
+        """
+        pass
+
+    def generate_executive_summary(self):
+        """
+        Create executive summary report.
+
+        TODO: Compile key metrics
+        TODO: Identify trends
+        TODO: Generate recommendations
+        TODO: Format for leadership review
+        """
+        pass
+
+# Usage
+if __name__ == "__main__":
+    dashboard = MetricsDashboard()
+    # TODO: Implement dashboard generation
+```
+
+---
+
+## 🏆 Expected Outcomes
+
+After completing this lab, you should have:
+
+| ✅ Deliverable | Description |
+|---|---|
+| 🏗️ Program Framework | Complete ambassador program structure and documentation |
+| 📋 Survey System | Functional survey for identifying ambassador candidates |
+| 🐍 Analysis Tools | Python scripts for analyzing survey data and tracking metrics |
+| 📚 Training Materials | Comprehensive curriculum and resources for ambassador training |
+| 📊 Metrics Framework | KPIs and reporting templates for measuring program success |
+
+---
+
+## 🐛 Troubleshooting Tips
+
+### ⚠️ Issue: Survey Response Rate Is Low
+
+> **Solution:** Send personalized reminders and reduce friction for respondents.
+
+```
+- Emphasize confidentiality of responses
+- Keep survey under 10 minutes total
+- Offer incentives for participation
+- Send a reminder after 1 week
+```
+
+### ⚠️ Issue: Python Scripts Fail to Load Data
+
+> **Solution:** Check file paths and data format compatibility.
+
+```bash
+# Verify file exists and path is correct
+ls -lh ~/ambassador_program/analysis/
+
+# Check required libraries are installed
+pip3 install pandas numpy matplotlib
+```
+
+### ⚠️ Issue: Difficulty Identifying Qualified Candidates
+
+> **Solution:** Adjust thresholds and widen selection criteria.
+
+```python
+# Lower minimum score threshold
+analyzer.identify_candidates(min_score=3.0)
+
+# Consider potential over current knowledge
+# Focus on willingness to learn, not just existing skills
+```
+
+### ⚠️ Issue: Ambassador Engagement Drops Over Time
+
+> **Solution:** Refresh program structure and recognition systems.
+
+```
+- Provide ongoing recognition for contributions
+- Refresh training content regularly
+- Create a peer support network
+- Adjust time commitments to reduce burnout
+```
+
+---
+
+## 📌 Key Takeaways
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║                     KEY TAKEAWAYS                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  🏗️  Structured programs create sustainable culture change  ║
+║  📋  Surveys identify best-fit candidates systematically    ║
+║  🐍  Python analytics remove guesswork from decisions       ║
+║  📚  Strong training materials empower ambassadors          ║
+║  📊  KPIs and metrics demonstrate program ROI               ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## 📚 Conclusion
+
+This lab provided hands-on experience in building a comprehensive **cybersecurity ambassador program**. You learned to:
+
+- 🏗️ Design **program structures** with clear goals and responsibilities
+- 📋 Create **assessment surveys** to find ideal candidates
+- 🐍 Analyze candidate data using **Python scripts**
+- 📚 Develop **training materials** with a full four-module curriculum
+- 📊 Establish **KPIs and reporting templates** for measuring success
+
+Ambassador programs are powerful tools for **scaling security awareness** and creating sustainable culture change. The frameworks and tools developed in this lab can be adapted to various organizational contexts and serve as a foundation for long-term security culture improvement initiatives.
+
+---
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Built%20with-Python%203-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Ambassador](https://img.shields.io/badge/Program-Ambassador-blueviolet?style=for-the-badge)
+![Al Nafi](https://img.shields.io/badge/Lab-Al%20Nafi-orange?style=for-the-badge)
+
+*Happy Learning! 🚀*
+
+</div>

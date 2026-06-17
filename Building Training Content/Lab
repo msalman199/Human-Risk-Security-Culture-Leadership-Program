@@ -1,0 +1,494 @@
+Building Training Content
+Objectives
+By the end of this lab, students will be able to:
+
+Install and configure OBS Studio for recording security awareness videos
+Create professional training content using screen recording techniques
+Design graphics and visual elements for training materials
+Develop Python scripts to automate video processing workflows
+Implement a complete content creation and distribution pipeline
+Prerequisites
+Basic Linux command line proficiency
+Fundamental Python programming knowledge
+Understanding of file system operations
+Familiarity with video file formats (MP4, AVI)
+Basic security awareness concepts
+Lab Environment
+Al Nafi provides pre-configured Ubuntu cloud machines with all necessary dependencies. Click Start Lab to access your environment.
+
+Task 1: Installing and Configuring OBS Studio
+Step 1: Install Required Software
+# Update system and install OBS Studio
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y obs-studio ffmpeg v4l2loopback-dkms
+
+# Install multimedia codecs and tools
+sudo apt install -y ubuntu-restricted-extras imagemagick
+
+# Create project directory structure
+mkdir -p ~/security-training/{videos,graphics,scripts,processed}
+cd ~/security-training
+Step 2: Configure OBS Studio
+# Launch OBS Studio
+obs &
+Manual Configuration in OBS:
+
+Click Cancel on Auto-Configuration Wizard
+Navigate to Settings > Output
+Configure Recording settings:
+Output Mode: Advanced
+Recording Path: /home/student/security-training/videos
+Recording Format: MP4
+Encoder: x264
+Bitrate: 5000 Kbps
+Click Apply and OK
+Step 3: Create Recording Scenes
+Desktop Capture Scene:
+
+In Scenes panel, click + button
+Name: Desktop Demo
+In Sources, click + > Screen Capture (XSHM)
+Name: Full Desktop, select entire screen
+Presenter Mode Scene:
+
+Create new scene: Presenter Mode
+Add Screen Capture (XSHM) source
+Add Video Capture Device (V4L2) for webcam
+Resize webcam to bottom-right corner (300x200 pixels)
+Task 2: Creating Training Content
+Step 1: Prepare Training Script
+# Create phishing awareness script
+cat > ~/security-training/scripts/training-script.txt << 'EOF'
+PHISHING AWARENESS TRAINING - 5 MINUTES
+
+Introduction (30s):
+"Welcome to phishing awareness training. Learn to identify and respond to phishing attacks."
+
+What is Phishing? (60s):
+"Phishing: cyber attacks impersonating legitimate organizations to steal credentials and data."
+
+Warning Signs (90s):
+1. Urgent or threatening language
+2. Generic greetings
+3. Suspicious sender addresses
+4. Unexpected attachments
+5. Requests for sensitive information
+
+Real Examples (120s):
+"Examine actual phishing emails and identify red flags."
+
+Conclusion (30s):
+"When in doubt, verify independently. Report suspicious emails to IT security."
+EOF
+Step 2: Create Sample Phishing Email
+# Generate example phishing email for demonstration
+cat > ~/security-training/graphics/phishing-example.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Alert</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .header { background: #c00; color: white; padding: 10px; }
+        .urgent { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header"><h2>URGENT: Account Security Alert</h2></div>
+    <p>Dear Valued Customer,</p>
+    <p class="urgent">Your account will be suspended in 24 hours!</p>
+    <p>Click here to verify: <a href="#">Verify Now</a></p>
+    <p>Security Team<br>security@company-alert.com</p>
+</body>
+</html>
+EOF
+
+# Open in browser for recording
+firefox ~/security-training/graphics/phishing-example.html &
+Step 3: Record Training Video
+Recording Instructions:
+
+Select Desktop Demo scene in OBS
+Click Start Recording
+Open phishing example and narrate warning signs
+Explain each suspicious element (2-3 minutes)
+Click Stop Recording
+Video saved to ~/security-training/videos/
+Task 3: Creating Graphics and Visual Elements
+Step 1: Generate Warning Icons
+# Create warning triangle icon
+convert -size 200x200 xc:transparent \
+    -fill red -stroke black -strokewidth 3 \
+    -draw "polygon 100,20 180,160 20,160" \
+    -fill yellow -pointsize 72 -gravity center \
+    -annotate +0+10 "!" \
+    ~/security-training/graphics/warning-icon.png
+
+# Create security shield icon
+convert -size 200x200 xc:transparent \
+    -fill blue -stroke darkblue -strokewidth 3 \
+    -draw "path 'M 100,20 L 160,60 L 160,140 L 100,180 L 40,140 L 40,60 Z'" \
+    ~/security-training/graphics/shield-icon.png
+Step 2: Create Title and End Cards
+# Generate title card
+convert -size 1920x1080 xc:'#1f4e79' \
+    -fill white -font DejaVu-Sans-Bold -pointsize 72 \
+    -gravity center -annotate +0-100 'PHISHING AWARENESS' \
+    -fill yellow -pointsize 48 \
+    -annotate +0+50 'Security Training Module' \
+    ~/security-training/graphics/title-card.png
+
+# Generate end card
+convert -size 1920x1080 xc:'#2d5a2d' \
+    -fill white -pointsize 64 \
+    -gravity center -annotate +0-50 'Training Complete' \
+    -fill lightgreen -pointsize 40 \
+    -annotate +0+50 'Stay Vigilant!' \
+    ~/security-training/graphics/end-card.png
+Task 4: Automating Video Processing
+Step 1: Create Video Processor Script
+# Create automation script template
+cat > ~/security-training/scripts/video_processor.py << 'EOF'
+#!/usr/bin/env python3
+"""
+Video Processing Automation
+Students: Complete the TODO sections
+"""
+
+import os
+import subprocess
+import json
+from datetime import datetime
+
+class VideoProcessor:
+    def __init__(self, base_dir):
+        self.base_dir = base_dir
+        self.videos_dir = os.path.join(base_dir, 'videos')
+        self.processed_dir = os.path.join(base_dir, 'processed')
+        os.makedirs(self.processed_dir, exist_ok=True)
+    
+    def get_video_info(self, video_path):
+        """
+        Extract video metadata using ffprobe.
+        
+        Args:
+            video_path: Path to video file
+        
+        Returns:
+            Dictionary with video information
+        """
+        # TODO: Use ffprobe to get video metadata
+        # TODO: Parse JSON output
+        # TODO: Return duration, codec, resolution
+        pass
+    
+    def add_intro_outro(self, input_video, output_video, title_card, end_card):
+        """
+        Add title and end cards to video.
+        
+        Args:
+            input_video: Source video path
+            output_video: Destination video path
+            title_card: Path to title card image
+            end_card: Path to end card image
+        
+        Returns:
+            True if successful, False otherwise
+        """
+        # TODO: Create 3-second intro from title_card
+        # TODO: Create 3-second outro from end_card
+        # TODO: Concatenate intro + video + outro using ffmpeg
+        # TODO: Handle errors appropriately
+        pass
+    
+    def compress_video(self, input_video, output_video, quality='medium'):
+        """
+        Compress video for distribution.
+        
+        Args:
+            input_video: Source video
+            output_video: Compressed output
+            quality: 'high', 'medium', or 'low'
+        
+        Returns:
+            True if successful
+        """
+        # TODO: Define quality settings (CRF values)
+        # TODO: Execute ffmpeg compression command
+        # TODO: Return success status
+        pass
+    
+    def process_all_videos(self):
+        """Process all videos in videos directory."""
+        # TODO: List all video files
+        # TODO: For each video:
+        #   - Add intro/outro
+        #   - Compress for distribution
+        #   - Generate metadata
+        # TODO: Create processing report
+        pass
+
+def main():
+    processor = VideoProcessor(os.path.expanduser('~/security-training'))
+    processor.process_all_videos()
+
+if __name__ == "__main__":
+    main()
+EOF
+
+chmod +x ~/security-training/scripts/video_processor.py
+Step 2: Create Distribution Script
+# Create distribution automation template
+cat > ~/security-training/scripts/distribute_content.py << 'EOF'
+#!/usr/bin/env python3
+"""
+Content Distribution Manager
+Students: Implement distribution logic
+"""
+
+import os
+import subprocess
+import shutil
+
+class ContentDistributor:
+    def __init__(self, base_dir):
+        self.base_dir = base_dir
+        self.processed_dir = os.path.join(base_dir, 'processed')
+        self.distribution_dir = os.path.join(base_dir, 'distribution')
+        
+        # Create distribution channels
+        self.channels = {
+            'web': os.path.join(self.distribution_dir, 'web'),
+            'mobile': os.path.join(self.distribution_dir, 'mobile'),
+            'email': os.path.join(self.distribution_dir, 'email')
+        }
+        
+        for channel_dir in self.channels.values():
+            os.makedirs(channel_dir, exist_ok=True)
+    
+    def create_web_version(self, video_file):
+        """
+        Create web-optimized video (720p, streaming-ready).
+        
+        Args:
+            video_file: Source video filename
+        
+        Returns:
+            Path to web version
+        """
+        # TODO: Scale to 1280x720
+        # TODO: Use CRF 23, add faststart flag
+        # TODO: Save to web channel directory
+        pass
+    
+    def create_mobile_version(self, video_file):
+        """
+        Create mobile-optimized video (360p, smaller file).
+        
+        Args:
+            video_file: Source video filename
+        
+        Returns:
+            Path to mobile version
+        """
+        # TODO: Scale to 640x360
+        # TODO: Use baseline profile for compatibility
+        # TODO: Save to mobile channel directory
+        pass
+    
+    def create_email_version(self, video_file):
+        """
+        Create email-friendly video (480p, compressed).
+        
+        Args:
+            video_file: Source video filename
+        
+        Returns:
+            Path to email version
+        """
+        # TODO: Scale to 854x480
+        # TODO: Higher compression (CRF 28)
+        # TODO: Save to email channel directory
+        pass
+    
+    def generate_web_portal(self):
+        """
+        Generate HTML page for video distribution.
+        
+        Returns:
+            Path to generated HTML file
+        """
+        # TODO: Create HTML template
+        # TODO: Add video elements for each processed video
+        # TODO: Include download links for all versions
+        # TODO: Save as index.html
+        pass
+    
+    def distribute_all(self):
+        """Distribute all processed videos to channels."""
+        # TODO: Find all processed videos
+        # TODO: Create web, mobile, and email versions
+        # TODO: Generate web portal
+        # TODO: Create distribution report
+        pass
+
+def main():
+    distributor = ContentDistributor(os.path.expanduser('~/security-training'))
+    distributor.distribute_all()
+
+if __name__ == "__main__":
+    main()
+EOF
+
+chmod +x ~/security-training/scripts/distribute_content.py
+Step 3: Implement and Test Scripts
+Student Tasks:
+
+Complete the get_video_info() function using ffprobe
+Implement add_intro_outro() with ffmpeg concatenation
+Complete compress_video() with quality presets
+Implement distribution functions for each channel
+Create HTML generation logic for web portal
+Testing Commands:
+
+# Test video processor
+python3 ~/security-training/scripts/video_processor.py
+
+# Test distribution
+python3 ~/security-training/scripts/distribute_content.py
+
+# Verify output
+ls -lh ~/security-training/processed/
+ls -lh ~/security-training/distribution/*/
+Task 5: Validation and Quality Assurance
+Step 1: Create Validation Script
+cat > ~/security-training/scripts/validate_content.py << 'EOF'
+#!/usr/bin/env python3
+"""
+Content Validation Script
+Students: Implement validation checks
+"""
+
+import os
+import subprocess
+
+def validate_video_file(video_path):
+    """
+    Validate video file integrity and properties.
+    
+    Args:
+        video_path: Path to video file
+    
+    Returns:
+        Dictionary with validation results
+    """
+    # TODO: Check file exists and is readable
+    # TODO: Verify video codec and format
+    # TODO: Check resolution and duration
+    # TODO: Validate audio stream presence
+    # TODO: Return validation report
+    pass
+
+def validate_distribution_package():
+    """Validate all distribution packages."""
+    # TODO: Check all channels have content
+    # TODO: Verify file sizes are appropriate
+    # TODO: Validate HTML portal exists
+    # TODO: Generate validation report
+    pass
+
+if __name__ == "__main__":
+    validate_distribution_package()
+EOF
+
+chmod +x ~/security-training/scripts/validate_content.py
+Step 2: Run Complete Pipeline
+# Execute full automation pipeline
+cd ~/security-training
+
+# Process videos
+echo "Processing videos..."
+python3 scripts/video_processor.py
+
+# Distribute content
+echo "Distributing content..."
+python3 scripts/distribute_content.py
+
+# Validate output
+echo "Validating content..."
+python3 scripts/validate_content.py
+
+# Display directory structure
+tree ~/security-training 2>/dev/null || find ~/security-training -type d
+Step 3: View Results
+# Check processed videos
+ls -lh ~/security-training/processed/
+
+# Check distribution packages
+for channel in web mobile email; do
+    echo "=== $channel channel ==="
+    ls -lh ~/security-training/distribution/$channel/
+done
+
+# Open web portal
+firefox ~/security-training/distribution/index.html &
+Expected Outcomes
+Upon completion, students should have:
+
+Functional OBS Studio configuration for screen recording
+Recorded security awareness training video
+Professional graphics (title cards, icons, overlays)
+Working Python automation scripts for video processing
+Multi-channel distribution packages (web, mobile, email)
+HTML-based training portal for content delivery
+Complete understanding of training content creation workflow
+Deliverables:
+
+Original recorded video in videos/ directory
+Processed video with intro/outro in processed/ directory
+Distribution packages in distribution/ subdirectories
+Completed Python scripts with all functions implemented
+Web portal accessible via browser
+Troubleshooting Tips
+OBS Studio Issues:
+
+Black screen in recording: Check screen capture permissions, restart OBS
+No audio: Verify PulseAudio settings in OBS Audio settings
+Laggy recording: Lower bitrate to 3000 Kbps, use faster encoder preset
+FFmpeg Processing Errors:
+
+Codec not found: Install ubuntu-restricted-extras package
+Concatenation fails: Ensure all videos have same codec and resolution
+Slow processing: Use -preset fast or -preset veryfast for testing
+Python Script Issues:
+
+Module not found: Install missing packages with pip3 install --user <package>
+Permission denied: Check file permissions with chmod +x script.py
+Subprocess errors: Verify ffmpeg commands work independently in terminal
+Common Fixes:
+
+# Reinstall multimedia codecs
+sudo apt install --reinstall ubuntu-restricted-extras ffmpeg
+
+# Fix audio issues
+pulseaudio --kill && pulseaudio --start
+
+# Clear temporary files
+rm -rf /tmp/*.mp4 /tmp/*.png
+Conclusion
+This lab provided hands-on experience creating professional security training content using open-source tools. Students learned to record videos with OBS Studio, create graphics with ImageMagick, and automate processing workflows with Python. The complete pipeline demonstrates real-world content creation and distribution processes used in organizational training programs.
+
+Key Takeaways:
+
+OBS Studio enables professional screen recording and scene management
+Graphics enhance training effectiveness and engagement
+Automation reduces manual effort and ensures consistency
+Multi-channel distribution accommodates different delivery methods
+Validation ensures content quality and integrity
+Next Steps:
+
+Experiment with advanced OBS features (transitions, filters, overlays)
+Create additional training modules on different security topics
+Implement email distribution using Python's smtplib
+Add analytics tracking to web portal
+Develop interactive quizzes to accompany training videos

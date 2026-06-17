@@ -1,0 +1,615 @@
+Metrics for Measuring Security Culture
+Objectives
+By the end of this lab, students will be able to:
+
+Design and implement a security culture measurement framework
+Collect and analyze security awareness metrics using Python
+Create interactive visualizations with D3.js for culture data
+Generate actionable insights from security behavior patterns
+Build a web-based dashboard for monitoring security culture
+Prerequisites
+Basic Python programming skills
+Understanding of HTML, CSS, and JavaScript
+Familiarity with cybersecurity concepts
+Basic SQL knowledge
+Linux command line experience
+Lab Environment
+Al Nafi provides pre-configured Linux cloud machines. Click Start Lab to access your environment with all necessary tools installed.
+
+Lab Overview
+This lab focuses on measuring organizational security culture through data collection, analysis, and visualization. You'll build a complete monitoring system to track training effectiveness, phishing resilience, incident patterns, and overall security awareness.
+
+Task 1: Database Setup and Data Collection Framework
+Step 1: Create Project Structure
+mkdir -p ~/security-culture-lab/{data,scripts,templates,static/{css,js}}
+cd ~/security-culture-lab
+python3 -m venv venv
+source venv/bin/activate
+pip install flask pandas numpy matplotlib seaborn
+Step 2: Initialize Database Schema
+Create scripts/setup_database.py:
+
+import sqlite3
+
+def create_database():
+    """
+    Create SQLite database with tables for security culture metrics.
+    
+    TODO: Implement the following tables:
+    - employees (id, employee_id, department, role, hire_date)
+    - security_training (id, employee_id, training_type, completion_date, score)
+    - phishing_simulations (id, employee_id, simulation_date, clicked_link, reported_email)
+    - security_incidents (id, employee_id, incident_date, incident_type, severity)
+    - security_surveys (id, employee_id, survey_date, awareness_score, behavior_score)
+    """
+    conn = sqlite3.connect('data/security_culture.db')
+    cursor = conn.cursor()
+    
+    # TODO: Create employees table with appropriate fields
+    # TODO: Create security_training table with foreign key to employees
+    # TODO: Create phishing_simulations table
+    # TODO: Create security_incidents table
+    # TODO: Create security_surveys table
+    
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+    create_database()
+Step 3: Generate Sample Data
+Create scripts/generate_sample_data.py:
+
+import sqlite3
+import random
+from datetime import datetime, timedelta
+
+def generate_sample_data():
+    """
+    Generate realistic sample data for testing.
+    
+    TODO: Generate 100 employees across 6 departments
+    TODO: Create 2-6 training records per employee
+    TODO: Create 3-8 phishing simulation records per employee
+    TODO: Create 50 security incidents
+    TODO: Create 1-3 survey responses per employee
+    """
+    conn = sqlite3.connect('data/security_culture.db')
+    cursor = conn.cursor()
+    
+    departments = ['IT', 'HR', 'Finance', 'Marketing', 'Operations', 'Sales']
+    
+    # TODO: Generate employee data
+    # TODO: Generate training completion data with scores
+    # TODO: Generate phishing simulation results
+    # TODO: Generate security incident records
+    # TODO: Generate survey responses
+    
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+    generate_sample_data()
+Run the setup scripts:
+
+python scripts/setup_database.py
+python scripts/generate_sample_data.py
+Task 2: Data Collection and Analysis Modules
+Step 1: Create Data Collector Class
+Create scripts/data_collector.py:
+
+import sqlite3
+import pandas as pd
+
+class SecurityCultureDataCollector:
+    """Collect security culture metrics from database."""
+    
+    def __init__(self, db_path='data/security_culture.db'):
+        self.db_path = db_path
+    
+    def collect_training_metrics(self, days_back=30):
+        """
+        Collect training completion and score data.
+        
+        Args:
+            days_back: Number of days to look back
+            
+        Returns:
+            DataFrame with training metrics
+            
+        TODO: Query training data joined with employee data
+        TODO: Filter by date range
+        TODO: Return pandas DataFrame
+        """
+        pass
+    
+    def collect_phishing_metrics(self, days_back=30):
+        """
+        Collect phishing simulation results.
+        
+        TODO: Query phishing simulation data
+        TODO: Include click rates and report rates
+        TODO: Join with employee department data
+        """
+        pass
+    
+    def collect_incident_metrics(self, days_back=30):
+        """
+        Collect security incident data.
+        
+        TODO: Query incident records
+        TODO: Include incident type and severity
+        TODO: Calculate resolution metrics
+        """
+        pass
+    
+    def collect_survey_metrics(self, days_back=30):
+        """
+        Collect security awareness survey data.
+        
+        TODO: Query survey responses
+        TODO: Include all score dimensions
+        TODO: Group by department
+        """
+        pass
+Step 2: Create Analysis Module
+Create scripts/culture_analyzer.py:
+
+import pandas as pd
+import numpy as np
+from data_collector import SecurityCultureDataCollector
+import json
+
+class SecurityCultureAnalyzer:
+    """Analyze security culture metrics and generate insights."""
+    
+    def __init__(self, db_path='data/security_culture.db'):
+        self.collector = SecurityCultureDataCollector(db_path)
+    
+    def calculate_training_effectiveness(self, days_back=90):
+        """
+        Calculate training effectiveness metrics.
+        
+        Returns:
+            Dictionary with:
+            - average_score
+            - completion_rate
+            - score_by_department
+            
+        TODO: Get training data from collector
+        TODO: Calculate average scores
+        TODO: Calculate completion rates
+        TODO: Group by department
+        """
+        pass
+    
+    def calculate_phishing_resilience(self, days_back=90):
+        """
+        Calculate phishing resilience metrics.
+        
+        Returns:
+            Dictionary with:
+            - click_rate (percentage)
+            - report_rate (percentage)
+            - click_rate_by_department
+            
+        TODO: Get phishing data from collector
+        TODO: Calculate click and report rates
+        TODO: Analyze by department
+        """
+        pass
+    
+    def calculate_culture_score(self, days_back=90):
+        """
+        Calculate overall security culture score.
+        
+        Returns:
+            Dictionary with:
+            - overall_culture_score (1-10)
+            - awareness_score
+            - behavior_score
+            - culture_by_department
+            
+        TODO: Get survey data from collector
+        TODO: Calculate average scores across dimensions
+        TODO: Compute overall culture score
+        """
+        pass
+    
+    def generate_comprehensive_report(self, days_back=90):
+        """
+        Generate complete security culture report.
+        
+        TODO: Call all metric calculation methods
+        TODO: Combine into single report dictionary
+        TODO: Include metadata (date, period)
+        TODO: Return complete report
+        """
+        pass
+    
+    def save_report_to_json(self, report, filename='data/culture_report.json'):
+        """Save report to JSON file."""
+        with open(filename, 'w') as f:
+            json.dump(report, f, indent=2, default=str)
+Step 3: Create Trend Analysis Module
+Create scripts/trend_analyzer.py:
+
+import pandas as pd
+from data_collector import SecurityCultureDataCollector
+
+class SecurityCultureTrendAnalyzer:
+    """Analyze trends in security culture metrics over time."""
+    
+    def __init__(self, db_path='data/security_culture.db'):
+        self.collector = SecurityCultureDataCollector(db_path)
+    
+    def analyze_training_trends(self, months_back=6):
+        """
+        Analyze training trends over time.
+        
+        Returns:
+            Dictionary with monthly trends and overall direction
+            
+        TODO: Get training data for specified period
+        TODO: Group by month
+        TODO: Calculate monthly averages
+        TODO: Determine trend direction (improving/declining)
+        """
+        pass
+    
+    def analyze_phishing_trends(self, months_back=6):
+        """
+        Analyze phishing simulation trends.
+        
+        TODO: Get phishing data for specified period
+        TODO: Calculate monthly click and report rates
+        TODO: Identify trend patterns
+        """
+        pass
+    
+    def analyze_culture_score_trends(self, months_back=6):
+        """
+        Analyze culture score trends over time.
+        
+        TODO: Get survey data for specified period
+        TODO: Calculate monthly culture scores
+        TODO: Determine overall trend direction
+        """
+        pass
+    
+    def generate_trend_report(self, months_back=6):
+        """
+        Generate comprehensive trend report.
+        
+        TODO: Call all trend analysis methods
+        TODO: Combine results into single report
+        TODO: Return complete trend analysis
+        """
+        pass
+Task 3: Web Dashboard with D3.js Visualizations
+Step 1: Create Flask Application
+Create scripts/dashboard_app.py:
+
+from flask import Flask, render_template, jsonify
+from culture_analyzer import SecurityCultureAnalyzer
+from trend_analyzer import SecurityCultureTrendAnalyzer
+
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
+
+culture_analyzer = SecurityCultureAnalyzer()
+trend_analyzer = SecurityCultureTrendAnalyzer()
+
+@app.route('/')
+def dashboard():
+    """Render main dashboard page."""
+    return render_template('dashboard.html')
+
+@app.route('/api/culture-metrics')
+def get_culture_metrics():
+    """
+    API endpoint for current culture metrics.
+    
+    TODO: Generate comprehensive report
+    TODO: Return as JSON
+    TODO: Handle errors appropriately
+    """
+    pass
+
+@app.route('/api/trend-data')
+def get_trend_data():
+    """
+    API endpoint for trend data.
+    
+    TODO: Generate trend report
+    TODO: Return as JSON
+    """
+    pass
+
+@app.route('/api/department-metrics')
+def get_department_metrics():
+    """
+    API endpoint for department-specific metrics.
+    
+    TODO: Extract department data from report
+    TODO: Format for visualization
+    TODO: Return as JSON
+    """
+    pass
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
+Step 2: Create Dashboard HTML Template
+Create templates/dashboard.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Culture Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Security Culture Dashboard</h1>
+            <div id="lastUpdated"></div>
+        </header>
+        
+        <div class="metrics-grid">
+            <div class="card" id="kpi-card">
+                <h2>Key Performance Indicators</h2>
+                <div id="kpi-container"></div>
+            </div>
+            
+            <div class="card" id="training-chart">
+                <h2>Training Effectiveness</h2>
+                <svg id="training-svg"></svg>
+            </div>
+            
+            <div class="card" id="phishing-chart">
+                <h2>Phishing Resilience</h2>
+                <svg id="phishing-svg"></svg>
+            </div>
+            
+            <div class="card" id="culture-chart">
+                <h2>Culture Score Trends</h2>
+                <svg id="culture-svg"></svg>
+            </div>
+            
+            <div class="card" id="department-chart">
+                <h2>Department Comparison</h2>
+                <svg id="department-svg"></svg>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
+Step 3: Create Dashboard CSS
+Create static/css/dashboard.css:
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+svg {
+    width: 100%;
+    height: 300px;
+}
+
+.kpi-item {
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+.kpi-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.kpi-label {
+    color: #666;
+    font-size: 0.9em;
+}
+Step 4: Create D3.js Visualization Script
+Create static/js/dashboard.js:
+
+// Dashboard JavaScript with D3.js visualizations
+
+class SecurityCultureDashboard {
+    constructor() {
+        this.loadData();
+    }
+    
+    async loadData() {
+        /**
+         * Load data from API endpoints.
+         * 
+         * TODO: Fetch culture metrics from /api/culture-metrics
+         * TODO: Fetch trend data from /api/trend-data
+         * TODO: Fetch department data from /api/department-metrics
+         * TODO: Call visualization methods with loaded data
+         */
+    }
+    
+    renderKPIs(data) {
+        /**
+         * Render key performance indicators.
+         * 
+         * TODO: Extract KPI values from data
+         * TODO: Create HTML elements for each KPI
+         * TODO: Display with appropriate formatting
+         */
+    }
+    
+    renderTrainingChart(data) {
+        /**
+         * Create bar chart for training effectiveness.
+         * 
+         * TODO: Set up D3 scales and axes
+         * TODO: Create bars for each department
+         * TODO: Add labels and tooltips
+         * TODO: Use color scale for scores
+         */
+    }
+    
+    renderPhishingChart(data) {
+        /**
+         * Create line chart for phishing trends.
+         * 
+         * TODO: Set up D3 time scale
+         * TODO: Create line for click rate
+         * TODO: Create line for report rate
+         * TODO: Add legend and axes
+         */
+    }
+    
+    renderCultureTrendChart(data) {
+        /**
+         * Create area chart for culture score trends.
+         * 
+         * TODO: Set up D3 scales for time series
+         * TODO: Create area for culture score
+         * TODO: Add trend line
+         * TODO: Include interactive tooltips
+         */
+    }
+    
+    renderDepartmentComparison(data) {
+        /**
+         * Create grouped bar chart for department comparison.
+         * 
+         * TODO: Set up grouped bar chart layout
+         * TODO: Display multiple metrics per department
+         * TODO: Add color coding for metric types
+         * TODO: Include interactive legend
+         */
+    }
+}
+
+// Initialize dashboard when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new SecurityCultureDashboard();
+});
+Step 5: Run the Dashboard
+cd ~/security-culture-lab
+source venv/bin/activate
+python scripts/dashboard_app.py
+Access the dashboard at http://localhost:5000
+
+Task 4: Analysis and Reporting
+Step 1: Generate Comprehensive Report
+Run the analysis scripts:
+
+python scripts/culture_analyzer.py
+python scripts/trend_analyzer.py
+Step 2: Interpret Results
+Review the generated JSON reports in the data/ directory:
+
+culture_report.json - Current state metrics
+trend_report.json - Historical trends
+Key metrics to analyze:
+
+Training Effectiveness: Average scores above 80% indicate good comprehension
+Phishing Resilience: Click rates below 10% show strong awareness
+Culture Score: Overall scores above 7/10 indicate positive security culture
+Incident Trends: Declining incident rates show improving security posture
+Step 3: Create Action Items
+Based on your analysis, identify:
+
+Departments requiring additional training
+Areas with declining trends needing intervention
+Best practices from high-performing departments
+Gaps in current security awareness programs
+Expected Outcomes
+Upon completing this lab, you will have:
+
+A functional security culture measurement database
+Python modules for data collection and analysis
+Interactive web dashboard with D3.js visualizations
+Comprehensive reports on security culture metrics
+Ability to identify trends and generate insights
+Framework for ongoing culture monitoring
+Troubleshooting Tips
+Database Connection Errors:
+
+Verify database file exists in data/ directory
+Check file permissions: chmod 644 data/security_culture.db
+Ensure SQLite3 is installed: sudo apt install sqlite3
+Flask Application Not Starting:
+
+Confirm virtual environment is activated
+Check port 5000 is not in use: lsof -i :5000
+Verify all dependencies installed: pip list
+D3.js Visualizations Not Rendering:
+
+Check browser console for JavaScript errors
+Verify API endpoints return valid JSON
+Ensure D3.js library loads correctly (check network tab)
+Empty or Missing Data:
+
+Run generate_sample_data.py again
+Verify database tables created successfully
+Check date ranges in analysis functions
+Conclusion
+This lab demonstrated how to build a comprehensive security culture measurement system. You learned to collect metrics across multiple dimensions (training, phishing, incidents, surveys), analyze trends over time, and visualize results through an interactive dashboard. These skills are essential for security awareness program management and demonstrating the effectiveness of security initiatives to stakeholders.
+
+Key takeaways:
+
+Security culture requires multi-dimensional measurement
+Trend analysis reveals program effectiveness over time
+Visualization makes complex data accessible to decision-makers
+Continuous monitoring enables proactive interventions
+Continue practicing by extending the system with additional metrics, implementing alerting for concerning trends, or integrating with real organizational data sources.

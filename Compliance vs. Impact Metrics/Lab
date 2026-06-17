@@ -1,0 +1,559 @@
+Compliance vs. Impact Metrics
+Objectives
+By the end of this lab, students will be able to:
+
+Differentiate between compliance metrics and impact metrics in security culture programs
+Implement Python tools to collect and analyze both metric types
+Generate data-driven reports for security awareness program effectiveness
+Interpret metrics to make informed decisions about security culture initiatives
+Prerequisites
+Basic Python programming knowledge
+Understanding of data analysis concepts
+Familiarity with security awareness training principles
+Linux command line experience
+Lab Environment
+Your cloud machine includes:
+
+Python 3.x with pandas, matplotlib, seaborn, numpy
+Sample datasets for analysis
+Text editors and development tools
+Access your environment by clicking Start Lab.
+
+Task 1: Understanding Metric Types
+Step 1: Create Project Directory
+mkdir ~/metrics_lab && cd ~/metrics_lab
+Step 2: Define Metric Categories
+Create metric_definitions.py:
+
+#!/usr/bin/env python3
+"""
+Metric Definitions Module
+Define compliance and impact metrics
+"""
+
+class MetricDefinitions:
+    def __init__(self):
+        self.compliance_metrics = {
+            "definition": "Measures adherence to policies and training requirements",
+            "examples": [
+                "Training completion rates",
+                "Policy acknowledgment percentages",
+                "Phishing simulation click rates",
+                "Assessment scores"
+            ]
+        }
+        
+        self.impact_metrics = {
+            "definition": "Measures behavioral change and culture improvement",
+            "examples": [
+                "Voluntary incident reporting increases",
+                "Proactive security behaviors",
+                "Peer-to-peer coaching instances",
+                "Security-conscious decision making"
+            ]
+        }
+    
+    def display_comparison(self):
+        """
+        Display comparison between metric types
+        
+        TODO: Print formatted comparison of both metric types
+        TODO: Include definitions and examples
+        TODO: Highlight key differences
+        """
+        pass
+
+if __name__ == "__main__":
+    metrics = MetricDefinitions()
+    metrics.display_comparison()
+Step 3: Generate Sample Data
+Create data_generator.py:
+
+#!/usr/bin/env python3
+"""
+Sample Data Generator
+Generate realistic compliance and impact metrics
+"""
+
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+import random
+
+class MetricsDataGenerator:
+    def __init__(self):
+        self.departments = ['IT', 'Finance', 'HR', 'Sales', 'Marketing', 'Operations']
+        self.months = 12
+        
+    def generate_compliance_data(self):
+        """
+        Generate compliance metrics dataset
+        
+        TODO: Create DataFrame with columns:
+              - date, department, department_size
+              - training_completion_rate
+              - policy_acknowledgment_rate
+              - phishing_click_rate
+              - assessment_pass_rate
+              - compliance_score (average of above)
+        TODO: Use realistic percentages (70-100% for positive metrics)
+        TODO: Save to 'compliance_metrics.csv'
+        """
+        pass
+    
+    def generate_impact_data(self):
+        """
+        Generate impact metrics dataset
+        
+        TODO: Create DataFrame with columns:
+              - date, department
+              - voluntary_incident_reports
+              - security_discussions_initiated
+              - proactive_security_behaviors
+              - peer_coaching_instances
+              - security_incidents (decreasing over time)
+              - culture_maturity_score
+        TODO: Show improvement trend over time
+        TODO: Save to 'impact_metrics.csv'
+        """
+        pass
+    
+    def save_datasets(self):
+        """Generate and save both datasets"""
+        self.generate_compliance_data()
+        self.generate_impact_data()
+        print("Sample datasets created successfully!")
+
+if __name__ == "__main__":
+    generator = MetricsDataGenerator()
+    generator.save_datasets()
+Run the generator:
+
+python3 data_generator.py
+Task 2: Analyzing Compliance Metrics
+Step 1: Create Compliance Analyzer
+Create compliance_analyzer.py:
+
+#!/usr/bin/env python3
+"""
+Compliance Metrics Analyzer
+"""
+
+import pandas as pd
+import numpy as np
+
+class ComplianceAnalyzer:
+    def __init__(self, data_file='compliance_metrics.csv'):
+        """
+        Initialize analyzer with compliance data
+        
+        TODO: Load CSV file into pandas DataFrame
+        TODO: Convert date column to datetime
+        """
+        pass
+    
+    def calculate_statistics(self):
+        """
+        Calculate basic statistics
+        
+        TODO: Compute mean, median, std for all metrics
+        TODO: Identify min and max values
+        TODO: Return summary DataFrame
+        """
+        pass
+    
+    def department_comparison(self):
+        """
+        Compare departments
+        
+        TODO: Group by department
+        TODO: Calculate average compliance_score per department
+        TODO: Identify best and worst performers
+        TODO: Print formatted results
+        """
+        pass
+    
+    def trend_analysis(self):
+        """
+        Analyze trends over time
+        
+        TODO: Group by date
+        TODO: Calculate monthly averages
+        TODO: Determine if improving or declining
+        TODO: Calculate rate of change
+        """
+        pass
+    
+    def identify_gaps(self):
+        """
+        Identify compliance gaps
+        
+        TODO: Define thresholds (e.g., 90% for training)
+        TODO: Find records below thresholds
+        TODO: List departments needing improvement
+        TODO: Calculate gap magnitude
+        """
+        pass
+    
+    def generate_report(self):
+        """
+        Generate comprehensive report
+        
+        TODO: Call all analysis methods
+        TODO: Format output professionally
+        TODO: Include executive summary
+        TODO: Provide actionable recommendations
+        """
+        pass
+
+if __name__ == "__main__":
+    analyzer = ComplianceAnalyzer()
+    analyzer.generate_report()
+Step 2: Create Visualizations
+Create compliance_visualizer.py:
+
+#!/usr/bin/env python3
+"""
+Compliance Metrics Visualizer
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class ComplianceVisualizer:
+    def __init__(self, data_file='compliance_metrics.csv'):
+        """
+        Initialize visualizer
+        
+        TODO: Load data
+        TODO: Set matplotlib style
+        """
+        pass
+    
+    def plot_department_comparison(self):
+        """
+        Create department comparison bar chart
+        
+        TODO: Calculate average compliance_score by department
+        TODO: Create bar chart with labels
+        TODO: Add threshold line at 80%
+        TODO: Save as 'dept_comparison.png'
+        """
+        pass
+    
+    def plot_trends(self):
+        """
+        Create trend line charts
+        
+        TODO: Create 2x2 subplot grid
+        TODO: Plot training_completion_rate over time
+        TODO: Plot phishing_click_rate over time
+        TODO: Plot overall compliance_score over time
+        TODO: Add grid and labels
+        TODO: Save as 'compliance_trends.png'
+        """
+        pass
+    
+    def plot_correlation_heatmap(self):
+        """
+        Create correlation heatmap
+        
+        TODO: Calculate correlation matrix
+        TODO: Use seaborn heatmap with annotations
+        TODO: Save as 'correlation_heatmap.png'
+        """
+        pass
+
+if __name__ == "__main__":
+    visualizer = ComplianceVisualizer()
+    visualizer.plot_department_comparison()
+    visualizer.plot_trends()
+    visualizer.plot_correlation_heatmap()
+Run the analyzer:
+
+python3 compliance_analyzer.py
+python3 compliance_visualizer.py
+Task 3: Analyzing Impact Metrics
+Step 1: Create Impact Analyzer
+Create impact_analyzer.py:
+
+#!/usr/bin/env python3
+"""
+Impact Metrics Analyzer
+"""
+
+import pandas as pd
+import numpy as np
+
+class ImpactAnalyzer:
+    def __init__(self, data_file='impact_metrics.csv'):
+        """
+        Initialize with impact data
+        
+        TODO: Load CSV file
+        TODO: Convert date column
+        """
+        pass
+    
+    def behavioral_change_analysis(self):
+        """
+        Analyze behavioral changes
+        
+        TODO: Calculate month-over-month changes
+        TODO: Identify positive trends
+        TODO: Calculate percentage improvements
+        TODO: Print summary of changes
+        """
+        pass
+    
+    def culture_maturity_assessment(self):
+        """
+        Assess culture maturity levels
+        
+        TODO: Define maturity levels:
+              Basic (0-40), Developing (41-60), 
+              Defined (61-80), Managed (81-90), 
+              Optimized (91-100)
+        TODO: Calculate average maturity score
+        TODO: Categorize each department
+        TODO: Print maturity assessment
+        """
+        pass
+    
+    def proactive_behavior_analysis(self):
+        """
+        Analyze proactive behaviors
+        
+        TODO: Sum all proactive behavior metrics
+        TODO: Calculate behaviors per department per month
+        TODO: Identify most proactive departments
+        TODO: Compare to security incidents
+        """
+        pass
+    
+    def incident_reduction_analysis(self):
+        """
+        Analyze security incident trends
+        
+        TODO: Track security_incidents over time
+        TODO: Calculate reduction percentage
+        TODO: Correlate with proactive behaviors
+        TODO: Determine ROI indicators
+        """
+        pass
+    
+    def generate_impact_report(self):
+        """
+        Generate comprehensive impact report
+        
+        TODO: Execute all analysis methods
+        TODO: Create executive summary
+        TODO: Highlight behavioral improvements
+        TODO: Provide strategic recommendations
+        """
+        pass
+
+if __name__ == "__main__":
+    analyzer = ImpactAnalyzer()
+    analyzer.generate_impact_report()
+Step 2: Create Impact Visualizations
+Create impact_visualizer.py:
+
+#!/usr/bin/env python3
+"""
+Impact Metrics Visualizer
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class ImpactVisualizer:
+    def __init__(self, data_file='impact_metrics.csv'):
+        """
+        Initialize visualizer
+        
+        TODO: Load impact data
+        TODO: Configure plot settings
+        """
+        pass
+    
+    def plot_behavioral_trends(self):
+        """
+        Plot behavioral change trends
+        
+        TODO: Create line plots for:
+              - voluntary_incident_reports
+              - security_discussions_initiated
+              - proactive_security_behaviors
+              - peer_coaching_instances
+        TODO: Show improvement over time
+        TODO: Save as 'behavioral_trends.png'
+        """
+        pass
+    
+    def plot_maturity_progression(self):
+        """
+        Plot culture maturity progression
+        
+        TODO: Plot culture_maturity_score over time
+        TODO: Add maturity level zones (colored bands)
+        TODO: Show department comparisons
+        TODO: Save as 'maturity_progression.png'
+        """
+        pass
+    
+    def plot_incident_correlation(self):
+        """
+        Plot incident vs proactive behavior correlation
+        
+        TODO: Create scatter plot
+        TODO: X-axis: sum of proactive behaviors
+        TODO: Y-axis: security_incidents
+        TODO: Add trend line
+        TODO: Save as 'incident_correlation.png'
+        """
+        pass
+
+if __name__ == "__main__":
+    visualizer = ImpactVisualizer()
+    visualizer.plot_behavioral_trends()
+    visualizer.plot_maturity_progression()
+    visualizer.plot_incident_correlation()
+Run the impact analyzer:
+
+python3 impact_analyzer.py
+python3 impact_visualizer.py
+Task 4: Comparative Analysis
+Step 1: Create Integrated Dashboard
+Create integrated_dashboard.py:
+
+#!/usr/bin/env python3
+"""
+Integrated Metrics Dashboard
+Compare compliance and impact metrics
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+class IntegratedDashboard:
+    def __init__(self):
+        """
+        Load both datasets
+        
+        TODO: Load compliance_metrics.csv
+        TODO: Load impact_metrics.csv
+        TODO: Merge on date and department
+        """
+        pass
+    
+    def correlation_analysis(self):
+        """
+        Analyze correlation between compliance and impact
+        
+        TODO: Calculate correlation between:
+              - compliance_score and culture_maturity_score
+              - training_completion_rate and voluntary_reports
+              - phishing_click_rate and security_incidents
+        TODO: Print correlation coefficients
+        TODO: Interpret relationships
+        """
+        pass
+    
+    def effectiveness_analysis(self):
+        """
+        Analyze program effectiveness
+        
+        TODO: Compare high compliance departments with high impact
+        TODO: Identify departments with compliance but low impact
+        TODO: Calculate effectiveness ratio
+        TODO: Provide insights
+        """
+        pass
+    
+    def create_executive_dashboard(self):
+        """
+        Create visual executive dashboard
+        
+        TODO: Create 2x3 subplot grid
+        TODO: Include key compliance metrics
+        TODO: Include key impact metrics
+        TODO: Add summary statistics
+        TODO: Save as 'executive_dashboard.png'
+        """
+        pass
+    
+    def generate_recommendations(self):
+        """
+        Generate strategic recommendations
+        
+        TODO: Analyze gaps between compliance and impact
+        TODO: Identify areas for improvement
+        TODO: Suggest specific interventions
+        TODO: Prioritize recommendations by ROI
+        """
+        pass
+
+if __name__ == "__main__":
+    dashboard = IntegratedDashboard()
+    dashboard.correlation_analysis()
+    dashboard.effectiveness_analysis()
+    dashboard.create_executive_dashboard()
+    dashboard.generate_recommendations()
+Step 2: Run Complete Analysis
+Execute the integrated analysis:
+
+python3 integrated_dashboard.py
+Review all generated visualizations:
+
+ls -lh *.png
+Expected Outcomes
+After completing this lab, you should have:
+
+Understanding: Clear distinction between compliance and impact metrics
+Data Files: Two CSV files with sample metrics data
+Analysis Scripts: Four Python modules for comprehensive analysis
+Visualizations: Multiple charts showing trends and comparisons
+Reports: Data-driven insights about security culture effectiveness
+Key Insights to Identify:
+
+Compliance metrics show what activities occurred
+Impact metrics show what behaviors changed
+High compliance doesn't guarantee high impact
+Both metric types are necessary for complete assessment
+Impact metrics better predict long-term security posture
+Troubleshooting Tips
+Issue: CSV files not found
+
+Solution: Ensure data_generator.py ran successfully and created the CSV files in the current directory
+Issue: Matplotlib plots not displaying
+
+Solution: Use plt.savefig() before plt.show() to save images, or run with python3 -i script.py
+Issue: Import errors for pandas/matplotlib
+
+Solution: Install missing packages: pip3 install pandas matplotlib seaborn numpy
+Issue: Division by zero errors in calculations
+
+Solution: Add checks for zero values before division operations, use .fillna(0) for missing data
+Issue: Date parsing errors
+
+Solution: Ensure date format is consistent (YYYY-MM) in generated CSV files
+Conclusion
+This lab demonstrated the critical differences between compliance and impact metrics in security culture programs. Compliance metrics measure adherence to requirements, while impact metrics measure actual behavioral change and cultural transformation.
+
+Key Takeaways:
+
+Compliance metrics are necessary but insufficient alone
+Impact metrics provide deeper insights into program effectiveness
+Combining both metric types gives complete picture
+Data-driven analysis enables strategic decision-making
+Behavioral change is the ultimate goal of security awareness
+Next Steps:
+
+Apply these concepts to real organizational data
+Develop custom metrics for specific security culture goals
+Create automated reporting dashboards
+Establish baseline measurements and track improvements over time
+Security culture transformation requires measuring both what people complete (compliance) and how they change (impact). Use both metric types to build truly effective security awareness programs.
